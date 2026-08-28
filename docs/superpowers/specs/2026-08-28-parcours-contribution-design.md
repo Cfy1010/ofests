@@ -151,18 +151,23 @@ Obligatoire ou optionnel pour la soumission : question ouverte.
 
 ## Questions ouvertes
 
-1. Répartition exacte des champs par étape (essentiel / détails /
-   confirmation) pour le flux « nouveau festival ».
+1. Répartition exacte des champs par étape — **partiellement tranchée**
+   (héritage 2019) : étape 1 = nom, ville, pays, dates (correspond aux
+   colonnes non nullables du schéma). Étape 2 = adresse, genres, affiche,
+   site, Facebook, description. Étape 3 = confirmation. Reste à valider
+   le détail de l'étape 2.
 2. Nombre d'étapes réel pour le flux « nouvelle édition » — 3 comme le
    flux complet, ou allégé vu le peu de champs.
 3. Affiche : upload obligatoire ou optionnel pour valider une
    soumission ?
-4. Genres : liste contrôlée (cases à cocher) ou saisie libre ?
+4. Genres : **tranchée** — liste contrôlée en sélection multiple, plafond
+   à 5 genres, source `Genres_metal.json`. La saisie libre produirait des
+   doublons de casse et d'orthographe. Reprend le choix de 2019.
 5. Coordonnées du festival : pin déposé sur une carte MapLibre, ou
    adresse saisie puis géocodée ?
-6. Existe-t-il un point d'entrée générique supplémentaire (ex. bouton
-   « ajouter un festival » visible en permanence dans la nav ou
-   l'accueil), en plus de l'état vide de recherche ?
+6. Point d'entrée générique : **tranchée** — bouton « Ajouter » permanent
+   dans la barre du haut, à côté de la recherche, en plus de l'état vide
+   de recherche.
 7. Motif de rejet affiché au contributeur — à trancher une fois la
    question des notifications rouverte.
 8. Mécanisme précis lien magique vs code OTP — à trancher à
@@ -178,3 +183,6 @@ Obligatoire ou optionnel pour la soumission : question ouverte.
     mais uploadé après authentification. Le localStorage ne peut pas
     stocker une image, donc le fichier est perdu si le visiteur doit
     revenir sur l'onglet. Compromis à assumer ou à contourner.
+12. Adresse précise du lieu : absente du schéma actuel (seulement ville et
+    coordonnées). Le formulaire de 2019 la collectait. Utile pour un
+    annuaire consulté avant un déplacement — à ajouter ou à assumer.
