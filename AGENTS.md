@@ -37,7 +37,16 @@ alimenté par des contributions modérées.
 - Le rouge braise pour tout élément cliquable en petit corps
 - Metal dans l'enveloppe, sobriété dans la donnée
 
-
+## Domaine et marque
+- Domaine : ofests.com, enregistré chez Cloudflare Registrar (renouvellement
+  automatique actif)
+- Cloudflare ne vend pas les .eu ; le .eu reste libre si besoin un jour
+- Recherche d'antériorité faite le 28/08/2026 : INPI (data.inpi.fr) et
+  TMview. Aucune marque européenne. Une seule marque française proche,
+  « Touk Ô Fest » (FR5101270, classe 41, déposée en 2024) — jugée
+  suffisamment distincte, et « fest » est un terme générique du secteur.
+- Aucun dépôt de marque effectué à ce stade. À reconsidérer si le site
+  prend de l'ampleur (env. 190 € pour une classe, 10 ans).
 
 ## Development
 
