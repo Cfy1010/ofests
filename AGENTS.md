@@ -20,6 +20,7 @@ alimenté par des contributions modérées.
   coordonnées, site, genres, wikidata_id)
 - Table `editions` : une ligne par année (dates, affiche, billetterie)
 - Les deux portent un `status` : pending / published / rejected
+  et un `submitted_by` (uuid, FK vers auth.users) — la RLS s'appuie dessus
 - Amorçage depuis Wikidata (CC0), importé directement en published
 
 ## Contribution
