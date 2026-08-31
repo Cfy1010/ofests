@@ -1,4 +1,4 @@
-# O'Fests
+# O-Fests
 
 Annuaire des festivals metal en Europe. Site public, bilingue,
 alimenté par des contributions modérées.
