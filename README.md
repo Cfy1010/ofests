@@ -42,6 +42,12 @@ quelle que soit la taille du festival.
 **Ce que le projet ne cherche pas à être :** exhaustif, mondial, ni un moteur de
 recommandation algorithmique.
 
+### Product Goal
+
+Permettre à un festivalier metal de trouver un festival européen qui l'intéresse, y compris ceux qu'aucun annuaire automatique ne référence.
+
+Critère d'atteinte. Le site est en ligne et un visiteur peut parcourir et filtrer le catalogue par pays et par période, en y trouvant des festivals absents des annuaires généralistes.
+
 ## Pour qui
 
 - Le festivalier metal qui prépare sa saison et compare des options concrètes
