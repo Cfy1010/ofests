@@ -31,7 +31,7 @@ référencés nulle part.
 
 ## Le parti pris
 
-Une seule scène, des fiches vérifiées, les festivals que les bases automatiques ne voient
+Le metal, et rien d'autre. Des fiches vérifiées, les festivals que les bases automatiques ne voient
 pas, et les informations pratiques qui décident d'un déplacement.
 
 Ce n'est pas la revendication d'un vide. Des annuaires généralistes couvrent le metal
