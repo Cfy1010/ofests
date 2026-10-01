@@ -16,3 +16,4 @@ l'exhaustivité.
 | [0008](0008-depot-neuf.md)                           | Reprise dans un dépôt neuf                                       |
 | [0009](0009-sources-de-donnees.md)                   | Sources de données : contribution d'abord, API en enrichissement |
 | [0010](0010-critere-product-goal.md)                 | Critère du Product Goal : absents des catalogues internationaux  |
+| [0011](0011-geocodage-nominatim.md) | Géocodage : résultats Nominatim stockés, attribution OSM, sans ODbL |
