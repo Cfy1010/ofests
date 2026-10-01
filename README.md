@@ -23,11 +23,13 @@ reste de la liste.
 **L'information qui décide d'un déplacement est dispersée et inégale.** Le prix réel du
 pass et du camping, les douches, ce qu'on peut apporter, l'accessibilité, le statut de
 l'organisateur. Ces informations existent parfois, mais rangées au mauvais endroit et
-présentes surtout sur les gros festivals, parce qu'elles se recueillent au lieu de se
-calculer.
+présentes de façon inégale d'un festival à l'autre, parce qu'elles se recueillent
+au lieu de se calculer.
 
-Corollaire : les petits open airs associatifs, absents des bases automatiques, ne sont
-référencés nulle part.
+Corollaire : les petits open airs associatifs, absents des bases automatiques,
+sont référencés de façon rare et dispersée : un annuaire national ici, une page
+Facebook là, rarement dans les catalogues internationaux (aucun des 7 testés
+sur FEST le 01/10/2026, voir [`docs/benchmark/`](docs/benchmark/)).
 
 ## Le parti pris
 
@@ -46,7 +48,7 @@ recommandation algorithmique.
 
 Permettre à un festivalier metal de trouver un festival européen qui l'intéresse, y compris ceux qu'aucun annuaire automatique ne référence.
 
-Critère d'atteinte. Le site est en ligne et un visiteur peut parcourir et filtrer le catalogue par pays et par période, en y trouvant des festivals absents des annuaires généralistes.
+Critère d'atteinte. Le site est en ligne et un visiteur peut parcourir et filtrer le catalogue par pays et par période, en y trouvant des festivals absents des catalogues internationaux (FestT, FEST).
 
 ## Pour qui
 
@@ -82,13 +84,13 @@ fiches, reprise dans un dépôt neuf — sont dans le
 
 ## Stack
 
-| Brique | Choix |
-|---|---|
-| Front | Astro + React + Tailwind |
+| Brique          | Choix                                  |
+| --------------- | -------------------------------------- |
+| Front           | Astro + React + Tailwind               |
 | Données et auth | Supabase (Postgres, lien magique, RLS) |
-| Cartographie | MapLibre + OpenStreetMap |
-| Hébergement | Cloudflare Pages |
-| Domaine | ofests.com |
+| Cartographie    | MapLibre + OpenStreetMap               |
+| Hébergement     | Cloudflare Pages                       |
+| Domaine         | ofests.com                             |
 
 Pas de TypeScript, pas de Docker. Contraintes et conventions techniques dans
 [`AGENTS.md`](AGENTS.md).
@@ -109,4 +111,4 @@ docs/
   superpowers/   spécifications issues des sessions de cadrage
 ```
 
-Le backlog sera tenu en issues GitHub, avec critères d'acceptation.
+Le backlog est tenu en issues GitHub, avec critères d'acceptation.
