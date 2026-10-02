@@ -111,4 +111,5 @@ docs/
   superpowers/   spécifications issues des sessions de cadrage
 ```
 
-Le backlog est tenu en issues GitHub, avec critères d'acceptation.
+Le backlog est tenu en issues GitHub. Les critères d'acceptation sont rédigés
+au refinement, avant qu'une issue soit prise en charge.
