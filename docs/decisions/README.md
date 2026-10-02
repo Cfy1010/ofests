@@ -19,3 +19,4 @@ l'exhaustivité.
 | [0011](0011-geocodage-nominatim.md) | Géocodage : résultats Nominatim stockés, attribution OSM, sans ODbL |
 | [0012](0012-json-ld-sites-officiels.md) | JSON-LD des sites officiels : piste fermée, O-Fests publie ses propres `Event` |
 | [0013](0013-modele-de-donnees.md) | Modèle de données : statut et lieu par édition, dates facultatives, sources par fiche |
+| [0014](0014-docker-developpement-local.md) | Docker pour le développement local, pas pour le déploiement |
