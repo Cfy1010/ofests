@@ -92,7 +92,8 @@ fiches, reprise dans un dépôt neuf — sont dans le
 | Hébergement     | Cloudflare Pages                       |
 | Domaine         | ofests.com                             |
 
-Pas de TypeScript, pas de Docker. Contraintes et conventions techniques dans
+Pas de TypeScript. Docker sert uniquement à la base locale de développement,
+jamais au déploiement (voir [0014](docs/decisions/0014-docker-developpement-local.md)). Contraintes et conventions techniques dans
 [`AGENTS.md`](AGENTS.md).
 
 ## Modèle de données
