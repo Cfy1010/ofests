@@ -25,6 +25,6 @@ pendant l'inscription.
 
 - Statuts `pending` / `published` / `rejected`.
 - Les fiches en attente sont visibles publiquement avec leur statut affiché :
-  le contributeur voit que sa proposition existe.
+  le contributeur voit que sa proposition existe.*Remplacé par l'ADR 0015.*
 - La persistance du brouillon est une exigence, pas une option.
 - Modération via Supabase Studio au lancement, interface dédiée plus tard.
