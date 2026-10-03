@@ -16,18 +16,32 @@ alimenté par des contributions modérées.
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX
 
 ## Données
-- Table `festivals` : identité stable (nom, slug, ville, country_code,
-  coordonnées, site, genres, wikidata_id)
-- Table `editions` : une ligne par année (dates, affiche, billetterie)
-- Les deux portent un `status` : pending / published / rejected
-  et un `submitted_by` (uuid, FK vers auth.users) — la RLS s'appuie dessus
-- Amorçage depuis Wikidata (CC0), importé directement en published
+- Noms de tables et de colonnes en anglais, snake_case
+- Table `festivals` : identité stable (name, slug, website, main_genre,
+  subgenres, wikidata_id, musicbrainz_id)
+- Table `genres` : liste contrôlée des genres principaux, seuls filtrants
+  (ADR 0003) ; les sous-genres sont descriptifs
+- Table `editions` : une ligne par année d'un festival (year obligatoire,
+  dates facultatives, lieu et champs géographiques ; affiche et billetterie
+  à venir). Le lieu est porté par l'édition (ADR 0013)
+- Table `sources` : sources d'une fiche, festival ou édition (URL, type,
+  date de consultation). Pas de publication sans source (ADR 0007, 0013)
+- `festivals` et `editions` portent un `status` (pending / published /
+  rejected), un `submitted_by` (uuid, FK vers auth.users) sur lequel
+  s'appuie la RLS, et un `revised_at`
+- Éditions à venir : vue `upcoming_editions`, qui applique la RLS du lecteur.
+  Pas de publication sans dates pour une édition de l'année en cours ou
+  passée (ADR 0016)
+- Amorçage depuis Wikidata (CC0), importé directement en published,
+  avec Wikidata enregistrée comme source
 
 ## Contribution
 - Compte obligatoire, demandé APRÈS remplissage du formulaire
+- Ni modification ni suppression par les utilisateurs ; une source ne
+  s'ajoute qu'à ses propres fiches en attente (ADR 0015)
 - Auth par lien magique ; conserver le brouillon avant l'envoi du mail
 - Formulaire en 3 étapes : essentiel / détails / confirmation
-- Les fiches en attente restent visibles publiquement, marquées non vérifiées
+- Les fiches en attente ne sont visibles que de leur auteur : le public ne lit que les fiches publiées (ADR 0015)
 - Sécurité par RLS Postgres, pas de contrôle applicatif
 
 ## Identité
