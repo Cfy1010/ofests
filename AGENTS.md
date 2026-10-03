@@ -29,14 +29,19 @@ alimenté par des contributions modérées.
 - `festivals` et `editions` portent un `status` (pending / published /
   rejected), un `submitted_by` (uuid, FK vers auth.users) sur lequel
   s'appuie la RLS, et un `revised_at`
+- Éditions à venir : vue `upcoming_editions`, qui applique la RLS du lecteur.
+  Pas de publication sans dates pour une édition de l'année en cours ou
+  passée (ADR 0016)
 - Amorçage depuis Wikidata (CC0), importé directement en published,
   avec Wikidata enregistrée comme source
 
 ## Contribution
 - Compte obligatoire, demandé APRÈS remplissage du formulaire
+- Ni modification ni suppression par les utilisateurs ; une source ne
+  s'ajoute qu'à ses propres fiches en attente (ADR 0015)
 - Auth par lien magique ; conserver le brouillon avant l'envoi du mail
 - Formulaire en 3 étapes : essentiel / détails / confirmation
-- Les fiches en attente restent visibles publiquement, marquées non vérifiées
+- Les fiches en attente ne sont visibles que de leur auteur : le public ne lit que les fiches publiées (ADR 0015)
 - Sécurité par RLS Postgres, pas de contrôle applicatif
 
 ## Identité
