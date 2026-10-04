@@ -19,8 +19,12 @@ alimenté par des contributions modérées.
 - Noms de tables et de colonnes en anglais, snake_case
 - Table `festivals` : identité stable (name, slug, website, main_genre,
   subgenres, wikidata_id, musicbrainz_id)
-- Table `genres` : liste contrôlée des genres principaux, seuls filtrants
-  (ADR 0003) ; les sous-genres sont descriptifs
+- Table `genres` : liste contrôlée à deux niveaux, tendances et genres
+  (ADR 0003, 0017). Le genre principal d'un festival est une tendance, un
+  genre ou `all-styles` ; filtrer sur une tendance inclut ses genres. Les
+  sous-genres sont des tags non filtrants. Libellés fr/en en base, slug
+  immuable, archivage au lieu de suppression, écriture réservée au
+  modérateur
 - Table `editions` : une ligne par année d'un festival (year obligatoire,
   dates facultatives, lieu et champs géographiques ; affiche et billetterie
   à venir). Le lieu est porté par l'édition (ADR 0013)

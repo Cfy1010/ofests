@@ -12,7 +12,7 @@ insert into auth.users (id, email) values
   ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'a@test.local'),
   ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'b@test.local');
 
-insert into public.genres (slug) values ('black-metal');
+-- black-metal : inséré par la migration genres_hierarchie (#18)
 
 insert into public.festivals (id, name, slug, main_genre, status, submitted_by) values
   ('11111111-1111-1111-1111-111111111111', 'Fest publié', 'fest-publie',
@@ -42,7 +42,7 @@ insert into public.sources (festival_id, edition_id, url, kind, submitted_by) va
 -- Visiteur anonyme
 set local role anon;
 
-select is((select count(*)::int from public.genres), 1,
+select is((select count(*)::int from public.genres where slug = 'black-metal'), 1,
   'anon lit les genres');
 select is((select count(*)::int from public.festivals), 1,
   'anon ne voit que les festivals publiés');
