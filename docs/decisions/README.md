@@ -22,3 +22,4 @@ l'exhaustivité.
 | [0014](0014-docker-developpement-local.md) | Docker pour le développement local, pas pour le déploiement |
 | [0015](0015-visibilite-ecriture-fiches.md) | Visibilité et écriture : ce qui n'est pas publié reste privé |
 | [0016](0016-editions-a-venir-sans-date.md) | Éditions à venir : jamais de publication sans dates pour l'année en cours |
+| [0017](0017-genres-hierarchie.md) | Genres : hiérarchie tendances / genres, règle de classement, liste gérée en base |

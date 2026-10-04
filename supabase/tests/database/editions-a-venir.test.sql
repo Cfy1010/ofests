@@ -3,7 +3,7 @@ begin;
 create extension if not exists pgtap with schema extensions;
 select plan(6);
 
-insert into public.genres (slug) values ('black-metal');
+-- black-metal : inséré par la migration genres_hierarchie (#18)
 
 -- Huit festivals publiés : un par cas à tester (une seule édition par an et par festival)
 insert into public.festivals (id, name, slug, main_genre, status)

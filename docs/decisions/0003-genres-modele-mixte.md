@@ -1,7 +1,7 @@
 # 0003 — Genres : modèle mixte
 
 Date : 2026-08-31
-Statut : acceptée
+Statut : acceptée — révisée par l'ADR 0017
 
 ## Contexte
 
