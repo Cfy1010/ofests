@@ -65,7 +65,7 @@ Test du 01/10/2026, recherche par nom dans la barre de recherche :
 | Bambi Metal Fest | FR | festivalenfrance.com | non |
 | Mauges Pit Fest | FR | festivalenfrance.com | non |
 | Wellesweiler Open Air | DE | festivalsindeutschland.de | non |
-| Riipfest | FI | échantillon du spike | non |
+| Riipfest | FR | échantillon du spike | non |
 | Liège Metal Fest | BE | échantillon du spike | non |
 | Rock The Lakes | CH | échantillon du spike | non |
 
