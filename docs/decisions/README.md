@@ -23,3 +23,5 @@ l'exhaustivité.
 | [0015](0015-visibilite-ecriture-fiches.md) | Visibilité et écriture : ce qui n'est pas publié reste privé |
 | [0016](0016-editions-a-venir-sans-date.md) | Éditions à venir : jamais de publication sans dates pour l'année en cours |
 | [0017](0017-genres-hierarchie.md) | Genres : hiérarchie tendances / genres, règle de classement, liste gérée en base |
+| [0018](0018-fraicheur-liste-a-venir.md) | Liste à venir : statique + rebuild quotidien |
+| [0019](0019-tri-editions-sans-date.md) | Tri : une édition sans date se place à la fin de son année |
