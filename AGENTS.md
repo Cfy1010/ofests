@@ -13,6 +13,10 @@ alimenté par des contributions modérées.
 ## Périmètre
 - Europe uniquement
 - Bilingue fr/en, routes /fr/ et /en/, hreflang obligatoire
+- `x-default` pointe vers l'anglais, pour les visiteurs européens ni
+  francophones ni anglophones
+- Chaque page porte un lien vers la même page dans l'autre langue, libellé
+  dans la langue cible (layout `src/layouts/Base.astro`)
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :
   `src/i18n/fr.json` et `en.json`, lus par `useTranslations(locale)`
   (`src/i18n/index.js`). Un libellé manquant fait échouer le build
@@ -53,8 +57,10 @@ alimenté par des contributions modérées.
 ## Identité
 - Titrage Anton, texte Inter, auto-hébergées (pas de CDN Google)
 - Encre #0B0B0D, crème #EDE4D3, rouge sang #C1121F, rouge braise #E63946
-- Le rouge sang ne descend jamais sous 18px et ne sert pas au texte courant
-- Le rouge braise pour tout élément cliquable en petit corps
+- Le rouge sang uniquement en grand texte (≥ 24px, ou ≥ 19px en gras 700+),
+  jamais en texte courant : 3,2:1 sur encre
+- Le rouge braise pour tout élément cliquable en petit corps, uniquement sur
+  fond encre : 3,3:1 sur crème
 - Metal dans l'enveloppe, sobriété dans la donnée
 
 ## Domaine et marque
