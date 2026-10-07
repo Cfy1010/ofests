@@ -49,6 +49,9 @@ alimenté par des contributions modérées.
   `.env.example`). Variables absentes : le build échoue. Pas de clés
   `anon` / `service_role`, que Supabase déprécie ; la clé secrète
   (`sb_secret_…`) n'entre jamais dans le dépôt ni dans le build
+- Jeu de données local : `supabase/seed.sql`, festivals fictifs et dates
+  relatives à la date du jour, chargé par `supabase db reset`. Jamais en
+  production
 
 ## Contribution
 - Compte obligatoire, demandé APRÈS remplissage du formulaire
