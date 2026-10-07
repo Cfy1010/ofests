@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* Identité (AGENTS.md) : bg-ink, text-cream, text-blood, text-ember…
+   Contraste WCAG : le rouge sang (blood) uniquement en grand texte
+   (≥ 24px, ou ≥ 19px en gras 700+) ; le rouge braise (ember) en petit
+   corps uniquement sur fond encre. */
+@theme {
+  --color-ink: #0b0b0d;
+  --color-cream: #ede4d3;
+  --color-blood: #c1121f;
+  --color-ember: #e63946;
+}
