@@ -13,7 +13,9 @@ alimenté par des contributions modérées.
 ## Périmètre
 - Europe uniquement
 - Bilingue fr/en, routes /fr/ et /en/, hreflang obligatoire
-- Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX
+- Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :
+  `src/i18n/fr.json` et `en.json`, lus par `useTranslations(locale)`
+  (`src/i18n/index.js`). Un libellé manquant fait échouer le build
 
 ## Données
 - Noms de tables et de colonnes en anglais, snake_case
