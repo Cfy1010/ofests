@@ -6,3 +6,4 @@
   Les lire avant toute proposition qui touche à l'architecture.
 - Definition of Done : `docs/definition-of-done.md`.
 - Le PO (Cyrille) décide : proposer, ne pas trancher seul.
+- Commits : pas de ligne Co-Authored-By.
