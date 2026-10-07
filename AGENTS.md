@@ -44,6 +44,11 @@ alimenté par des contributions modérées.
   passée (ADR 0016)
 - Amorçage depuis Wikidata (CC0), importé directement en published,
   avec Wikidata enregistrée comme source
+- Lecture au build par `src/lib/supabase.js`, avec la clé publishable
+  (`PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_PUBLISHABLE_KEY`, modèle dans
+  `.env.example`). Variables absentes : le build échoue. Pas de clés
+  `anon` / `service_role`, que Supabase déprécie ; la clé secrète
+  (`sb_secret_…`) n'entre jamais dans le dépôt ni dans le build
 
 ## Contribution
 - Compte obligatoire, demandé APRÈS remplissage du formulaire
