@@ -3,12 +3,13 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm test && astro build",
     "preview": "astro preview",
+    "test": "node --test \"src/**/*.test.js\"",
     "astro": "astro"
   },
   "dependencies": {

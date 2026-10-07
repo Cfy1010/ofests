@@ -9,6 +9,16 @@ alimenté par des contributions modérées.
 - Supabase : Postgres, auth par lien magique, storage images
 - MapLibre + tuiles OpenStreetMap (pas de Google Maps)
 - Déploiement Cloudflare Pages
+- Node 24.20.0, fixé par `.nvmrc`, que Cloudflare Pages lit au build (sans
+  lui, l'image de build v3 prend Node 22). Ne pas définir `NODE_VERSION`
+  dans Cloudflare : la version est fixée par `.nvmrc` seul. La version
+  compte : les dates sont formatées par `Intl`, et Node 22 et 24 n'espacent
+  pas les plages de la même façon
+- Tests : `npm test` (`node --test`, sans dépendance) pour les fonctions
+  pures de `src/lib/`, dans des fichiers `*.test.js` ; `npx supabase test db`
+  pour la base (pgTAP)
+- `npm run build` lance `npm test` avant `astro build` : un test en échec
+  bloque le déploiement, et Cloudflare garde la version en ligne
 
 ## Périmètre
 - Europe uniquement
