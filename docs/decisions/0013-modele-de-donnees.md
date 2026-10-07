@@ -1,7 +1,7 @@
 # 0013 — Modèle de données : statut, lieu, dates et sources
 
 Date : 2026-10-02
-Statut : acceptée
+Statut : acceptée — révisée par l'ADR 0019
 
 ## Contexte
 

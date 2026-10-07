@@ -1,7 +1,7 @@
 # 0016 — Éditions à venir et éditions sans date
 
 Date : 2026-10-03
-Statut : acceptée
+Statut : acceptée — révisée par l'ADR 0019
 
 ## Contexte
 
