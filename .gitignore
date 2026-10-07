@@ -26,3 +26,6 @@ pnpm-debug.log*
 
 # Brouillons SQL de Studio en local
 supabase/snippets/
+
+# Réglages locaux de Claude Code
+.claude/settings.local.json
