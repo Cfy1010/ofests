@@ -28,6 +28,14 @@ alimenté par des contributions modérées.
 - Liste des festivals à venir : `/fr/festivals/` et `/en/festivals/`
   (`src/pages/{fr,en}/festivals.astro`, composant
   `src/components/UpcomingList.astro`)
+- `/` redirige vers `/en/festivals/` en 302 (`public/_redirects`, lu par
+  Cloudflare Pages seulement : en local, `/` renvoie une 404). Il n'y a pas
+  de page d'accueil
+- `defaultLocale` reste `"fr"` dans `astro.config.mjs` alors que la
+  redirection et `x-default` visent l'anglais : le français est la langue de
+  rédaction du site, l'anglais la langue servie à un visiteur dont on ne
+  connaît pas la langue. Ce réglage n'a pas d'effet visible, les deux
+  langues étant préfixées et Astro ne redirigeant rien
 - Chaque page porte un lien vers la même page dans l'autre langue, libellé
   dans la langue cible (layout `src/layouts/Base.astro`)
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :
