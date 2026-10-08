@@ -25,6 +25,9 @@ alimenté par des contributions modérées.
 - Bilingue fr/en, routes /fr/ et /en/, hreflang obligatoire
 - `x-default` pointe vers l'anglais, pour les visiteurs européens ni
   francophones ni anglophones
+- Liste des festivals à venir : `/fr/festivals/` et `/en/festivals/`
+  (`src/pages/{fr,en}/festivals.astro`, composant
+  `src/components/UpcomingList.astro`)
 - Chaque page porte un lien vers la même page dans l'autre langue, libellé
   dans la langue cible (layout `src/layouts/Base.astro`)
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :
