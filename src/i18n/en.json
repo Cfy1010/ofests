@@ -1,4 +1,9 @@
 {
   "site.name": "O-Fests",
-  "language.name": "English"
+  "language.name": "English",
+  "upcoming.title": "Upcoming festivals",
+  "upcoming.description": "Upcoming metal festivals in Europe, sorted by date.",
+  "upcoming.sortRule": "Ongoing and upcoming editions, from soonest to latest. Dates not announced: at the end of their year.",
+  "upcoming.datesNotAnnounced": "Dates not announced",
+  "upcoming.empty": "No upcoming festivals at the moment."
 }

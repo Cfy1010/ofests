@@ -1,0 +1,17 @@
+---
+import UpcomingList from "../../components/UpcomingList.astro";
+import { useTranslations } from "../../i18n";
+import Base from "../../layouts/Base.astro";
+import { supabase } from "../../lib/supabase.js";
+import { fetchUpcomingEditions } from "../../lib/upcoming.js";
+
+const t = useTranslations(Astro.currentLocale);
+const editions = await fetchUpcomingEditions(supabase);
+---
+
+<Base title={t("upcoming.title")} description={t("upcoming.description")} path="festivals">
+	<main class="mx-auto max-w-4xl px-4 pb-12">
+		<h1 class="text-3xl font-bold text-blood sm:text-4xl">{t("upcoming.title")}</h1>
+		<UpcomingList editions={editions} />
+	</main>
+</Base>

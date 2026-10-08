@@ -1,5 +1,3 @@
-import { supabase } from "./supabase.js";
-
 // Colonnes explicites : pas de `*`, pour ne pas embarquer submitted_by (#15).
 // Le festival n'est jamais null : la RLS ne montre une édition que si son
 // festival est visible (policy editions_select, testée dans rls.test.sql).
@@ -16,7 +14,8 @@ const PAGE_SIZE = 1000;
 // La RLS ne laisse passer que les fiches publiées. L'ordre renvoyé n'est
 // pas celui de l'affichage : le tri se fait ensuite (ADR 0019).
 // Une erreur fait échouer le build, pour ne pas publier une liste vide.
-export async function fetchUpcomingEditions() {
+// Le client Supabase est reçu en paramètre : les tests en passent un faux.
+export async function fetchUpcomingEditions(supabase) {
   const editions = [];
 
   for (let from = 0; ; from += PAGE_SIZE) {
