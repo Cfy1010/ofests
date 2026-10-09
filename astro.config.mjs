@@ -5,6 +5,8 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 
+import { locales } from "./src/i18n/locales.js";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://ofests.com",
@@ -13,7 +15,7 @@ export default defineConfig({
     sitemap({
       i18n: {
         defaultLocale: "fr",
-        locales: { fr: "fr", en: "en" },
+        locales: Object.fromEntries(locales.map((locale) => [locale, locale])),
       },
     }),
   ],
@@ -21,7 +23,7 @@ export default defineConfig({
   // Les deux langues portent leur préfixe : /fr/ et /en/
   i18n: {
     defaultLocale: "fr",
-    locales: ["fr", "en"],
+    locales: [...locales],
     routing: {
       prefixDefaultLocale: true,
     },
