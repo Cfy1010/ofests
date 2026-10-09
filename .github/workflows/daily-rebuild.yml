@@ -1,0 +1,36 @@
+# Rebuild quotidien du site (ADR 0018). La liste des festivals à venir est
+# générée au build : ce POST au deploy hook Cloudflare Pages la rafraîchit
+# chaque nuit. Le hook rebâtit la branche main.
+name: Rebuild quotidien
+
+on:
+  schedule:
+    # 03:17 UTC : après minuit UTC, la date de la base (current_date) a
+    # changé ; hors de l'heure pile, où GitHub retarde le plus les runs.
+    - cron: "17 3 * * *"
+  # Lancement manuel : gh workflow run daily-rebuild.yml
+  workflow_dispatch:
+
+# Aucun droit sur le dépôt : le workflow ne fait qu'un appel sortant.
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Déclencher le deploy hook Cloudflare Pages
+        # Le secret passe par l'environnement, jamais interpolé dans le
+        # script, et l'URL n'est jamais affichée.
+        env:
+          CF_DEPLOY_HOOK_URL: ${{ secrets.CF_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$CF_DEPLOY_HOOK_URL" ]; then
+            echo "::error::Secret CF_DEPLOY_HOOK_URL absent (voir ADR 0018)"
+            exit 1
+          fi
+          curl --fail-with-body --silent --show-error \
+            --retry 2 --retry-connrefused --max-time 30 \
+            --request POST "$CF_DEPLOY_HOOK_URL"
+          echo
+          echo "Rebuild demandé à Cloudflare Pages."

@@ -12,6 +12,10 @@ alimenté par des contributions modérées.
 - Supabase : Postgres, auth par lien magique, storage images
 - MapLibre + tuiles OpenStreetMap (pas de Google Maps)
 - Déploiement Cloudflare Pages
+- Rebuild quotidien à 03:17 UTC (`.github/workflows/daily-rebuild.yml`,
+  ADR 0018) : POST au deploy hook Cloudflare Pages, qui rebâtit `main`.
+  URL du hook en secret GitHub `CF_DEPLOY_HOOK_URL`, jamais dans le dépôt.
+  Lancement manuel : `gh workflow run daily-rebuild.yml`
 - Node 24.20.0, fixé par `.nvmrc`, que Cloudflare Pages lit au build (sans
   lui, l'image de build v3 prend Node 22). Ne pas définir `NODE_VERSION`
   dans Cloudflare : la version est fixée par `.nvmrc` seul. La version
