@@ -6,6 +6,9 @@ alimenté par des contributions modérées.
 ## Stack
 - Astro (pages statiques, SEO prioritaire) + îlots React
 - Tailwind 4, JavaScript (pas de TypeScript)
+- `typescript` et `@astrojs/check` en devDependencies pour la seule
+  vérification : `npx astro check` contrôle les types des fichiers `.astro`
+  (annotations JSDoc côté `.js`). Aucun code TypeScript dans le dépôt
 - Supabase : Postgres, auth par lien magique, storage images
 - MapLibre + tuiles OpenStreetMap (pas de Google Maps)
 - Déploiement Cloudflare Pages
