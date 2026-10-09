@@ -1,6 +1,8 @@
 import fr from "./fr.json";
 import en from "./en.json";
 
+export { locales, toLocale } from "./locales.js";
+
 const dictionaries = { fr, en };
 
 // Renvoie la fonction de traduction d'une langue.

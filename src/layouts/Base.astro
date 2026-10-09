@@ -1,19 +1,18 @@
 ---
 import "../styles/global.css";
-import { i18n } from "astro:config/client";
 import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
-import { useTranslations } from "../i18n";
+import { locales, toLocale, useTranslations } from "../i18n";
 
 // path : chemin de la page sans préfixe de langue ("festivals").
 // Il est le même dans les deux langues et sert aux liens hreflang.
 const { title, description, path = "" } = Astro.props;
 
-const locale = Astro.currentLocale;
+const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 
 // x-default : l'anglais, pour les visiteurs ni francophones ni anglophones
 const xDefaultLocale = "en";
-const otherLocales = i18n.locales.filter((other) => other !== locale);
+const otherLocales = locales.filter((other) => other !== locale);
 ---
 
 <!doctype html>
@@ -28,7 +27,7 @@ const otherLocales = i18n.locales.filter((other) => other !== locale);
 		<meta name="description" content={description} />
 		<link rel="canonical" href={getAbsoluteLocaleUrl(locale, path)} />
 		{
-			i18n.locales.map((alternate) => (
+			locales.map((alternate) => (
 				<link rel="alternate" hreflang={alternate} href={getAbsoluteLocaleUrl(alternate, path)} />
 			))
 		}

@@ -1,11 +1,11 @@
 ---
-import { useTranslations } from "../i18n";
+import { toLocale, useTranslations } from "../i18n";
 import { formatDateRange, formatLocation, sortUpcomingEditions } from "../lib/editions.js";
 
 // editions : éditions à venir, telles que renvoyées par fetchUpcomingEditions()
 const { editions } = Astro.props;
 
-const locale = Astro.currentLocale;
+const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 
 const rows = sortUpcomingEditions(editions).map((edition) => ({
