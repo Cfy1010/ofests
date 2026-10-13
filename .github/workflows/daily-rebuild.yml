@@ -1,6 +1,6 @@
-# Rebuild quotidien du site (ADR 0018). La liste des festivals à venir est
-# générée au build : ce POST au deploy hook Cloudflare Pages la rafraîchit
-# chaque nuit. Le hook rebâtit la branche main.
+# Rebuild quotidien du site (ADR 0018, 0020). La liste des festivals à venir
+# est générée au build : ce POST au deploy hook du Worker Cloudflare (Workers
+# Builds) la rafraîchit chaque nuit. Le hook rebâtit la branche main.
 name: Rebuild quotidien
 
 on:
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Déclencher le deploy hook Cloudflare Pages
+      - name: Déclencher le deploy hook Cloudflare Workers
         # Le secret passe par l'environnement, jamais interpolé dans le
         # script, et l'URL n'est jamais affichée.
         env:
@@ -33,4 +33,4 @@ jobs:
             --retry 2 --retry-connrefused --max-time 30 \
             --request POST "$CF_DEPLOY_HOOK_URL"
           echo
-          echo "Rebuild demandé à Cloudflare Pages."
+          echo "Rebuild demandé à Cloudflare Workers Builds."

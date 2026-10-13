@@ -1,7 +1,7 @@
 # 0018 — Liste à venir : statique + rebuild quotidien
 
 Date : 2026-10-07
-Statut : acceptée
+Statut : acceptée — révisée par l'ADR 0020
 
 ## Contexte
 
