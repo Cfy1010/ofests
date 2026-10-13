@@ -3,12 +3,13 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24"
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "npm test && astro build",
     "preview": "astro preview",
+    "test": "node --test \"src/**/*.test.js\"",
     "astro": "astro"
   },
   "dependencies": {
@@ -25,9 +26,13 @@
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
-    "esbuild": true
+    "esbuild": true,
+    "workerd": true
   },
   "devDependencies": {
-    "supabase": "^2.119.0"
+    "@astrojs/check": "^0.9.10",
+    "supabase": "^2.119.0",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.150.0"
   }
 }
