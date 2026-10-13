@@ -11,14 +11,17 @@ alimenté par des contributions modérées.
   (annotations JSDoc côté `.js`). Aucun code TypeScript dans le dépôt
 - Supabase : Postgres, auth par lien magique, storage images
 - MapLibre + tuiles OpenStreetMap (pas de Google Maps)
-- Déploiement Cloudflare Pages
+- Déploiement Cloudflare Workers, ressources statiques seules, bâti par
+  Workers Builds (ADR 0020). Configuration dans `wrangler.jsonc` : `dist/`
+  servi tel quel, sans script `main`. `wrangler` en devDependency ;
+  `npx wrangler deploy --dry-run` valide la configuration sans déployer
 - Rebuild quotidien à 03:17 UTC (`.github/workflows/daily-rebuild.yml`,
-  ADR 0018) : POST au deploy hook Cloudflare Pages, qui rebâtit `main`.
+  ADR 0018, 0020) : POST au deploy hook du Worker, qui rebâtit `main`.
   URL du hook en secret GitHub `CF_DEPLOY_HOOK_URL`, jamais dans le dépôt.
   Lancement manuel : `gh workflow run daily-rebuild.yml`
-- Node 24.20.0, fixé par `.nvmrc`, que Cloudflare Pages lit au build (sans
-  lui, l'image de build v3 prend Node 22). Ne pas définir `NODE_VERSION`
-  dans Cloudflare : la version est fixée par `.nvmrc` seul. La version
+- Node 24.20.0, fixé par `.nvmrc`, que Workers Builds lit au build. Ne pas
+  définir `NODE_VERSION` dans les variables de build du Worker : la
+  version est fixée par `.nvmrc` seul. La version
   compte : les dates sont formatées par `Intl`, et Node 22 et 24 n'espacent
   pas les plages de la même façon
 - Tests : `npm test` (`node --test`, sans dépendance) pour les fonctions
@@ -36,7 +39,7 @@ alimenté par des contributions modérées.
   (`src/pages/{fr,en}/festivals.astro`, composant
   `src/components/UpcomingList.astro`)
 - `/` redirige vers `/en/festivals/` en 302 (`public/_redirects`, lu par
-  Cloudflare Pages seulement : en local, `/` renvoie une 404). Il n'y a pas
+  Cloudflare Workers seulement : en local, `/` renvoie une 404). Il n'y a pas
   de page d'accueil
 - `defaultLocale` reste `"fr"` dans `astro.config.mjs` alors que la
   redirection et `x-default` visent l'anglais : le français est la langue de
