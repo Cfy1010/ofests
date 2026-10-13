@@ -103,10 +103,23 @@ alimenté par des contributions modérées.
 ## Identité
 - Titrage Anton, texte Inter, auto-hébergées (pas de CDN Google)
 - Encre #0B0B0D, crème #EDE4D3, rouge sang #C1121F, rouge braise #E63946
-- Le rouge sang uniquement en grand texte (≥ 24px, ou ≥ 19px en gras 700+),
-  jamais en texte courant : 3,2:1 sur encre
-- Le rouge braise pour tout élément cliquable en petit corps, uniquement sur
-  fond encre : 3,3:1 sur crème
+- Deux thèmes (ADR 0021). Sombre par défaut, sans JavaScript ou sans choix
+  mémorisé : fond encre, texte crème. Clair par choix explicite : fond
+  crème, texte encre. Un sélecteur Clair / Sombre / Système dans l'en-tête
+  (`src/components/ThemeSwitcher.astro`) ; Système suit l'appareil
+  (`prefers-color-scheme`). Choix mémorisé en `localStorage`
+  (`ofests-theme`), appliqué avant le premier affichage par un script de
+  tête dans `src/layouts/Base.astro`, copie de `src/lib/theme.js`
+- Répartition des rouges par thème :
+  - sombre : rouge sang uniquement en grand texte (≥ 24px, ou ≥ 19px en gras
+    700+), 3,2:1 sur encre ; rouge braise pour les liens et contrôles en
+    petit corps, 4,7:1 sur encre
+  - clair : rouge sang pour les titres ET les liens, 4,9:1 sur crème ; jamais
+    de rouge braise, 3,3:1 sur crème
+- Couleurs uniquement par les variables sémantiques de
+  `src/styles/global.css` : `page`, `body`, `muted`, `line`, `link`,
+  `heading` (`bg-page`, `text-muted`…). La palette n'y génère aucune classe :
+  pas de `bg-ink` ni `text-blood` dans les composants
 - Metal dans l'enveloppe, sobriété dans la donnée
 
 ## Domaine et marque

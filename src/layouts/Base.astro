@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
+import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 import { locales, toLocale, useTranslations } from "../i18n";
 
 // path : chemin de la page sans préfixe de langue ("festivals").
@@ -20,6 +21,19 @@ const otherLocales = locales.filter((other) => other !== locale);
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		{/* Thème mémorisé, appliqué avant le premier affichage (pas de flash).
+		    Copie à la main de readTheme() et applyTheme(), testées dans
+		    src/lib/theme.js : toute modification doit être reportée ici. */}
+		<script is:inline>
+			(() => {
+				let theme = "dark";
+				try {
+					const stored = window.localStorage.getItem("ofests-theme");
+					if (stored === "light" || stored === "dark" || stored === "system") theme = stored;
+				} catch {}
+				document.documentElement.dataset.theme = theme;
+			})();
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
@@ -33,12 +47,13 @@ const otherLocales = locales.filter((other) => other !== locale);
 		}
 		<link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl(xDefaultLocale, path)} />
 	</head>
-	<body class="bg-ink text-cream">
-		<header class="flex justify-end px-4 py-3">
+	<body class="bg-page text-body">
+		<header class="flex flex-wrap items-center justify-end gap-x-4 gap-y-2 px-4 py-3">
+			<ThemeSwitcher />
 			{
 				otherLocales.map((other) => (
 					<a
-						class="py-2 text-sm text-ember underline"
+						class="py-2 text-sm text-link underline"
 						href={getRelativeLocaleUrl(other, path)}
 						lang={other}
 						hreflang={other}

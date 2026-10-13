@@ -1,12 +1,70 @@
 @import "tailwindcss";
 
-/* Identité (AGENTS.md) : bg-ink, text-cream, text-blood, text-ember…
-   Contraste WCAG : le rouge sang (blood) uniquement en grand texte
-   (≥ 24px, ou ≥ 19px en gras 700+) ; le rouge braise (ember) en petit
-   corps uniquement sur fond encre. */
-@theme {
-  --color-ink: #0b0b0d;
-  --color-cream: #ede4d3;
-  --color-blood: #c1121f;
-  --color-ember: #e63946;
+/* Palette de l'identité (AGENTS.md). Hors @theme : elle ne génère aucune
+   classe Tailwind. Les composants n'utilisent que les couleurs sémantiques
+   ci-dessous (ADR 0021). */
+:root {
+  --ink: #0b0b0d;
+  --cream: #ede4d3;
+  --blood: #c1121f;
+  --ember: #e63946;
+}
+
+/* Thème sombre, par défaut : sans JavaScript, sans choix mémorisé ou avec
+   data-theme="dark". Ratios WCAG dans l'ADR 0021. Le rouge sang (heading)
+   uniquement en grand texte (≥ 24px, ou ≥ 19px en gras 700+). */
+:root {
+  color-scheme: dark;
+  --theme-page: var(--ink);
+  --theme-body: var(--cream);
+  --theme-muted: color-mix(in srgb, var(--cream) 80%, var(--ink));
+  --theme-line: color-mix(in srgb, var(--cream) 20%, var(--ink));
+  --theme-link: var(--ember);
+  --theme-heading: var(--blood);
+}
+
+/* Thème clair : choix explicite. Le rouge braise n'a que 3,3:1 sur crème :
+   liens et titres passent au rouge sang. */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --theme-page: var(--cream);
+  --theme-body: var(--ink);
+  --theme-muted: color-mix(in srgb, var(--ink) 80%, var(--cream));
+  --theme-line: color-mix(in srgb, var(--ink) 20%, var(--cream));
+  --theme-link: var(--blood);
+  --theme-heading: var(--blood);
+}
+
+/* Système : suit le réglage de l'appareil. Mêmes valeurs claires que
+   ci-dessus, à garder identiques. */
+:root[data-theme="system"] {
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root[data-theme="system"] {
+    --theme-page: var(--cream);
+    --theme-body: var(--ink);
+    --theme-muted: color-mix(in srgb, var(--ink) 80%, var(--cream));
+    --theme-line: color-mix(in srgb, var(--ink) 20%, var(--cream));
+    --theme-link: var(--blood);
+    --theme-heading: var(--blood);
+  }
+}
+
+/* Couleurs sémantiques : bg-page, text-body, text-muted, border-line,
+   text-link, text-heading… */
+@theme inline {
+  --color-page: var(--theme-page);
+  --color-body: var(--theme-body);
+  --color-muted: var(--theme-muted);
+  --color-line: var(--theme-line);
+  --color-link: var(--theme-link);
+  --color-heading: var(--theme-heading);
+}
+
+/* Sans JavaScript, data-theme n'est jamais posé : le site reste sombre et
+   le sélecteur, inopérant, est masqué. */
+:root:not([data-theme]) .theme-switch {
+  display: none;
 }
