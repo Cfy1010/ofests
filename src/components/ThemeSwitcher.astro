@@ -1,0 +1,38 @@
+---
+import { toLocale, useTranslations } from "../i18n";
+import { DEFAULT_THEME, themes } from "../lib/theme.js";
+
+const t = useTranslations(toLocale(Astro.currentLocale));
+---
+
+{/* Boutons radio natifs : clavier (Tab, puis flèches) et annonce de l'état
+    courant sans ARIA ajouté. Masqué sans JavaScript (global.css). */}
+<fieldset class="theme-switch flex rounded border border-line text-sm">
+	<legend class="sr-only">{t("theme.legend")}</legend>
+	{
+		themes.map((theme) => (
+			<label class="cursor-pointer px-3 py-2 text-muted has-checked:text-link has-checked:underline has-checked:underline-offset-4 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-link">
+				<input class="sr-only" type="radio" name="theme" value={theme} checked={theme === DEFAULT_THEME} />
+				{t(`theme.${theme}`)}
+			</label>
+		))
+	}
+</fieldset>
+
+<script>
+	import { applyTheme, readTheme, writeTheme } from "../lib/theme.js";
+
+	const root = document.documentElement;
+	const getStorage = () => window.localStorage;
+	const current = readTheme(getStorage);
+
+	for (const input of document.querySelectorAll('.theme-switch input[name="theme"]')) {
+		if (!(input instanceof HTMLInputElement)) continue;
+		// Le HTML statique coche Sombre ; on coche le choix mémorisé
+		input.checked = input.value === current;
+		input.addEventListener("change", () => {
+			applyTheme(root, input.value);
+			writeTheme(getStorage, input.value);
+		});
+	}
+</script>

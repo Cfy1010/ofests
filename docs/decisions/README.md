@@ -26,3 +26,4 @@ l'exhaustivité.
 | [0018](0018-fraicheur-liste-a-venir.md) | Liste à venir : statique + rebuild quotidien |
 | [0019](0019-tri-editions-sans-date.md) | Tri : une édition sans date se place à la fin de son année |
 | [0020](0020-hebergement-cloudflare-workers.md) | Hébergement : Cloudflare Workers au lieu de Cloudflare Pages |
+| [0021](0021-theme-clair-sombre.md) | Thème : sombre par défaut, clair ou système par choix explicite |
