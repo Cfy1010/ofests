@@ -79,7 +79,9 @@ alimenté par des contributions modérées.
   (`sb_secret_…`) n'entre jamais dans le dépôt ni dans le build
 - Jeu de données local : `supabase/seed.sql`, festivals fictifs et dates
   relatives à la date du jour, chargé par `supabase db reset`. Jamais en
-  production
+  production. Les tests pgTAP ne dépendent pas du seed : ils vident
+  festivals, editions et sources (`truncate … cascade`) dans leur
+  transaction, annulée à la fin
 
 ## Contribution
 - Compte obligatoire, demandé APRÈS remplissage du formulaire

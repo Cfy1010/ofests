@@ -2,6 +2,8 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select plan(6);
+-- Monde clos : le test part de tables vides, seed ou pas (annulé au rollback)
+truncate public.festivals cascade;
 
 -- black-metal : inséré par la migration genres_hierarchie (#18)
 
