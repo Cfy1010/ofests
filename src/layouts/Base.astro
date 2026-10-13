@@ -1,0 +1,53 @@
+---
+import "../styles/global.css";
+import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
+import { locales, toLocale, useTranslations } from "../i18n";
+
+// path : chemin de la page sans préfixe de langue ("festivals").
+// Il est le même dans les deux langues et sert aux liens hreflang.
+const { title, description, path = "" } = Astro.props;
+
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+// x-default : l'anglais, pour les visiteurs ni francophones ni anglophones
+const xDefaultLocale = "en";
+const otherLocales = locales.filter((other) => other !== locale);
+---
+
+<!doctype html>
+<html lang={locale}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} — {t("site.name")}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={getAbsoluteLocaleUrl(locale, path)} />
+		{
+			locales.map((alternate) => (
+				<link rel="alternate" hreflang={alternate} href={getAbsoluteLocaleUrl(alternate, path)} />
+			))
+		}
+		<link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl(xDefaultLocale, path)} />
+	</head>
+	<body class="bg-ink text-cream">
+		<header class="flex justify-end px-4 py-3">
+			{
+				otherLocales.map((other) => (
+					<a
+						class="py-2 text-sm text-ember underline"
+						href={getRelativeLocaleUrl(other, path)}
+						lang={other}
+						hreflang={other}
+					>
+						{useTranslations(other)("language.name")}
+					</a>
+				))
+			}
+		</header>
+		<slot />
+	</body>
+</html>

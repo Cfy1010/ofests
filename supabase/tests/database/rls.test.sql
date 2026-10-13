@@ -6,6 +6,8 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select plan(16);
+-- Monde clos : le test part de tables vides, seed ou pas (annulé au rollback)
+truncate public.festivals cascade;
 
 -- Jeu de données, inséré en tant que postgres (qui ignore la RLS)
 insert into auth.users (id, email) values

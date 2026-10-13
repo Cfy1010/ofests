@@ -6,17 +6,59 @@ alimenté par des contributions modérées.
 ## Stack
 - Astro (pages statiques, SEO prioritaire) + îlots React
 - Tailwind 4, JavaScript (pas de TypeScript)
+- `typescript` et `@astrojs/check` en devDependencies pour la seule
+  vérification : `npx astro check` contrôle les types des fichiers `.astro`
+  (annotations JSDoc côté `.js`). Aucun code TypeScript dans le dépôt
 - Supabase : Postgres, auth par lien magique, storage images
 - MapLibre + tuiles OpenStreetMap (pas de Google Maps)
-- Déploiement Cloudflare Pages
+- Déploiement Cloudflare Workers, ressources statiques seules, bâti par
+  Workers Builds (ADR 0020). Configuration dans `wrangler.jsonc` : `dist/`
+  servi tel quel, sans script `main`. `wrangler` en devDependency ;
+  `npx wrangler deploy --dry-run` valide la configuration sans déployer
+- Rebuild quotidien à 03:17 UTC (`.github/workflows/daily-rebuild.yml`,
+  ADR 0018, 0020) : POST au deploy hook du Worker, qui rebâtit `main`.
+  URL du hook en secret GitHub `CF_DEPLOY_HOOK_URL`, jamais dans le dépôt.
+  Lancement manuel : `gh workflow run daily-rebuild.yml`
+- Node 24.20.0, fixé par `.nvmrc`, que Workers Builds lit au build. Ne pas
+  définir `NODE_VERSION` dans les variables de build du Worker : la
+  version est fixée par `.nvmrc` seul. La version
+  compte : les dates sont formatées par `Intl`, et Node 22 et 24 n'espacent
+  pas les plages de la même façon
+- Tests : `npm test` (`node --test`, sans dépendance) pour les fonctions
+  pures de `src/lib/`, dans des fichiers `*.test.js` ; `npx supabase test db`
+  pour la base (pgTAP)
+- `npm run build` lance `npm test` avant `astro build` : un test en échec
+  bloque le déploiement, et Cloudflare garde la version en ligne
 
 ## Périmètre
 - Europe uniquement
 - Bilingue fr/en, routes /fr/ et /en/, hreflang obligatoire
-- Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX
+- `x-default` pointe vers l'anglais, pour les visiteurs européens ni
+  francophones ni anglophones
+- Liste des festivals à venir : `/fr/festivals/` et `/en/festivals/`
+  (`src/pages/{fr,en}/festivals.astro`, composant
+  `src/components/UpcomingList.astro`)
+- `/` redirige vers `/en/festivals/` en 302 (`public/_redirects`, lu par
+  Cloudflare Workers seulement : en local, `/` renvoie une 404). Il n'y a pas
+  de page d'accueil
+- `defaultLocale` reste `"fr"` dans `astro.config.mjs` alors que la
+  redirection et `x-default` visent l'anglais : le français est la langue de
+  rédaction du site, l'anglais la langue servie à un visiteur dont on ne
+  connaît pas la langue. Ce réglage n'a pas d'effet visible, les deux
+  langues étant préfixées et Astro ne redirigeant rien
+- Chaque page porte un lien vers la même page dans l'autre langue, libellé
+  dans la langue cible (layout `src/layouts/Base.astro`)
+- Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :
+  `src/i18n/fr.json` et `en.json`, lus par `useTranslations(locale)`
+  (`src/i18n/index.js`). Un libellé manquant fait échouer le build
 
 ## Données
 - Noms de tables et de colonnes en anglais, snake_case
+- Droits explicites : en production, l'exposition automatique des nouvelles
+  tables est désactivée. Toute migration qui crée une table ou une vue fait
+  `revoke all … from anon, authenticated` puis des `grant` explicites
+  (exemple : `20261003151432_editions_a_venir.sql`). Sans cela, elle marche
+  en local et échoue en production
 - Table `festivals` : identité stable (name, slug, website, main_genre,
   subgenres, wikidata_id, musicbrainz_id)
 - Table `genres` : liste contrôlée à deux niveaux, tendances et genres
@@ -38,6 +80,16 @@ alimenté par des contributions modérées.
   passée (ADR 0016)
 - Amorçage depuis Wikidata (CC0), importé directement en published,
   avec Wikidata enregistrée comme source
+- Lecture au build par `src/lib/supabase.js`, avec la clé publishable
+  (`PUBLIC_SUPABASE_URL`, `PUBLIC_SUPABASE_PUBLISHABLE_KEY`, modèle dans
+  `.env.example`). Variables absentes : le build échoue. Pas de clés
+  `anon` / `service_role`, que Supabase déprécie ; la clé secrète
+  (`sb_secret_…`) n'entre jamais dans le dépôt ni dans le build
+- Jeu de données local : `supabase/seed.sql`, festivals fictifs et dates
+  relatives à la date du jour, chargé par `supabase db reset`. Jamais en
+  production. Les tests pgTAP ne dépendent pas du seed : ils vident
+  festivals, editions et sources (`truncate … cascade`) dans leur
+  transaction, annulée à la fin
 
 ## Contribution
 - Compte obligatoire, demandé APRÈS remplissage du formulaire
@@ -51,8 +103,10 @@ alimenté par des contributions modérées.
 ## Identité
 - Titrage Anton, texte Inter, auto-hébergées (pas de CDN Google)
 - Encre #0B0B0D, crème #EDE4D3, rouge sang #C1121F, rouge braise #E63946
-- Le rouge sang ne descend jamais sous 18px et ne sert pas au texte courant
-- Le rouge braise pour tout élément cliquable en petit corps
+- Le rouge sang uniquement en grand texte (≥ 24px, ou ≥ 19px en gras 700+),
+  jamais en texte courant : 3,2:1 sur encre
+- Le rouge braise pour tout élément cliquable en petit corps, uniquement sur
+  fond encre : 3,3:1 sur crème
 - Metal dans l'enveloppe, sobriété dans la donnée
 
 ## Domaine et marque

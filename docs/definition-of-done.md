@@ -13,7 +13,7 @@ Ils s'appliquent à tout item, sans exception ni négociation en cours de route.
 
 - Fonctionne sur mobile.
 
-- Déployé sur Cloudflare Pages et vérifié en ligne.
+- Déployé sur Cloudflare Workers et vérifié en ligne.
 
 - Aucune clé ni donnée sensible dans le dépôt.
 

@@ -1,0 +1,11 @@
+// Hébergement sur Cloudflare Workers, ressources statiques seules (ADR 0020).
+// Pas de script `main` : le site est 100 % statique, `dist/` est servi tel
+// quel, `_redirects` compris.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ofests",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    "directory": "./dist"
+  }
+}

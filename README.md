@@ -89,7 +89,7 @@ fiches, reprise dans un dépôt neuf — sont dans le
 | Front           | Astro + React + Tailwind               |
 | Données et auth | Supabase (Postgres, lien magique, RLS) |
 | Cartographie    | MapLibre + OpenStreetMap               |
-| Hébergement     | Cloudflare Pages                       |
+| Hébergement     | Cloudflare Workers (statique)          |
 | Domaine         | ofests.com                             |
 
 Pas de TypeScript. Docker sert uniquement à la base locale de développement,
