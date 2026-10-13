@@ -1,6 +1,10 @@
 {
   "site.name": "O-Fests",
   "language.name": "Français",
+  "theme.legend": "Thème",
+  "theme.light": "Clair",
+  "theme.dark": "Sombre",
+  "theme.system": "Système",
   "upcoming.title": "Festivals à venir",
   "upcoming.description": "Les festivals metal à venir en Europe, classés par date.",
   "upcoming.sortRule": "Éditions en cours et à venir, de la plus proche à la plus lointaine. Sans dates annoncées : à la fin de leur année.",
