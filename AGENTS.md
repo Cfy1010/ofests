@@ -54,6 +54,11 @@ alimenté par des contributions modérées.
 
 ## Données
 - Noms de tables et de colonnes en anglais, snake_case
+- Droits explicites : en production, l'exposition automatique des nouvelles
+  tables est désactivée. Toute migration qui crée une table ou une vue fait
+  `revoke all … from anon, authenticated` puis des `grant` explicites
+  (exemple : `20261003151432_editions_a_venir.sql`). Sans cela, elle marche
+  en local et échoue en production
 - Table `festivals` : identité stable (name, slug, website, main_genre,
   subgenres, wikidata_id, musicbrainz_id)
 - Table `genres` : liste contrôlée à deux niveaux, tendances et genres
