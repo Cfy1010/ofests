@@ -1,9 +1,9 @@
 ---
-import UpcomingList from "../../components/UpcomingList.astro";
-import { useTranslations } from "../../i18n";
-import Base from "../../layouts/Base.astro";
-import { supabase } from "../../lib/supabase.js";
-import { fetchUpcomingEditions } from "../../lib/upcoming.js";
+import UpcomingList from "../../../components/UpcomingList.astro";
+import { useTranslations } from "../../../i18n";
+import Base from "../../../layouts/Base.astro";
+import { supabase } from "../../../lib/supabase.js";
+import { fetchUpcomingEditions } from "../../../lib/upcoming.js";
 
 const t = useTranslations(Astro.currentLocale);
 const editions = await fetchUpcomingEditions(supabase);

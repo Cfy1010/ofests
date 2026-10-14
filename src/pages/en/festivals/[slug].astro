@@ -1,0 +1,25 @@
+---
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+import FestivalSheet from "../../../components/FestivalSheet.astro";
+import { toLocale, useTranslations } from "../../../i18n";
+import Base from "../../../layouts/Base.astro";
+import { fetchFestivalSheets, festivalPath } from "../../../lib/festivals.js";
+import { supabase } from "../../../lib/supabase.js";
+
+// Une page par festival publié, avec ou sans édition (ADR 0023)
+export async function getStaticPaths() {
+	const sheets = await fetchFestivalSheets(supabase);
+	return sheets.map((sheet) => ({ params: { slug: sheet.festival.slug }, props: { sheet } }));
+}
+
+const { sheet } = Astro.props;
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const path = festivalPath(sheet.festival.slug);
+---
+
+<Base title={sheet.festival.name} description={t("festival.description", { name: sheet.festival.name })} path={path}>
+	<main class="mx-auto max-w-4xl px-4 pb-12">
+		<FestivalSheet sheet={sheet} pageUrl={getAbsoluteLocaleUrl(locale, path)} />
+	</main>
+</Base>

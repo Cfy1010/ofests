@@ -1,6 +1,8 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { toLocale, useTranslations } from "../i18n";
 import { formatDateRange, formatLocation, sortUpcomingEditions } from "../lib/editions.js";
+import { festivalPath } from "../lib/festivals.js";
 
 // editions : éditions à venir, telles que renvoyées par fetchUpcomingEditions()
 const { editions } = Astro.props;
@@ -11,6 +13,7 @@ const t = useTranslations(locale);
 const rows = sortUpcomingEditions(editions).map((edition) => ({
 	id: edition.id,
 	name: edition.festivalName,
+	href: getRelativeLocaleUrl(locale, festivalPath(edition.festivalSlug)),
 	// Sans date : « Dates non annoncées · 2027 » (#4)
 	dates:
 		formatDateRange(edition.startDate, edition.endDate, locale) ??
@@ -30,8 +33,12 @@ const rows = sortUpcomingEditions(editions).map((edition) => ({
 			<ul class="mt-6">
 				{rows.map((row) => (
 					<li class="border-t border-line py-4 sm:grid sm:grid-cols-[2fr_1.5fr_1.5fr_1fr] sm:items-baseline sm:gap-4">
-						{/* Nom non cliquable tant que la fiche détail (#5) n'existe pas */}
-						<h2 class="text-lg font-bold">{row.name}</h2>
+						{/* Lien vers la fiche (#5), dans la langue courante */}
+						<h2 class="text-lg font-bold">
+							<a class="underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link" href={row.href}>
+								{row.name}
+							</a>
+						</h2>
 						<p class="text-muted">{row.dates}</p>
 						<p class="text-muted">{row.location}</p>
 						<p class="text-muted">{row.genre}</p>

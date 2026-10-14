@@ -1,5 +1,6 @@
 import fr from "./fr.json";
 import en from "./en.json";
+import { interpolate } from "./interpolate.js";
 
 export { locales, toLocale } from "./locales.js";
 
@@ -14,10 +15,11 @@ export function useTranslations(locale) {
     throw new Error(`Langue inconnue : ${locale}`);
   }
 
-  return function t(key) {
+  // values : paramètres {nom} du libellé (voir interpolate.js)
+  return function t(key, values) {
     if (!Object.hasOwn(dictionary, key)) {
       throw new Error(`Libellé manquant : ${key} (${locale})`);
     }
-    return dictionary[key];
+    return interpolate(dictionary[key], values);
   };
 }

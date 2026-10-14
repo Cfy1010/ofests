@@ -36,8 +36,18 @@ alimenté par des contributions modérées.
 - `x-default` pointe vers l'anglais, pour les visiteurs européens ni
   francophones ni anglophones
 - Liste des festivals à venir : `/fr/festivals/` et `/en/festivals/`
-  (`src/pages/{fr,en}/festivals.astro`, composant
-  `src/components/UpcomingList.astro`)
+  (`src/pages/{fr,en}/festivals/index.astro`, composant
+  `src/components/UpcomingList.astro`). Le nom de chaque festival mène à sa
+  fiche
+- Fiche festival (ADR 0023) : `/{locale}/festivals/{slug}/`
+  (`src/pages/{fr,en}/festivals/[slug].astro`, composant
+  `src/components/FestivalSheet.astro`, logique dans `src/lib/festivals.js`).
+  Une page par festival publié, avec ou sans édition. Édition présentée :
+  la prochaine à venir (vue `upcoming_editions`), à défaut la dernière
+  passée (« Dernière édition »), à défaut aucune. Sources du festival et de
+  l'édition présentée, une ligne par URL ; date de dernière révision ;
+  JSON-LD `MusicEvent` seulement pour une édition à venir datée. Chemin
+  d'une fiche : `festivalPath(slug)`, source unique
 - `/` redirige vers `/en/festivals/` en 302 (`public/_redirects`, lu par
   Cloudflare Workers seulement : en local, `/` renvoie une 404). Il n'y a pas
   de page d'accueil
@@ -50,7 +60,9 @@ alimenté par des contributions modérées.
   dans la langue cible (layout `src/layouts/Base.astro`)
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :
   `src/i18n/fr.json` et `en.json`, lus par `useTranslations(locale)`
-  (`src/i18n/index.js`). Un libellé manquant fait échouer le build
+  (`src/i18n/index.js`). Un libellé manquant fait échouer le build.
+  Paramètres : `t("festival.revisedOn", { date })` remplace `{date}`
+  (`src/i18n/interpolate.js`) ; un paramètre sans valeur fait échouer le build
 
 ## Données
 - Noms de tables et de colonnes en anglais, snake_case
