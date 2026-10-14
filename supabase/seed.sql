@@ -19,6 +19,16 @@
 -- son édition N+2 (en attente), Marteau-Pilon Fest (en attente) et
 -- Sabbat des Landes (rejeté).
 
+--
+-- Fiches festival (#5, ADR 0023), quatre cas d'édition présentée :
+--   à venir datée, lieu complet   Granit Open Air (lieu, code postal, région,
+--                                 sous-genres, billetterie, révision récente)
+--   à venir datée, lieu partiel   Kaltfront Festival (ville seule, un jour ;
+--                                 même URL source pour festival et édition)
+--   à venir sans date             Cendres Fest (sans ville, sans site)
+--   seulement passée              Nordwind Rites (« Dernière édition »)
+--   aucune édition                Forge Silencieuse
+
 -- Une seule transaction : la règle « pas de publication sans source » est
 -- vérifiée au commit (ADR 0007).
 begin;
@@ -35,6 +45,7 @@ insert into public.festivals (name, slug, website, main_genre, status) values
   ('Étoile Polaire Metal Fest', 'etoile-polaire-metal-fest', 'https://etoile-polaire-metal-fest.example', 'all-styles',    'published'),
   ('Iron Meadow',               'iron-meadow',               'https://iron-meadow.example',               'heavy-classic', 'published'),
   ('Nordwind Rites',            'nordwind-rites',            'https://nordwind-rites.example',            'black-metal',   'published'),
+  ('Forge Silencieuse',         'forge-silencieuse',         'https://forge-silencieuse.example',         'doom-stoner',   'published'),
   ('Marteau-Pilon Fest',        'marteau-pilon-fest',        null,                                        'metalcore',     'pending'),
   ('Sabbat des Landes',         'sabbat-des-landes',         null,                                        'doom-metal',    'rejected');
 
@@ -86,5 +97,43 @@ select e.id, 'https://' || f.slug || '.example/' || e.year, 'official'
 from public.editions e
 join public.festivals f on f.id = e.festival_id
 where e.status = 'published';
+
+-- Compléments pour les fiches (#5)
+-- Granit Open Air : lieu complet (JSON-LD), sous-genres, édition révisée
+-- après le festival
+update public.festivals
+set subgenres = '{NWOBHM,"Speed metal"}',
+    revised_at = now() - interval '20 days'
+where slug = 'granit-open-air';
+
+update public.editions e
+set venue_name = 'Výstaviště Brno', postcode = '603 00', region = 'Jihomoravský kraj'
+from public.festivals f
+where f.id = e.festival_id and f.slug = 'granit-open-air';
+
+insert into public.sources (edition_id, url, kind)
+select e.id, 'https://tickets.example/granit-open-air', 'ticketing'
+from public.editions e
+join public.festivals f on f.id = e.festival_id
+where f.slug = 'granit-open-air';
+
+-- Kaltfront Festival : la page officielle source aussi l'édition, consultée
+-- plus récemment (une seule ligne sur la fiche)
+update public.sources s
+set consulted_on = current_date - 30
+from public.festivals f
+where f.id = s.festival_id and f.slug = 'kaltfront-festival';
+
+insert into public.sources (edition_id, url, kind)
+select e.id, 'https://kaltfront-festival.example/', 'official'
+from public.editions e
+join public.festivals f on f.id = e.festival_id
+where f.slug = 'kaltfront-festival';
+
+-- Nordwind Rites : un annuaire, consulté il y a longtemps
+insert into public.sources (festival_id, url, kind, consulted_on)
+select f.id, 'https://annuaire.example/nordwind-rites', 'directory', current_date - 200
+from public.festivals f
+where f.slug = 'nordwind-rites';
 
 commit;

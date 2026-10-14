@@ -39,6 +39,7 @@ function row(n) {
     country_code: "BE",
     festival: {
       name: `Festival ${n}`,
+      slug: `festival-${n}`,
       genre: { label_fr: "Folk & pagan", label_en: "Folk & Pagan" },
     },
   };
@@ -85,6 +86,7 @@ describe("fetchUpcomingEditions", () => {
         city: "Liège",
         countryCode: "BE",
         festivalName: "Festival 1",
+        festivalSlug: "festival-1",
         genreLabels: { fr: "Folk & pagan", en: "Folk & Pagan" },
       },
     ]);
