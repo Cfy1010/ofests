@@ -27,3 +27,4 @@ l'exhaustivité.
 | [0019](0019-tri-editions-sans-date.md) | Tri : une édition sans date se place à la fin de son année |
 | [0020](0020-hebergement-cloudflare-workers.md) | Hébergement : Cloudflare Workers au lieu de Cloudflare Pages |
 | [0021](0021-theme-clair-sombre.md) | Thème : sombre par défaut, clair ou système par choix explicite |
+| [0022](0022-logo-en-capitales.md) | Logo en capitales, marque écrite `O-Fests` dans tout texte lu |

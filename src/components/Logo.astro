@@ -1,0 +1,23 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import LogoSvg from "../assets/brand/logo-ofests.svg";
+import { toLocale, useTranslations } from "../i18n";
+import { HOME_PATH, isHomePath } from "../lib/home.js";
+
+// path : chemin de la page courante, sans préfixe de langue (voir Base.astro)
+const { path = "" } = Astro.props;
+
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+---
+
+{/* Lettres en currentColor (text-body : crème en sombre, encre en clair) ;
+    le tiret garde son rouge sang, fixé dans le SVG (ADR 0022). */}
+<a
+	class="text-body focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+	href={getRelativeLocaleUrl(locale, HOME_PATH)}
+	aria-label={t("logo.homeLabel")}
+	aria-current={isHomePath(path) ? "page" : undefined}
+>
+	<LogoSvg class="h-8 w-auto" aria-hidden="true" />
+</a>

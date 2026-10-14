@@ -1,7 +1,7 @@
 # 0001 — Nommage : O-Fests
 
 Date : 2026-08-31
-Statut : acceptée
+Statut : acceptée — précisée par l'ADR 0022
 
 ## Contexte
 

@@ -120,6 +120,18 @@ alimenté par des contributions modérées.
   `src/styles/global.css` : `page`, `body`, `muted`, `line`, `link`,
   `heading` (`bg-page`, `text-muted`…). La palette n'y génère aucune classe :
   pas de `bg-ink` ni `text-blood` dans les composants
+- Logo (ADR 0022) : « O-FESTS » en capitales Anton, texte en tracés ; la
+  marque s'écrit `O-Fests` partout ailleurs. `src/assets/brand/logo-ofests.svg`
+  (lettres en `currentColor`) est importé comme composant SVG Astro et
+  intégré en ligne dans l'en-tête (`src/components/Logo.astro`), lettres en
+  `text-body`. `public/brand/logo-ofests-sombre.svg` et
+  `logo-ofests-clair.svg` sont des fichiers autonomes aux couleurs fixes. Le
+  tiret signature est en rouge sang, fixé dans les fichiers, dans les deux
+  thèmes. Le logo mène à l'accueil de la langue courante : `HOME_PATH` de
+  `src/lib/home.js` (aujourd'hui la liste `/{locale}/festivals/`, jamais `/`)
+- Favicon : monogramme « O-F », `public/favicon.svg`, `favicon.ico` (16, 32,
+  48 px) et `apple-touch-icon.png` (180 px, tuile pleine) générés depuis lui
+  par un outil ponctuel, sans dépendance ajoutée
 - Metal dans l'enveloppe, sobriété dans la donnée
 
 ## Domaine et marque

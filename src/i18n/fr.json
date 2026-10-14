@@ -1,6 +1,7 @@
 {
   "site.name": "O-Fests",
   "language.name": "Français",
+  "logo.homeLabel": "O-Fests, accueil",
   "theme.legend": "Thème",
   "theme.light": "Clair",
   "theme.dark": "Sombre",
