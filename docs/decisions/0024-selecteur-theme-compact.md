@@ -34,8 +34,9 @@ Compact partout, par décision du PO.
 - Le panneau s'ouvre sous le bouton, aligné à droite, au-dessus du contenu.
   Il reste ouvert quand on change de choix, pour ne pas casser la navigation
   aux flèches entre les radios.
-- Fermeture par Échap (le focus revient au bouton) ou par un clic en dehors
-  (le focus ne bouge pas).
+- Fermeture par Échap (le focus revient au bouton), par un clic en dehors
+  ou quand le focus quitte le menu, Tab ou Maj+Tab vers un élément
+  extérieur (dans les deux cas le focus ne bouge pas).
 - Sans JavaScript, le sélecteur reste masqué (ADR 0021).
 
 ## Conséquences
@@ -47,5 +48,6 @@ Compact partout, par décision du PO.
   fois.
 - L'en-tête tient sur une ligne jusqu'à 320 px ; `flex-wrap` reste en
   sécurité pour les très petites largeurs ou le zoom.
-- Le script de `ThemeSwitcher.astro` gère l'ouverture et la fermeture du
-  menu ; le HTML reste fonctionnel pour l'ouverture même sans ce script.
+- Le script de `ThemeSwitcher.astro` ne gère que la fermeture (Échap, clic
+  extérieur, sortie du focus) ; l'ouverture est native. Sans JavaScript, le
+  sélecteur reste masqué.
