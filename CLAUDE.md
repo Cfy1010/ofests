@@ -7,6 +7,8 @@
 - Definition of Done : `docs/definition-of-done.md`.
 - Le PO (Cyrille) décide : proposer, ne pas trancher seul.
 - Commits : pas de ligne Co-Authored-By.
+- Avant chaque commit : lancer `npm test`.
+- Jamais de commit sur `main` : toujours une branche dédiée.
 - PR : pas de mention Generated with Claude Code.
 - Issues : une retouche sans impact fonctionnel (espacement, coquille,
   commentaire, documentation, dépendance mise à jour sans changement de
