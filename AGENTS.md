@@ -71,6 +71,12 @@ alimenté par des contributions modérées.
   `revoke all … from anon, authenticated` puis des `grant` explicites
   (exemple : `20261003151432_editions_a_venir.sql`). Sans cela, elle marche
   en local et échoue en production
+- `submitted_by` n'est lisible ni par `anon` ni par `authenticated`
+  (ADR 0025) : sur festivals, editions et sources, la lecture est accordée
+  colonne par colonne, sans elle. `select *` y est refusé aux rôles publics.
+  Toute nouvelle colonne lue par le site doit recevoir son `grant select
+  (colonne)`, sinon le build échoue. `upcoming_editions` liste ses colonnes
+  explicitement, sans `submitted_by`
 - Table `festivals` : identité stable (name, slug, website, main_genre,
   subgenres, wikidata_id, musicbrainz_id)
 - Table `genres` : liste contrôlée à deux niveaux, tendances et genres
@@ -85,8 +91,8 @@ alimenté par des contributions modérées.
 - Table `sources` : sources d'une fiche, festival ou édition (URL, type,
   date de consultation). Pas de publication sans source (ADR 0007, 0013)
 - `festivals` et `editions` portent un `status` (pending / published /
-  rejected), un `submitted_by` (uuid, FK vers auth.users) sur lequel
-  s'appuie la RLS, et un `revised_at`
+  rejected), un `submitted_by` (uuid, FK vers auth.users, privé) sur
+  lequel s'appuie la RLS, et un `revised_at`
 - Éditions à venir : vue `upcoming_editions`, qui applique la RLS du lecteur.
   Pas de publication sans dates pour une édition de l'année en cours ou
   passée (ADR 0016)

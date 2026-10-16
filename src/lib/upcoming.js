@@ -1,6 +1,7 @@
 import { selectAll } from "./select-all.js";
 
-// Colonnes explicites : pas de `*`, pour ne pas embarquer submitted_by (#15).
+// Colonnes explicites, comme partout (ADR 0025) : la vue n'expose pas
+// submitted_by, et festivals refuse `*` aux rôles publics.
 // Le festival n'est jamais null : la RLS ne montre une édition que si son
 // festival est visible (policy editions_select, testée dans rls.test.sql).
 const COLUMNS = `

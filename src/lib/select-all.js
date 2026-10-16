@@ -2,8 +2,8 @@
 // PostgREST plafonne chaque réponse (max_rows) : on lit par pages pour ne
 // jamais tronquer un résultat en silence. Une erreur, même sur une page
 // suivante, fait échouer le build : ni liste vide ni liste partielle en ligne.
-// Colonnes toujours explicites : pas de `*`, pour ne pas embarquer
-// submitted_by (#15).
+// Colonnes toujours explicites : `*` est refusé aux rôles publics, qui ne
+// lisent pas submitted_by (ADR 0025).
 
 export const PAGE_SIZE = 1000;
 

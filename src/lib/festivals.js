@@ -6,7 +6,8 @@
 import { formatDateRange, formatLocation, sortUpcomingEditions } from "./editions.js";
 import { selectAll } from "./select-all.js";
 
-// Colonnes explicites : ni `*` ni submitted_by (#15). Avec la clé
+// Colonnes explicites : `*` et submitted_by sont refusés aux rôles publics,
+// une colonne non accordée fait échouer le build (ADR 0025). Avec la clé
 // publishable, la RLS ne laisse passer que les fiches publiées.
 const FESTIVAL_COLUMNS = "id, name, slug, website, subgenres, revised_at, genre:genres ( label_fr, label_en )";
 const EDITION_COLUMNS =
