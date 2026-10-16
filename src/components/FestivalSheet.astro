@@ -74,7 +74,7 @@ const view = festivalSheetView(sheet, locale, pageUrl);
 		<ul class="mt-3 space-y-2">
 			{
 				view.sources.map((source) => (
-					<li class="[overflow-wrap:anywhere]">
+					<li class="wrap-anywhere">
 						<span class="text-muted">{t("festival.sourceKind", { kind: t(`source.kind.${source.kind}`) })} </span>
 						<a class="text-link underline" href={source.url}>
 							{source.label}
