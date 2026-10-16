@@ -117,8 +117,9 @@ alimenté par des contributions modérées.
 - Encre #0B0B0D, crème #EDE4D3, rouge sang #C1121F, rouge braise #E63946
 - Deux thèmes (ADR 0021). Sombre par défaut, sans JavaScript ou sans choix
   mémorisé : fond encre, texte crème. Clair par choix explicite : fond
-  crème, texte encre. Un sélecteur Clair / Sombre / Système dans l'en-tête
-  (`src/components/ThemeSwitcher.astro`) ; Système suit l'appareil
+  crème, texte encre. Un sélecteur Clair / Sombre / Système dans l'en-tête,
+  compact : icône du thème actif, menu `<details>` (ADR 0024,
+  `src/components/ThemeSwitcher.astro`) ; Système suit l'appareil
   (`prefers-color-scheme`). Choix mémorisé en `localStorage`
   (`ofests-theme`), appliqué avant le premier affichage par un script de
   tête dans `src/layouts/Base.astro`, copie de `src/lib/theme.js`

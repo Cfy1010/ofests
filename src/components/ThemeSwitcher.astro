@@ -5,19 +5,53 @@ import { DEFAULT_THEME, themes } from "../lib/theme.js";
 const t = useTranslations(toLocale(Astro.currentLocale));
 ---
 
-{/* Boutons radio natifs : clavier (Tab, puis flèches) et annonce de l'état
-    courant sans ARIA ajouté. Masqué sans JavaScript (global.css). */}
-<fieldset class="theme-switch flex rounded border border-line text-sm">
-	<legend class="sr-only">{t("theme.legend")}</legend>
-	{
-		themes.map((theme) => (
-			<label class="cursor-pointer px-3 py-2 text-muted has-checked:text-link has-checked:underline has-checked:underline-offset-4 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-link">
-				<input class="sr-only" type="radio" name="theme" value={theme} checked={theme === DEFAULT_THEME} />
-				{t(`theme.${theme}`)}
-			</label>
-		))
-	}
-</fieldset>
+{/* Menu compact (ADR 0024) : <details> / <summary> natif, qui annonce déjà
+    l'état ouvert ou fermé, sans ARIA ajouté. Une seule icône et un seul
+    texte visibles, selon data-theme (global.css). Dans le panneau, boutons
+    radio natifs : clavier (Tab, puis flèches) et annonce de l'état courant.
+    Masqué sans JavaScript (global.css). */}
+<details class="theme-switch relative">
+	<summary class="flex size-11 cursor-pointer list-none items-center justify-center rounded text-link focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link [&::-webkit-details-marker]:hidden">
+		{/* Icônes : le soleil reprend le tracé de Lucide (licence ISC,
+		    Copyright (c) 2026 Lucide Icons and Contributors,
+		    https://github.com/lucide-icons/lucide/blob/main/LICENSE), avec
+		    les rayons fusionnés en un seul <path> ; la lune reprend celui de
+		    Feather (licence MIT, Copyright (c) 2013-2023 Cole Bemis,
+		    https://github.com/feathericons/feather/blob/main/LICENSE).
+		    Le cercle à moitié plein est dessiné pour O-Fests. */}
+		<span class="theme-state" data-for="light">
+			<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<circle cx="12" cy="12" r="4" />
+				<path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+			</svg>
+			<span class="sr-only">{t("theme.current", { theme: t("theme.light") })}</span>
+		</span>
+		<span class="theme-state" data-for="dark">
+			<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+			</svg>
+			<span class="sr-only">{t("theme.current", { theme: t("theme.dark") })}</span>
+		</span>
+		<span class="theme-state" data-for="system">
+			<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+				<circle cx="12" cy="12" r="9" />
+				<path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" />
+			</svg>
+			<span class="sr-only">{t("theme.current", { theme: t("theme.system") })}</span>
+		</span>
+	</summary>
+	<fieldset class="absolute top-full right-0 z-10 mt-1 flex flex-col rounded border border-line bg-page text-sm">
+		<legend class="sr-only">{t("theme.legend")}</legend>
+		{
+			themes.map((theme) => (
+				<label class="cursor-pointer px-4 py-3 text-muted has-checked:text-link has-checked:underline has-checked:underline-offset-4 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-link">
+					<input class="sr-only" type="radio" name="theme" value={theme} checked={theme === DEFAULT_THEME} />
+					{t(`theme.${theme}`)}
+				</label>
+			))
+		}
+	</fieldset>
+</details>
 
 <script>
 	import { applyTheme, readTheme, writeTheme } from "../lib/theme.js";
@@ -33,6 +67,31 @@ const t = useTranslations(toLocale(Astro.currentLocale));
 		input.addEventListener("change", () => {
 			applyTheme(root, input.value);
 			writeTheme(getStorage, input.value);
+		});
+	}
+
+	// Le menu reste ouvert quand on change de choix (flèches entre radios).
+	// Échap le ferme et rend le focus au bouton ; un clic ailleurs ou la
+	// sortie du focus le ferment sans le déplacer.
+	const menu = document.querySelector("details.theme-switch");
+	if (menu instanceof HTMLDetailsElement) {
+		document.addEventListener("keydown", (event) => {
+			if (event.key !== "Escape" || !menu.open) return;
+			menu.open = false;
+			menu.querySelector("summary")?.focus();
+		});
+		// Tab ou Maj+Tab vers un élément extérieur. Sans relatedTarget (fenêtre
+		// quittée, clic hors de tout élément focalisable), on ne ferme pas ici :
+		// le clic extérieur s'en charge.
+		menu.addEventListener("focusout", (event) => {
+			if (event.relatedTarget instanceof Node && !menu.contains(event.relatedTarget)) {
+				menu.open = false;
+			}
+		});
+		document.addEventListener("click", (event) => {
+			if (menu.open && event.target instanceof Node && !menu.contains(event.target)) {
+				menu.open = false;
+			}
 		});
 	}
 </script>

@@ -68,3 +68,15 @@
 :root:not([data-theme]) .theme-switch {
   display: none;
 }
+
+/* Bouton compact du sélecteur : une seule icône (et son texte masqué)
+   visible, celle du thème actif. Sombre par défaut, comme le HTML statique. */
+.theme-state {
+  display: none;
+}
+
+:root:not([data-theme="light"]):not([data-theme="system"]) .theme-state[data-for="dark"],
+:root[data-theme="light"] .theme-state[data-for="light"],
+:root[data-theme="system"] .theme-state[data-for="system"] {
+  display: inline-flex;
+}

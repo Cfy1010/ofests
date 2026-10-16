@@ -29,3 +29,4 @@ l'exhaustivité.
 | [0021](0021-theme-clair-sombre.md) | Thème : sombre par défaut, clair ou système par choix explicite |
 | [0022](0022-logo-en-capitales.md) | Logo en capitales, marque écrite `O-Fests` dans tout texte lu |
 | [0023](0023-fiche-par-festival.md) | Fiche par festival : URL stable, édition présentée, JSON-LD `MusicEvent` |
+| [0024](0024-selecteur-theme-compact.md) | Sélecteur de thème compact : icône et menu `<details>` |
