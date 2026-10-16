@@ -94,7 +94,8 @@ fiches, reprise dans un dépôt neuf — sont dans le
 
 Pas de TypeScript. Docker sert uniquement à la base locale de développement,
 jamais au déploiement (voir [0014](docs/decisions/0014-docker-developpement-local.md)). Contraintes et conventions techniques dans
-[`AGENTS.md`](AGENTS.md).
+[`AGENTS.md`](AGENTS.md). Démarrage et dépannage du poste local dans
+[`docs/developpement-local.md`](docs/developpement-local.md).
 
 ## Modèle de données
 
