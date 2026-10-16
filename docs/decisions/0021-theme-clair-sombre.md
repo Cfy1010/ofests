@@ -1,7 +1,7 @@
 # 0021 — Thème : sombre par défaut, clair ou système par choix explicite
 
 Date : 2026-10-13
-Statut : acceptée
+Statut : acceptée — révisée par l'ADR 0024 (forme du sélecteur seulement)
 
 ## Contexte
 

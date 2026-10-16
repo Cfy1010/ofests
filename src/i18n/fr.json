@@ -3,6 +3,7 @@
   "language.name": "Français",
   "logo.homeLabel": "O-Fests, accueil",
   "theme.legend": "Thème",
+  "theme.current": "Thème : {theme}",
   "theme.light": "Clair",
   "theme.dark": "Sombre",
   "theme.system": "Système",
