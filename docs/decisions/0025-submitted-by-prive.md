@@ -55,8 +55,8 @@ Tests pgTAP : `supabase/tests/database/submitted-by.test.sql`.
 - `select *` est interdit aux rôles publics sur festivals, editions et
   sources : le site lit toujours des colonnes explicites.
 - Toute nouvelle colonne doit être accordée explicitement (`grant select
-  (colonne)`). Oubliée, elle fait échouer le build, sans fuite : l'erreur
-  est visible, jamais silencieuse.
+  (colonne)`). Oubliée, elle reste illisible pour le public ; si le site la
+  lit, le build échoue. Jamais de fuite silencieuse.
 - Contrainte pour #8 : une écriture qui renvoie la ligne créée ne renvoie
   jamais `submitted_by` (`returning submitted_by` est refusé ; avec
   PostgREST, `Prefer: return=representation` doit lister ses colonnes).
