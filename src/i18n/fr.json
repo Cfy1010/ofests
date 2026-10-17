@@ -12,6 +12,7 @@
   "upcoming.sortRule": "Éditions en cours et à venir, de la plus proche à la plus lointaine. Sans dates annoncées : à la fin de leur année.",
   "upcoming.datesNotAnnounced": "Dates non annoncées",
   "upcoming.empty": "Aucun festival à venir pour le moment.",
+  "upcoming.unannouncedTitle": "Prochaine édition non annoncée",
   "festival.description": "{name}, festival metal en Europe : dates, lieu, genre et sources.",
   "festival.genre": "Genre",
   "festival.subgenres": "Sous-genres",

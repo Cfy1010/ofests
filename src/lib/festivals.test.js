@@ -10,6 +10,7 @@ import {
   festivalSheetView,
   latestRevision,
   mergeSources,
+  selectFestivalsWithoutUpcoming,
   selectPresentedEdition,
   serializeJsonLd,
 } from "./festivals.js";
@@ -66,6 +67,51 @@ function plain(text) {
 describe("festivalPath", () => {
   test("place la fiche sous la liste, sans préfixe de langue", () => {
     assert.equal(festivalPath("hellfest"), "festivals/hellfest");
+  });
+});
+
+describe("selectFestivalsWithoutUpcoming", () => {
+  const sheetsFor = (festivals, editions, upcomingIds = []) =>
+    buildFestivalSheets(festivals, editions, upcomingIds, []);
+
+  test("exclut les festivals qui ont une édition à venir", () => {
+    const sheets = sheetsFor([festival()], [edition()], ["e1"]);
+    assert.deepEqual(selectFestivalsWithoutUpcoming(sheets, "fr"), []);
+  });
+
+  test("donne le pays de la dernière édition passée, dans la langue de la page", () => {
+    const past = edition({ year: 2025, countryCode: "CZ" });
+    const sheets = sheetsFor([festival()], [past]);
+    assert.deepEqual(selectFestivalsWithoutUpcoming(sheets, "fr"), [
+      { name: "Granit Open Air", slug: "granit-open-air", country: "Tchéquie" },
+    ]);
+    assert.equal(selectFestivalsWithoutUpcoming(sheets, "en")[0].country, "Czechia");
+  });
+
+  test("sans aucune édition, le pays est null", () => {
+    const sheets = sheetsFor([festival()], []);
+    assert.deepEqual(selectFestivalsWithoutUpcoming(sheets, "fr"), [
+      { name: "Granit Open Air", slug: "granit-open-air", country: null },
+    ]);
+  });
+
+  test("trie par nom, sans distinguer la casse ni les accents", () => {
+    const sheets = sheetsFor(
+      [
+        festival({ id: "f1", slug: "zeta", name: "Zeta Fest" }),
+        festival({ id: "f2", slug: "echo", name: "Écho Fest" }),
+        festival({ id: "f3", slug: "alpha", name: "alpha Fest" }),
+      ],
+      [],
+    );
+    assert.deepEqual(
+      selectFestivalsWithoutUpcoming(sheets, "fr").map((row) => row.name),
+      ["alpha Fest", "Écho Fest", "Zeta Fest"],
+    );
+  });
+
+  test("renvoie une liste vide sans festival", () => {
+    assert.deepEqual(selectFestivalsWithoutUpcoming([], "fr"), []);
   });
 });
 

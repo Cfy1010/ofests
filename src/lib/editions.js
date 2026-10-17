@@ -16,6 +16,12 @@ function intlLocale(locale) {
 // numeric : « Metal Days 2 » passe avant « Metal Days 10 ».
 const nameCollator = new Intl.Collator("fr", { numeric: true });
 
+// Comparateur de noms de festival, partagé par la liste à venir et la section
+// des festivals sans prochaine édition.
+export function compareNames(a, b) {
+  return nameCollator.compare(a, b);
+}
+
 // Tri de la liste à venir (ADR 0019) : année, puis date de début, puis nom
 // du festival. Dans une même année, les éditions sans date viennent après
 // les éditions datées. L'id départage deux lignes par ailleurs identiques,
@@ -35,7 +41,7 @@ function compareUpcomingEditions(a, b) {
   }
 
   return (
-    nameCollator.compare(a.festivalName, b.festivalName) ||
+    compareNames(a.festivalName, b.festivalName) ||
     (a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
   );
 }
@@ -75,6 +81,11 @@ function toDate(isoDate) {
 // « Rennes, France ». Sans ville, le pays seul.
 // Le pays est localisé à partir de son code ISO 3166-1.
 export function formatLocation(city, countryCode, locale) {
-  const country = new Intl.DisplayNames([intlLocale(locale)], { type: "region" }).of(countryCode);
+  const country = countryName(countryCode, locale);
   return city ? `${city}, ${country}` : country;
+}
+
+// Nom du pays dans la langue de la page, d'après son code ISO 3166-1.
+export function countryName(countryCode, locale) {
+  return new Intl.DisplayNames([intlLocale(locale)], { type: "region" }).of(countryCode);
 }

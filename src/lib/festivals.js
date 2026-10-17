@@ -3,7 +3,7 @@
 // Seule fetchFestivalSheets() accède au réseau ; le reste est pur et testé
 // par `npm test`.
 
-import { formatDateRange, formatLocation, sortUpcomingEditions } from "./editions.js";
+import { compareNames, countryName, formatDateRange, formatLocation, sortUpcomingEditions } from "./editions.js";
 import { selectAll } from "./select-all.js";
 
 // Colonnes explicites : `*` et submitted_by sont refusés aux rôles publics,
@@ -112,6 +112,26 @@ export function buildFestivalSheets(festivals, editions, upcomingIds, sources) {
         revisedOn: latestRevision(festival.revisedAt, edition?.revisedAt),
       };
     });
+}
+
+/**
+ * Festivals publiés sans édition à venir (#40), triés par nom. Le pays est
+ * celui de l'édition présentée (la dernière passée) : le lieu est porté par
+ * l'édition (ADR 0013). Sans aucune édition, il reste null et la page
+ * n'affiche que le nom.
+ * @param {any[]} sheets fiches de buildFestivalSheets()
+ * @param {"fr" | "en"} locale
+ * @returns {{ name: string, slug: string, country: string | null }[]}
+ */
+export function selectFestivalsWithoutUpcoming(sheets, locale) {
+  return sheets
+    .filter((sheet) => sheet.presented.kind !== "upcoming")
+    .map(({ festival, presented }) => ({
+      name: festival.name,
+      slug: festival.slug,
+      country: presented.edition ? countryName(presented.edition.countryCode, locale) : null,
+    }))
+    .sort((a, b) => compareNames(a.name, b.name));
 }
 
 /**
