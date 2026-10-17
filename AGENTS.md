@@ -38,7 +38,12 @@ alimenté par des contributions modérées.
 - Liste des festivals à venir : `/fr/festivals/` et `/en/festivals/`
   (`src/pages/{fr,en}/festivals/index.astro`, composant
   `src/components/UpcomingList.astro`). Le nom de chaque festival mène à sa
-  fiche
+  fiche. Sous la liste, la section « Prochaine édition non annoncée »
+  (`src/components/UnannouncedList.astro`, #40) donne les festivals publiés
+  sans édition à venir : nom lié à la fiche et pays de leur dernière édition
+  (nom seul s'ils n'en ont aucune), par ordre alphabétique. Elle vient de
+  `selectFestivalsWithoutUpcoming()` (`src/lib/festivals.js`) sur les fiches
+  de `fetchFestivalSheets()`, et n'est pas rendue quand elle est vide
 - Fiche festival (ADR 0023) : `/{locale}/festivals/{slug}/`
   (`src/pages/{fr,en}/festivals/[slug].astro`, composant
   `src/components/FestivalSheet.astro`, logique dans `src/lib/festivals.js`).
