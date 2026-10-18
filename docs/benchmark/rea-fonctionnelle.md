@@ -198,7 +198,25 @@ la main par le modérateur, sans compte.
 Le JSON-LD des concurrents n'a pas pu être lu : la méthode de lecture ne restitue pas
 les scripts de la page. Constat non fait, pas absence.
 
-## Écarts sans issue, par ordre de valeur proposé
+## Décisions du 2026-10-18
+
+Arbitrage des propositions de la matrice et des mécanismes. La colonne « Proposition »
+est conservée telle quelle pour l'historique ; ce qui suit fait foi.
+
+| | Décision | Raison |
+|---|---|---|
+| A | **Infos pratiques de l'édition** : prix d'appel daté et sourcé, gratuité, camping, accessibilité, chacun avec un état « non précisé ». Une US, avec son ADR dans la même PR. | Promesse du README, axe libre le plus net (M3). Le minimum structuré suffit ; ni filtre ni texte libre dans cette US. |
+| B | **Signaler une erreur**, version minimale : lien par fiche vers un e-mail prérempli, motifs de M2, sans formulaire ni stockage. | Volume nul au lancement : un formulaire serait du stockage et de l'anti-spam pour rien. On passe au formulaire quand le traitement à la main devient pénible. |
+| C | **Open Graph** sur toutes les pages, avec une image par défaut dérivée du logo. | Socle chez les trois concurrents ; c'est par le partage que circule la scène. |
+| D | **Export .ics** par édition à venir datée. Gardé, priorité basse. | Différenciant et peu coûteux, mais aucun signal d'usage. Il ne doit rien retarder. |
+| E | **Contribution** : le compte de #39 est maintenu (ADR 0005). | Avec un code par e-mail, la friction est proche d'un e-mail vérifié ; le compte apporte `submitted_by` et la visibilité des fiches en attente. À revoir avec des données d'usage. |
+| F | **Écartés** : avis, photos, XP, favoris et alertes, recommandation, météo et hébergement, playlist, horaires de passage, application mobile. | Raisons dans la matrice. Pas d'issue : cette ligne en tient lieu. |
+| G | **Plus tard, sans issue** : recherche par nom, pages par pays et tendance, lien organisateur, API, historique des éditions, line-up. | Une issue ouverte sans échéance est du bruit dans le backlog ; on la crée quand le prérequis est là. La carte garde son issue existante. |
+| H | **Ordre révisé** : #6, sourcing lot 2 en parallèle, C, B, A, puis #38 et #39, puis D. | Le critère du Product Goal exige de filtrer par pays et période (#6) ; la contribution n'y figure pas. Le lot 2 rend le catalogue crédible. C et B sont petites et protègent la qualité avant toute diffusion. Si #39 est déjà commencée, on la termine d'abord. |
+
+Ordre à reporter dans le tableau du projet, pas dans le texte des issues.
+
+## Écarts relevés, par ordre de valeur proposé avant arbitrage
 
 1. **Infos pratiques : prix, camping, accessibilité.** C'est la promesse du README
    (« les informations pratiques qui décident d'un déplacement »), et le schéma n'a
@@ -258,11 +276,10 @@ Viberate (pages festival), Festiveo (application iOS), article « best festival 
 
 ## Suites proposées
 
-- [ ] Arbitrer les propositions de la matrice
-- [ ] Créer les issues des écarts retenus (1 à 4 ci-dessus), avec un renvoi à la ligne
-      ou au mécanisme de cette REA
-- [ ] Trancher le point M1 : compte ou e-mail vérifié pour contribuer
-- [ ] Rédiger l'ADR des infos pratiques à partir de M3
+- [x] Arbitrer les propositions de la matrice (voir « Décisions du 2026-10-18 »)
+- [ ] Créer les issues A, B, C, D et « Sourcing lot 2 », avec un renvoi à cette REA
+- [x] Trancher le point M1 : compte maintenu (décision E)
+- [ ] Rédiger l'ADR des infos pratiques à partir de M3 (dans la PR de A)
 - [ ] Mettre à jour `festt.md` (contribution, organisateurs, API) et
       `annuaires-generalistes.md` (ajout et correction de fiches)
 - [ ] Si l'axe « contribution » sort du positionnement : ajuster la section « Axes
