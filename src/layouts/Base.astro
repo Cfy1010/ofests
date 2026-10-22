@@ -66,6 +66,7 @@ const otherLocales = locales.filter((other) => other !== locale);
 							class="py-2 text-sm text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
 							href={getRelativeLocaleUrl(other, path)}
 							lang={other}
+							data-language-link
 							hreflang={other}
 						>
 							{useTranslations(other)("language.name")}
