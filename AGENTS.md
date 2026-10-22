@@ -38,7 +38,12 @@ alimenté par des contributions modérées.
 - Liste des festivals à venir : `/fr/festivals/` et `/en/festivals/`
   (`src/pages/{fr,en}/festivals/index.astro`, composant
   `src/components/UpcomingList.astro`). Le nom de chaque festival mène à sa
-  fiche. Sous la liste, la section « Prochaine édition non annoncée »
+  fiche. Filtre par pays (#51, ADR 0026) : îlot React
+  `src/components/UpcomingFilter.jsx`, fonctions pures de `src/lib/filters.js`.
+  État dans l'URL (`?country=FR,BE`, codes ISO, `replaceState`), liste
+  complète sans JavaScript, canonical et hreflang sans query, seul le lien de
+  langue (`data-language-link`) reprend la query. Sous la liste, la section
+  « Prochaine édition non annoncée »
   (`src/components/UnannouncedList.astro`, #40) donne les festivals publiés
   sans édition à venir : nom lié à la fiche et pays de leur dernière édition
   (nom seul s'ils n'en ont aucune), par ordre alphabétique. Elle vient de

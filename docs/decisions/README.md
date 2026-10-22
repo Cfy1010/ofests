@@ -31,3 +31,4 @@ l'exhaustivité.
 | [0023](0023-fiche-par-festival.md) | Fiche par festival : URL stable, édition présentée, JSON-LD `MusicEvent` |
 | [0024](0024-selecteur-theme-compact.md) | Sélecteur de thème compact : icône et menu `<details>` |
 | [0025](0025-submitted-by-prive.md) | `submitted_by` privé : privilèges de lecture par colonne |
+| [0026](0026-filtrage-cote-navigateur.md) | Filtrage côté navigateur de la liste à venir : îlot React, état dans l'URL |
