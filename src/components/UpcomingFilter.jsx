@@ -82,7 +82,7 @@ export default function UpcomingFilter({ rows, countries, labels, sortRule }) {
 				<details className="group mt-6 border border-line">
 					<summary
 						ref={summaryRef}
-						className={`flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-3 text-link [&::-webkit-details-marker]:hidden ${focusRing}`}
+						className={`flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-3 py-2 text-link [&::-webkit-details-marker]:hidden ${focusRing}`}
 					>
 						<span>{summaryLabel()}</span>
 						{/* Chevron : pivote à l'ouverture (group-open) */}
