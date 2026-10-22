@@ -18,6 +18,14 @@ export function availableCountries(editions, locale) {
     .sort((a, b) => collator.compare(a.label, b.label));
 }
 
+// Pays choisis pour le résumé du filtre : au plus `max` libellés, dans
+// l'ordre de la liste (alphabétique), et le nombre de pays omis.
+export function summarizeCountries(countries, selected, max = 2) {
+  const wanted = new Set(selected);
+  const labels = countries.filter((country) => wanted.has(country.code)).map((country) => country.label);
+  return { labels: labels.slice(0, max), more: Math.max(0, labels.length - max) };
+}
+
 // Codes pays de la query (`?country=FR,BE`). Majuscules, sans doublon ;
 // les codes absents de `available` sont ignorés en silence.
 export function parseCountryParam(search, available) {

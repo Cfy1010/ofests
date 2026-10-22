@@ -6,6 +6,7 @@ import {
   filterEditions,
   parseCountryParam,
   serializeCountryParam,
+  summarizeCountries,
 } from "./filters.js";
 
 const editions = [
@@ -104,5 +105,38 @@ describe("filterEditions", () => {
 
   test("un pays sans édition donne une liste vide", () => {
     assert.deepEqual(filterEditions(editions, { countries: ["IT"] }), []);
+  });
+});
+
+describe("summarizeCountries", () => {
+  const countries = [
+    { code: "FI", label: "Finlande" },
+    { code: "FR", label: "France" },
+    { code: "NO", label: "Norvège" },
+    { code: "NL", label: "Pays-Bas" },
+  ];
+
+  test("aucun pays choisi : rien à résumer", () => {
+    assert.deepEqual(summarizeCountries(countries, []), { labels: [], more: 0 });
+  });
+
+  test("un ou deux pays : leurs noms, sans reste", () => {
+    assert.deepEqual(summarizeCountries(countries, ["FI"]), { labels: ["Finlande"], more: 0 });
+    assert.deepEqual(summarizeCountries(countries, ["FR", "FI"]), {
+      labels: ["Finlande", "France"],
+      more: 0,
+    });
+  });
+
+  test("au-delà de deux : les deux premiers de la liste et le reste", () => {
+    assert.deepEqual(summarizeCountries(countries, ["NL", "FR", "FI"]), {
+      labels: ["Finlande", "France"],
+      more: 1,
+    });
+    assert.equal(summarizeCountries(countries, ["FI", "FR", "NO", "NL"]).more, 2);
+  });
+
+  test("ignore les codes absents de la liste", () => {
+    assert.deepEqual(summarizeCountries(countries, ["XX"]), { labels: [], more: 0 });
   });
 });

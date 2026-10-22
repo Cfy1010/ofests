@@ -8,6 +8,7 @@ import {
 	filterEditions,
 	parseCountryParam,
 	serializeCountryParam,
+	summarizeCountries,
 } from "../lib/filters.js";
 
 const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-link";
@@ -59,6 +60,16 @@ export default function UpcomingFilter({ rows, countries, labels, sortRule }) {
 		return interpolate(count === 1 ? labels.resultsOne : labels.resultsOther, { count });
 	}
 
+	// « Pays » ; « Pays : Finlande » ; « Pays : Finlande, France +1 »
+	function summaryLabel() {
+		const { labels: shown, more } = summarizeCountries(countries, selected);
+		if (shown.length === 0) return labels.country;
+		const names = shown.join(", ");
+		return interpolate(labels.countrySelected, {
+			names: more > 0 ? interpolate(labels.countryMore, { names, count: more }) : names,
+		});
+	}
+
 	function reset() {
 		select([]);
 		// Le bouton disparaît : le focus revient au filtre
@@ -68,14 +79,27 @@ export default function UpcomingFilter({ rows, countries, labels, sortRule }) {
 	return (
 		<>
 			{mounted && (
-				<details className="mt-6 border border-line">
+				<details className="group mt-6 border border-line">
 					<summary
 						ref={summaryRef}
-						className={`flex min-h-11 cursor-pointer items-center px-3 text-link ${focusRing}`}
+						className={`flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-3 text-link [&::-webkit-details-marker]:hidden ${focusRing}`}
 					>
-						{selected.length > 0
-							? interpolate(labels.countryCount, { count: selected.length })
-							: labels.country}
+						<span>{summaryLabel()}</span>
+						{/* Chevron : pivote à l'ouverture (group-open) */}
+						<svg
+							viewBox="0 0 24 24"
+							width="20"
+							height="20"
+							fill="none"
+							stroke="currentColor"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							aria-hidden="true"
+							className="shrink-0 transition-transform group-open:rotate-180 motion-reduce:transition-none"
+						>
+							<path d="m6 9 6 6 6-6" />
+						</svg>
 					</summary>
 					<fieldset className="border-t border-line px-3 py-2">
 						<legend className="sr-only">{labels.country}</legend>

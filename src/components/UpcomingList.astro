@@ -31,7 +31,8 @@ const countries = availableCountries(editions, locale);
 const count = "{count}";
 const labels = {
 	country: t("filter.country"),
-	countryCount: t("filter.countryCount", { count }),
+	countrySelected: t("filter.countrySelected", { names: "{names}" }),
+	countryMore: t("filter.countryMore", { names: "{names}", count }),
 	resultsOne: t("filter.resultsOne", { count }),
 	resultsOther: t("filter.resultsOther", { count }),
 	noResults: t("filter.noResults"),
