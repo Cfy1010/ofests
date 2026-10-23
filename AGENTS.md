@@ -49,7 +49,9 @@ alimenté par des contributions modérées.
   `?genre=extreme,doom-metal` (slugs), tendances puis genres utilisés,
   `all-styles` toujours retenu (règle dans l'ADR 0026) ; `genreOptions()`,
   `genreKeys()`, `parseGenreParam()`, genres lus par `fetchGenres()`
-  (`src/lib/upcoming.js`). Sous la liste, la section
+  (`src/lib/upcoming.js`). Un bouton « Réinitialiser les filtres » (ligne du
+  compteur, #57) vide les trois filtres ; leurs `<details>` partagent
+  `name="filters"` (un seul bloc ouvert). Sous la liste, la section
   « Prochaine édition non annoncée »
   (`src/components/UnannouncedList.astro`, #40) donne les festivals publiés
   sans édition à venir : nom lié à la fiche et pays de leur dernière édition
