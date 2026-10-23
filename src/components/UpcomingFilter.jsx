@@ -22,9 +22,11 @@ const selectClass = `min-h-11 w-full border border-line bg-page px-2 text-body $
 
 // Bloc repliable des filtres : résumé cliquable avec chevron. Les blocs se
 // suivent à 8 px (mt-2) pour se lire en groupe ; le premier prend mt-6.
+// Même `name` : accordéon exclusif natif, ouvrir un bloc ferme les autres
+// (sans prise en charge de l'attribut, les blocs restent indépendants).
 const Disclosure = forwardRef(function Disclosure({ summary, spacing = "mt-2", children }, summaryRef) {
 	return (
-		<details className={`group border border-line ${spacing}`}>
+		<details name="filters" className={`group border border-line ${spacing}`}>
 			<summary
 				ref={summaryRef}
 				className={`flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-3 py-2 text-link [&::-webkit-details-marker]:hidden ${focusRing}`}
@@ -180,7 +182,7 @@ export default function UpcomingFilter({ rows, countries, genres, months, labels
 
 	function reset() {
 		apply({ countries: [], genres: [], from: "", to: "" });
-		// Le bouton disparaît : le focus revient au filtre
+		// Le bouton disparaît : le focus revient au premier filtre
 		summaryRef.current?.focus();
 	}
 
@@ -288,18 +290,20 @@ export default function UpcomingFilter({ rows, countries, genres, months, labels
 			</div>
 			<p className="mt-3 text-sm text-muted">{sortRule}</p>
 			{mounted && filtered && (
-				<p className="mt-1 text-sm text-muted">{resultsLabel(visible.length)}</p>
-			)}
-			{visible.length === 0 ? (
-				<div className="mt-6">
-					<p>{labels.noResults}</p>
+				<div className="mt-1 flex flex-wrap items-center justify-between gap-x-4">
+					<p className="text-sm text-muted">{resultsLabel(visible.length)}</p>
 					<button
 						type="button"
-						className={`mt-3 min-h-11 border border-line px-4 text-link underline ${focusRing}`}
+						className={`min-h-11 px-2 text-sm text-link underline ${focusRing}`}
 						onClick={reset}
 					>
 						{labels.reset}
 					</button>
+				</div>
+			)}
+			{visible.length === 0 ? (
+				<div className="mt-6">
+					<p>{labels.noResults}</p>
 				</div>
 			) : (
 				<ul className="mt-6">

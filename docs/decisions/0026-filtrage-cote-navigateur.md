@@ -1,7 +1,7 @@
 # 0026 — Filtrage côté navigateur de la liste à venir
 
 Date : 2026-10-22
-Statut : acceptée, complétée le 2026-10-23 pour #52 et #53
+Statut : acceptée, complétée le 2026-10-23 pour #52, #53 et #57
 
 ## Contexte
 
@@ -52,7 +52,8 @@ Option A.
   les dates des éditions) jusqu'au dernier mois couvert par une édition à
   venir. Pour une édition sans date, ce dernier mois est décembre de son
   année. Un mois sans édition reste proposé : le filtre conduit alors à
-  l'état « aucun résultat » et à son bouton de réinitialisation.
+  l'état « aucun résultat » (message seul : le bouton de réinitialisation
+  est celui de la ligne du compteur, voir #57).
 - Recoupement : une édition datée est retenue si mois(début) ≤ `to` et
   mois(fin, à défaut début) ≥ `from` ; une édition du 30 juin au 2 juillet
   sort donc pour juin seul comme pour juillet seul. Une édition sans date
@@ -95,6 +96,20 @@ Option A.
   `selectAll` avec tri par `slug`). Pour chaque ligne, les slugs qui la
   retiennent sont précalculés au build (`genreKeys()`), ce qui garde
   `filterEditions()` pur.
+
+### Ergonomie des filtres (#57)
+
+- Dès qu'un filtre est actif, un bouton « Réinitialiser les filtres »
+  apparaît sur la ligne du compteur de résultats. Il passe par la même
+  fonction que les contrôles : il vide pays, genre et période, retire leurs
+  paramètres de l'URL (les autres sont conservés) et annonce le nombre de
+  résultats. Le focus va ensuite sur le titre du premier bloc (Pays). Il
+  n'y a qu'un seul bouton : l'état « aucun résultat » affiche son message
+  sans bouton propre.
+- Les trois blocs de filtre partagent `name="filters"` : accordéon exclusif
+  natif, ouvrir un bloc ferme les autres, sans JavaScript. Sans prise en
+  charge de l'attribut, les blocs restent indépendants. Aucun code de
+  défilement n'est ajouté.
 
 ## Conséquences
 
