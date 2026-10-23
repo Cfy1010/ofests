@@ -73,6 +73,7 @@ Colonne **Proposition** (à arbitrer par le PO) :
 | Prix des billets | ✓ « from €120 » | ✗ | ✓ grille détaillée | ? | ✗ **aucun champ en base** | **Différenciant** — promesse du README, sans issue |
 | Camping, accès, accessibilité | ✗ / ~ générique / ✗ | ✗ | ✗ / ✗ / ✗ (fiche lue) | ? | ✗ **aucun champ en base** | **Différenciant** — promesse du README, sans issue |
 | Line-up | ✓ par jour, répartition par genre | ~ têtes d'affiche ; vide sur la fiche du petit festival | ✓ par jour | ~ (fiche App Store) | ✗ « projet à part » (ADR 0009) | Plus tard — à cadrer après les infos pratiques |
+| Affiche de l'édition | ✓ affiche entière, fond flouté ; affiches proposées par les contributeurs (« Suggest a better poster », 40 XP) ; relevé du 2026-10-23 : affiche de l'édition Philadelphie (mai 2026) sur la fiche de l'édition Denver (décembre 2026) | ✗ | ✗ | ? | ✗ | **Différenciant** si sourcée — plus tard : US « affiche sur la fiche, ajoutée par le modérateur », créée au premier accord reçu d'un organisateur. Accord et conditions (crédit, version) demandés pendant le sourcing (#45). Droits : reproduction soumise au consentement de l'auteur (CPI, art. L122-4), accord écrit conservé. Ajout du 2026-10-23, constat du PO hors relevé initial. |
 | Horaires de passage | ✗ | ✓ (`fest.md`) | ✗ | ✓ alertes de set | ✗ | **Écarté** — domaine de l'appli de festival |
 | Historique des éditions | ✓ liens par année | ✓ toutes éditions | ✓ édition N et N+1 | ? | ~ une édition présentée (ADR 0023) | Plus tard — faible valeur avant d'avoir des données |
 | Sources citées | ✓ | ✗ | ~ auteur et relecteur nommés | ? | ✓ livré, par URL et date de consultation | **Différenciant** fragile — FestT le fait aussi |
@@ -107,6 +108,7 @@ Colonne **Proposition** (à arbitrer par le PO) :
 | Bilingue ou plus | ✓ FR/EN | ✓ FR/EN | ✓ FR/EN/ES | ✗ EN (appli) | ✓ livré FR/EN, hreflang | Socle — fait |
 | Thème clair et sombre | ✓ | ? | ? | ? | ✓ livré (ADR 0021) | Fait |
 | Périmètre déclaré | ✗ incohérent (`festt.md`) | ✗ | ~ un pays | ~ « worldwide », sans chiffre | ~ Europe et metal, nombre non affiché | Plus tard — afficher ce que compte le catalogue, à peu de frais |
+| Plateformes | Web | Web + application (plateformes non relevées) | Web | Application iOS seule : absente du Play Store, site non lu (robots) — constat du PO, 2026-10-23 | Web responsive, tous téléphones | **Différenciant** discret — un site web touche iPhone et Android sans double développement |
 
 ## Mécanismes
 
