@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
-import { fetchUpcomingEditions } from "./upcoming.js";
+import { fetchGenres, fetchUpcomingEditions } from "./upcoming.js";
 
 // Faux client Supabase : renvoie, dans l'ordre, une réponse par page lue,
 // et note chaque requête dans `calls`.
@@ -40,7 +40,13 @@ function row(n) {
     festival: {
       name: `Festival ${n}`,
       slug: `festival-${n}`,
-      genre: { label_fr: "Folk & pagan", label_en: "Folk & Pagan" },
+      genre: {
+        slug: "folk-pagan",
+        parent_slug: "folk",
+        archived: false,
+        label_fr: "Folk & pagan",
+        label_en: "Folk & Pagan",
+      },
     },
   };
 }
@@ -88,6 +94,9 @@ describe("fetchUpcomingEditions", () => {
         festivalName: "Festival 1",
         festivalSlug: "festival-1",
         genreLabels: { fr: "Folk & pagan", en: "Folk & Pagan" },
+        genreSlug: "folk-pagan",
+        genreParentSlug: "folk",
+        genreArchived: false,
       },
     ]);
   });
@@ -120,5 +129,57 @@ describe("fetchUpcomingEditions", () => {
     assert.equal(call.table, "upcoming_editions");
     assert.equal(call.order, "id");
     assert.doesNotMatch(call.columns, /\*|submitted_by/);
+  });
+});
+
+describe("fetchGenres", () => {
+  test("lit la table genres triée par slug, colonnes explicites, par pages", async () => {
+    const client = fakeClient([{ data: [], error: null }]);
+
+    await fetchGenres(client);
+
+    const [call] = client.calls;
+    assert.equal(call.table, "genres");
+    assert.equal(call.order, "slug");
+    assert.doesNotMatch(call.columns, /\*/);
+  });
+
+  test("met une ligne à la forme attendue, archivés compris", async () => {
+    const client = fakeClient([
+      {
+        data: [
+          { slug: "doom-metal", parent_slug: "doom-stoner", label_fr: "Doom metal", label_en: "Doom metal", archived: true },
+        ],
+        error: null,
+      },
+    ]);
+
+    assert.deepEqual(await fetchGenres(client), [
+      {
+        slug: "doom-metal",
+        parentSlug: "doom-stoner",
+        archived: true,
+        labels: { fr: "Doom metal", en: "Doom metal" },
+      },
+    ]);
+  });
+
+  test("échoue sur erreur, au lieu de renvoyer une liste vide", async () => {
+    const client = fakeClient([{ data: null, error: { message: "timeout" } }]);
+
+    await assert.rejects(fetchGenres(client), /Lecture de genres impossible : timeout/);
+  });
+
+  test("lit la page suivante tant qu'une page est pleine", async () => {
+    const full = Array.from({ length: 1000 }, (_, i) => ({
+      slug: `g-${i}`, parent_slug: null, label_fr: "x", label_en: "x", archived: false,
+    }));
+    const client = fakeClient([
+      { data: full, error: null },
+      { data: [], error: null },
+    ]);
+
+    assert.equal((await fetchGenres(client)).length, 1000);
+    assert.equal(client.calls.length, 2);
   });
 });
