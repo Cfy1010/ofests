@@ -11,16 +11,17 @@ export const PAGE_SIZE = 1000;
  * @param {any} supabase client Supabase, ou un faux client dans les tests
  * @param {string} table
  * @param {string} columns
+ * @param {string} [orderBy] colonne de tri stable pour la pagination (défaut : id)
  * @returns {Promise<any[]>}
  */
-export async function selectAll(supabase, table, columns) {
+export async function selectAll(supabase, table, columns, orderBy = "id") {
   const rows = [];
 
   for (let from = 0; ; from += PAGE_SIZE) {
     const { data, error } = await supabase
       .from(table)
       .select(columns)
-      .order("id")
+      .order(orderBy)
       .range(from, from + PAGE_SIZE - 1);
 
     if (error) {

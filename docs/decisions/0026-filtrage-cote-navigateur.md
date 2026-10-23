@@ -1,7 +1,7 @@
 # 0026 — Filtrage côté navigateur de la liste à venir
 
 Date : 2026-10-22
-Statut : acceptée, complétée le 2026-10-23 pour #52
+Statut : acceptée, complétée le 2026-10-23 pour #52 et #53
 
 ## Contexte
 
@@ -63,6 +63,38 @@ Option A.
   prend la valeur de « De »). Dans une URL saisie à la main avec début >
   fin, les deux bornes sont inversées en silence. Une valeur au mauvais
   format ou absente de la liste est ignorée en silence.
+
+### Filtre par genre (#53)
+
+- URL : `?genre=extreme,doom-metal`, slugs de la base (immuables, ADR 0017),
+  combinable avec `country`, `from` et `to`. À la lecture, un slug inconnu
+  ou absent des options est ignoré en silence ; un genre dont la tendance
+  est aussi présente est retiré (redondant).
+- Règle d'inclusion. Soit S les slugs cochés ; S vide ne filtre pas. Un
+  festival est retenu si son genre principal est dans S, ou est un genre
+  dont la tendance parente est dans S, ou est une tendance parente d'un
+  genre de S (un festival « Extrême » sort pour « Black metal »), ou vaut
+  `all-styles`. Seul le genre principal compte, jamais les sous-genres
+  (ADR 0003). ET avec les autres filtres : un festival `all-styles` reste
+  filtré par pays et par période.
+- Pas de case « Toutes tendances » : ces festivals sont toujours retenus,
+  une phrase sous les cases le dit.
+- Options : seulement ce qui est utilisé par une édition à venir. Une
+  tendance est proposée si elle-même ou l'un de ses genres est utilisé, un
+  genre s'il est utilisé. Tendances puis genres, triés dans la langue de la
+  page. Une tendance cochée inclut ses genres : ils s'affichent cochés et
+  désactivés.
+- Archivés (ADR 0017) : exclus des options. Un festival classé dans un
+  genre archivé reste retenu si sa tendance est cochée. Conséquence : un
+  festival classé dans un genre dont la **tendance** est archivée ne sort
+  plus dès qu'un filtre de genre est actif, puisque ni le genre ni sa
+  tendance ne sont proposés ; il reste dans la liste non filtrée.
+- Données : les libellés d'une tendance dont seuls des genres sont utilisés
+  ne figurent pas dans la vue `upcoming_editions`. Le build lit donc aussi
+  la table `genres` (`fetchGenres()`, colonnes explicites, pagination de
+  `selectAll` avec tri par `slug`). Pour chaque ligne, les slugs qui la
+  retiennent sont précalculés au build (`genreKeys()`), ce qui garde
+  `filterEditions()` pur.
 
 ## Conséquences
 

@@ -6,7 +6,10 @@ import { selectAll } from "./select-all.js";
 // festival est visible (policy editions_select, testée dans rls.test.sql).
 const COLUMNS = `
   id, year, start_date, end_date, city, country_code,
-  festival:festivals ( name, slug, genre:genres ( label_fr, label_en ) )
+  festival:festivals (
+    name, slug,
+    genre:genres ( slug, parent_slug, archived, label_fr, label_en )
+  )
 `;
 
 // Éditions à venir visibles du public (vue upcoming_editions, ADR 0016).
@@ -17,6 +20,23 @@ const COLUMNS = `
 export async function fetchUpcomingEditions(supabase) {
   const rows = await selectAll(supabase, "upcoming_editions", COLUMNS);
   return rows.map(toEdition);
+}
+
+// Colonnes explicites de genres (lecture publique, ADR 0017). Sert aux
+// options du filtre : libellé d'une tendance dont seuls des genres sont
+// utilisés, statut archivé. Triée par slug : genres n'a pas de colonne id.
+const GENRE_COLUMNS = "slug, parent_slug, label_fr, label_en, archived";
+
+// Tous les genres et tendances, archivés compris (le front les exclut des
+// options, pas du classement). Même règle d'erreur que les éditions.
+export async function fetchGenres(supabase) {
+  const rows = await selectAll(supabase, "genres", GENRE_COLUMNS, "slug");
+  return rows.map((row) => ({
+    slug: row.slug,
+    parentSlug: row.parent_slug,
+    archived: row.archived,
+    labels: { fr: row.label_fr, en: row.label_en },
+  }));
 }
 
 function toEdition(row) {
@@ -30,5 +50,8 @@ function toEdition(row) {
     festivalName: row.festival.name,
     festivalSlug: row.festival.slug,
     genreLabels: { fr: row.festival.genre.label_fr, en: row.festival.genre.label_en },
+    genreSlug: row.festival.genre.slug,
+    genreParentSlug: row.festival.genre.parent_slug,
+    genreArchived: row.festival.genre.archived,
   };
 }

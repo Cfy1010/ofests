@@ -45,7 +45,11 @@ alimenté par des contributions modérées.
   langue (`data-language-link`) reprend la query. Filtre par période (#52) :
   deux `<select>` « De » et « À » (mois + année), `?from=2027-06&to=2027-08`,
   combinable avec `country` ; `availableMonths()`, `parsePeriodParam()` et
-  `filterEditions()` dans `src/lib/filters.js`. Sous la liste, la section
+  `filterEditions()` dans `src/lib/filters.js`. Filtre par genre (#53) :
+  `?genre=extreme,doom-metal` (slugs), tendances puis genres utilisés,
+  `all-styles` toujours retenu (règle dans l'ADR 0026) ; `genreOptions()`,
+  `genreKeys()`, `parseGenreParam()`, genres lus par `fetchGenres()`
+  (`src/lib/upcoming.js`). Sous la liste, la section
   « Prochaine édition non annoncée »
   (`src/components/UnannouncedList.astro`, #40) donne les festivals publiés
   sans édition à venir : nom lié à la fiche et pays de leur dernière édition

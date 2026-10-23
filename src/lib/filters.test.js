@@ -5,10 +5,14 @@ import {
   availableCountries,
   availableMonths,
   filterEditions,
+  flattenGenreOptions,
+  genreKeys,
+  genreOptions,
   parseCountryParam,
+  parseGenreParam,
   parsePeriodParam,
   serializeFilterParams,
-  summarizeCountries,
+  summarizeSelection,
   summarizePeriod,
 } from "./filters.js";
 
@@ -306,7 +310,7 @@ describe("filterEditions", () => {
   });
 });
 
-describe("summarizeCountries", () => {
+describe("summarizeSelection", () => {
   const countries = [
     { code: "FI", label: "Finlande" },
     { code: "FR", label: "France" },
@@ -315,26 +319,221 @@ describe("summarizeCountries", () => {
   ];
 
   test("aucun pays choisi : rien à résumer", () => {
-    assert.deepEqual(summarizeCountries(countries, []), { labels: [], more: 0 });
+    assert.deepEqual(summarizeSelection(countries, []), { labels: [], more: 0 });
   });
 
   test("un ou deux pays : leurs noms, sans reste", () => {
-    assert.deepEqual(summarizeCountries(countries, ["FI"]), { labels: ["Finlande"], more: 0 });
-    assert.deepEqual(summarizeCountries(countries, ["FR", "FI"]), {
+    assert.deepEqual(summarizeSelection(countries, ["FI"]), { labels: ["Finlande"], more: 0 });
+    assert.deepEqual(summarizeSelection(countries, ["FR", "FI"]), {
       labels: ["Finlande", "France"],
       more: 0,
     });
   });
 
   test("au-delà de deux : les deux premiers de la liste et le reste", () => {
-    assert.deepEqual(summarizeCountries(countries, ["NL", "FR", "FI"]), {
+    assert.deepEqual(summarizeSelection(countries, ["NL", "FR", "FI"]), {
       labels: ["Finlande", "France"],
       more: 1,
     });
-    assert.equal(summarizeCountries(countries, ["FI", "FR", "NO", "NL"]).more, 2);
+    assert.equal(summarizeSelection(countries, ["FI", "FR", "NO", "NL"]).more, 2);
   });
 
   test("ignore les codes absents de la liste", () => {
-    assert.deepEqual(summarizeCountries(countries, ["XX"]), { labels: [], more: 0 });
+    assert.deepEqual(summarizeSelection(countries, ["XX"]), { labels: [], more: 0 });
+  });
+});
+
+// Hiérarchie de test : deux tendances à genres, une sans genre, une archivée,
+// et all-styles. Libellés qui ne se trient pas pareil en fr et en en.
+const genre = (slug, parentSlug, fr, en = fr, archived = false) => ({
+  slug,
+  parentSlug,
+  archived,
+  labels: { fr, en },
+});
+const genres = [
+  genre("all-styles", null, "Toutes tendances", "All styles"),
+  genre("extreme", null, "Extrême", "Extreme metal"),
+  genre("black-metal", "extreme", "Black metal"),
+  genre("death-metal", "extreme", "Death metal"),
+  genre("thrash-metal", "extreme", "Thrash metal", "Thrash metal", true),
+  genre("heavy-classic", null, "Heavy"),
+  genre("heavy-metal", "heavy-classic", "Heavy metal"),
+  genre("grunge", null, "Grunge"),
+  genre("folk", null, "Folk"),
+  genre("pagan", "folk", "Pagan"),
+  genre("old-trend", null, "Ancienne tendance", "Old trend", true),
+  genre("old-genre", "old-trend", "Ancien genre"),
+];
+const bySlug = (slug) => genres.find((g) => g.slug === slug);
+
+function edition(id, genreSlug, extra = {}) {
+  return {
+    id,
+    countryCode: "FR",
+    year: 2027,
+    startDate: null,
+    endDate: null,
+    genreSlug,
+    genreParentSlug: bySlug(genreSlug).parentSlug,
+    ...extra,
+  };
+}
+
+const genreEditions = [
+  edition("tendance", "extreme"),
+  edition("black", "black-metal"),
+  edition("death", "death-metal"),
+  edition("heavy", "heavy-metal"),
+  edition("grunge", "grunge"),
+  edition("tout", "all-styles", { countryCode: "DE" }),
+  edition("thrash", "thrash-metal"),
+  edition("ancien", "old-genre"),
+];
+const genreOpts = genreOptions(genres, genreEditions, "fr");
+const withKeys = genreEditions.map((e) => ({ ...e, genreKeys: genreKeys(e, genreOpts) }));
+const retained = (criteria) => idsOf(filterEditions(withKeys, criteria));
+
+describe("genreOptions", () => {
+  test("hiérarchie utilisée, tendance puis genres", () => {
+    assert.deepEqual(
+      genreOpts.map((t) => [t.slug, t.children.map((c) => c.slug)]),
+      [
+        ["extreme", ["black-metal", "death-metal"]],
+        ["grunge", []],
+        ["heavy-classic", ["heavy-metal"]],
+      ],
+    );
+  });
+
+  test("tendance sans genre utilisé : proposée si elle-même est utilisée", () => {
+    assert.ok(genreOpts.some((t) => t.slug === "grunge" && t.children.length === 0));
+  });
+
+  test("tendance dont seul un genre est utilisé : proposée avec ce genre", () => {
+    const options = genreOptions(genres, [edition("p", "pagan")], "fr");
+    assert.deepEqual(options, [{ slug: "folk", label: "Folk", children: [{ slug: "pagan", label: "Pagan" }] }]);
+  });
+
+  test("ni tendance ni genre inutilisé", () => {
+    const options = genreOptions(genres, [edition("b", "black-metal")], "fr");
+    assert.deepEqual(options[0].children.map((c) => c.slug), ["black-metal"]);
+    assert.equal(options.length, 1);
+  });
+
+  test("genre archivé exclu des options", () => {
+    assert.equal(flattenGenreOptions(genreOpts).some((o) => o.code === "thrash-metal"), false);
+  });
+
+  test("genre dont la tendance est archivée : exclu, et sa tendance aussi", () => {
+    const codes = flattenGenreOptions(genreOpts).map((o) => o.code);
+    assert.equal(codes.includes("old-genre"), false);
+    assert.equal(codes.includes("old-trend"), false);
+  });
+
+  test("all-styles n'est jamais une option", () => {
+    assert.equal(flattenGenreOptions(genreOpts).some((o) => o.code === "all-styles"), false);
+  });
+
+  test("tri alphabétique dans la langue de la page", () => {
+    const eds = [edition("a", "extreme"), edition("b", "heavy-classic")];
+    assert.deepEqual(genreOptions(genres, eds, "fr").map((t) => t.label), ["Extrême", "Heavy"]);
+    assert.deepEqual(genreOptions(genres, eds, "en").map((t) => t.label), ["Extreme metal", "Heavy"]);
+  });
+
+  test("genres triés à l'intérieur de leur tendance", () => {
+    const eds = [edition("a", "death-metal"), edition("b", "black-metal")];
+    assert.deepEqual(genreOptions(genres, eds, "fr")[0].children.map((c) => c.label), ["Black metal", "Death metal"]);
+  });
+
+  test("aucune édition : aucune option", () => {
+    assert.deepEqual(genreOptions(genres, [], "fr"), []);
+  });
+});
+
+describe("filterEditions : genre", () => {
+  test("S vide : le filtre ne filtre pas", () => {
+    assert.equal(retained({ genres: [] }).length, withKeys.length);
+  });
+
+  test("genre principal dans S", () => {
+    assert.deepEqual(retained({ genres: ["black-metal"] }), ["tendance", "black", "tout"]);
+  });
+
+  test("genre dont la tendance parente est dans S", () => {
+    assert.deepEqual(retained({ genres: ["extreme"] }), ["tendance", "black", "death", "tout", "thrash"]);
+  });
+
+  test("tendance parente d'un genre de S : « Extrême » sort pour « Black metal »", () => {
+    assert.ok(retained({ genres: ["black-metal"] }).includes("tendance"));
+    assert.equal(retained({ genres: ["black-metal"] }).includes("death"), false);
+  });
+
+  test("all-styles toujours retenu", () => {
+    for (const slug of ["black-metal", "grunge", "heavy-classic"]) {
+      assert.ok(retained({ genres: [slug] }).includes("tout"), slug);
+    }
+  });
+
+  test("all-styles reste filtré par pays et par période", () => {
+    assert.equal(retained({ genres: ["grunge"], countries: ["FR"] }).includes("tout"), false);
+    assert.ok(retained({ genres: ["grunge"], countries: ["DE"] }).includes("tout"));
+    assert.equal(retained({ genres: ["grunge"], from: "2028-01" }).includes("tout"), false);
+  });
+
+  test("plusieurs tendances : OU entre elles", () => {
+    assert.deepEqual(retained({ genres: ["grunge", "heavy-classic"] }), ["heavy", "grunge", "tout"]);
+  });
+
+  test("genre archivé dont la tendance est cochée : retenu", () => {
+    assert.ok(retained({ genres: ["extreme"] }).includes("thrash"));
+  });
+
+  test("genre archivé : retenu par rien d'autre que sa tendance", () => {
+    assert.equal(retained({ genres: ["black-metal"] }).includes("thrash"), false);
+  });
+
+  test("genre dont la tendance est archivée : ne sort plus quand un genre est coché", () => {
+    assert.equal(retained({ genres: ["extreme"] }).includes("ancien"), false);
+    assert.ok(retained({}).includes("ancien"));
+  });
+
+  test("ET avec pays et période", () => {
+    assert.deepEqual(retained({ genres: ["extreme"], countries: ["DE"] }), ["tout"]);
+    assert.deepEqual(retained({ genres: ["heavy-classic"], countries: ["FR"], from: "2027-01" }), ["heavy"]);
+  });
+});
+
+describe("parseGenreParam", () => {
+  test("lit une liste de slugs", () => {
+    assert.deepEqual(parseGenreParam("?genre=grunge,black-metal", genreOpts), ["grunge", "black-metal"]);
+  });
+
+  test("slug inconnu, archivé ou all-styles ignoré en silence", () => {
+    assert.deepEqual(parseGenreParam("?genre=nope,thrash-metal,all-styles,grunge,,", genreOpts), ["grunge"]);
+  });
+
+  test("genre redondant avec sa tendance retiré", () => {
+    assert.deepEqual(parseGenreParam("?genre=black-metal,extreme", genreOpts), ["extreme"]);
+    assert.deepEqual(parseGenreParam("?genre=extreme,black-metal,grunge", genreOpts), ["extreme", "grunge"]);
+  });
+
+  test("dédoublonne ; absent ou vide : aucun genre", () => {
+    assert.deepEqual(parseGenreParam("?genre=grunge,grunge", genreOpts), ["grunge"]);
+    assert.deepEqual(parseGenreParam("", genreOpts), []);
+    assert.deepEqual(parseGenreParam("?genre=", genreOpts), []);
+  });
+});
+
+describe("serializeFilterParams : genre", () => {
+  test("genre avec pays et période, autres paramètres conservés", () => {
+    assert.equal(
+      serializeFilterParams("?x=1&genre=old", { countries: ["FR"], genres: ["extreme", "doom-metal"], from: "2027-06" }),
+      "?x=1&country=FR&genre=extreme,doom-metal&from=2027-06",
+    );
+  });
+
+  test("sans genre, le paramètre disparaît", () => {
+    assert.equal(serializeFilterParams("?genre=extreme", { genres: [] }), "");
   });
 });

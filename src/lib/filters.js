@@ -7,6 +7,8 @@
 import { countryName, intlLocale } from "./editions.js";
 
 const COUNTRY_PARAM = "country";
+const GENRE_PARAM = "genre";
+const ALL_STYLES = "all-styles";
 const FROM_PARAM = "from";
 const TO_PARAM = "to";
 const MONTH_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
@@ -21,11 +23,12 @@ export function availableCountries(editions, locale) {
     .sort((a, b) => collator.compare(a.label, b.label));
 }
 
-// Pays choisis pour le résumé du filtre : au plus `max` libellés, dans
-// l'ordre de la liste (alphabétique), et le nombre de pays omis.
-export function summarizeCountries(countries, selected, max = 2) {
+// Choix retenus pour le résumé d'un filtre : au plus `max` libellés, dans
+// l'ordre de la liste (alphabétique), et le nombre de choix omis.
+// items : [{ code, label }] (pays, ou genres de flattenGenreOptions()).
+export function summarizeSelection(items, selected, max = 2) {
   const wanted = new Set(selected);
-  const labels = countries.filter((country) => wanted.has(country.code)).map((country) => country.label);
+  const labels = items.filter((item) => wanted.has(item.code)).map((item) => item.label);
   return { labels: labels.slice(0, max), more: Math.max(0, labels.length - max) };
 }
 
@@ -39,6 +42,71 @@ export function parseCountryParam(search, available) {
     .map((code) => code.trim().toUpperCase())
     .filter((code) => known.has(code));
   return [...new Set(codes)];
+}
+
+// Options du filtre de genre (ADR 0017, 0026) : la hiérarchie utilisée par
+// une édition à venir. `genres` : de fetchGenres(). Une tendance est proposée
+// si elle-même ou l'un de ses genres est utilisé ; un genre, s'il est
+// utilisé. Archivés exclus (un genre dont la tendance est archivée n'a pas
+// de place dans la liste), `all-styles` aussi : ces festivals sont toujours
+// retenus. Tendances et genres triés dans la langue de la page.
+// Chaque tendance : { slug, label, children: [{ slug, label }] }.
+export function genreOptions(genres, editions, locale) {
+  const used = new Set(editions.map((edition) => edition.genreSlug));
+  const collator = new Intl.Collator(locale);
+  const byLabel = (a, b) => collator.compare(a.label, b.label);
+  const option = (genre) => ({ slug: genre.slug, label: genre.labels[locale] });
+
+  return genres
+    .filter((genre) => genre.parentSlug === null && genre.slug !== ALL_STYLES && !genre.archived)
+    .map((trend) => ({
+      ...option(trend),
+      children: genres
+        .filter((genre) => genre.parentSlug === trend.slug && !genre.archived && used.has(genre.slug))
+        .map(option)
+        .sort(byLabel),
+    }))
+    .filter((trend) => used.has(trend.slug) || trend.children.length > 0)
+    .sort(byLabel);
+}
+
+// Options à plat, tendance puis ses genres, au format de summarizeSelection().
+export function flattenGenreOptions(options) {
+  return options.flatMap((trend) =>
+    [trend, ...trend.children].map((item) => ({ code: item.slug, label: item.label })),
+  );
+}
+
+// Slugs qui font retenir une édition par le filtre de genre : son genre
+// principal, sa tendance parente, et — si c'est une tendance — ses genres
+// proposés. « Black metal » coché retient donc un festival « Extrême ».
+export function genreKeys(edition, options) {
+  const keys = [edition.genreSlug];
+  if (edition.genreParentSlug) keys.push(edition.genreParentSlug);
+  const trend = options.find((option) => option.slug === edition.genreSlug);
+  if (trend) keys.push(...trend.children.map((child) => child.slug));
+  return keys;
+}
+
+// Slugs de la query (`?genre=extreme,doom-metal`). Les slugs inconnus ou
+// absents des options sont ignorés en silence ; un genre dont la tendance
+// est aussi présente est retiré (redondant).
+export function parseGenreParam(search, options) {
+  const parentOf = new Map();
+  for (const trend of options) {
+    parentOf.set(trend.slug, null);
+    for (const child of trend.children) parentOf.set(child.slug, trend.slug);
+  }
+  const value = new URLSearchParams(search).get(GENRE_PARAM) ?? "";
+  const slugs = [
+    ...new Set(
+      value
+        .split(",")
+        .map((slug) => slug.trim())
+        .filter((slug) => parentOf.has(slug)),
+    ),
+  ];
+  return slugs.filter((slug) => !slugs.includes(parentOf.get(slug)));
 }
 
 // Mois proposés par le filtre de période : tous les mois, en continu, du mois
@@ -108,12 +176,13 @@ export function summarizePeriod(months, from, to) {
 
 // Query mise à jour avec les filtres, les autres paramètres conservés.
 // Un filtre vide retire son paramètre. Renvoie "" ou "?…".
-export function serializeFilterParams(search, { countries = [], from = "", to = "" } = {}) {
+export function serializeFilterParams(search, { countries = [], genres = [], from = "", to = "" } = {}) {
   const params = new URLSearchParams(search);
-  for (const name of [COUNTRY_PARAM, FROM_PARAM, TO_PARAM]) params.delete(name);
+  for (const name of [COUNTRY_PARAM, GENRE_PARAM, FROM_PARAM, TO_PARAM]) params.delete(name);
   // Les virgules restent lisibles : ?country=FR,BE
   const parts = [...params].map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
   if (countries.length > 0) parts.push(`${COUNTRY_PARAM}=${countries.join(",")}`);
+  if (genres.length > 0) parts.push(`${GENRE_PARAM}=${genres.join(",")}`);
   if (from) parts.push(`${FROM_PARAM}=${from}`);
   if (to) parts.push(`${TO_PARAM}=${to}`);
   return parts.length > 0 ? `?${parts.join("&")}` : "";
@@ -135,11 +204,19 @@ function overlapsPeriod(edition, from, to) {
 }
 
 // Éditions retenues par les critères, en ET. Un critère vide ne filtre pas.
-export function filterEditions(editions, { countries = [], from = "", to = "" } = {}) {
-  if (countries.length === 0 && !from && !to) return editions;
-  const wanted = new Set(countries);
+// Genre : l'édition porte `genreSlug` et `genreKeys` (genreKeys()). Un
+// festival « toutes tendances » est toujours retenu par ce filtre, mais reste
+// soumis aux autres.
+export function filterEditions(editions, { countries = [], genres = [], from = "", to = "" } = {}) {
+  if (countries.length === 0 && genres.length === 0 && !from && !to) return editions;
+  const wantedCountries = new Set(countries);
+  const wantedGenres = new Set(genres);
   return editions.filter(
     (edition) =>
-      (wanted.size === 0 || wanted.has(edition.countryCode)) && overlapsPeriod(edition, from, to),
+      (wantedCountries.size === 0 || wantedCountries.has(edition.countryCode)) &&
+      (wantedGenres.size === 0 ||
+        edition.genreSlug === ALL_STYLES ||
+        edition.genreKeys.some((key) => wantedGenres.has(key))) &&
+      overlapsPeriod(edition, from, to),
   );
 }

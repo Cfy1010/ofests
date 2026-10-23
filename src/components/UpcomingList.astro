@@ -2,15 +2,20 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { toLocale, useTranslations } from "../i18n";
 import { formatDateRange, formatLocation, sortUpcomingEditions } from "../lib/editions.js";
-import { availableCountries, availableMonths } from "../lib/filters.js";
+import { availableCountries, availableMonths, genreKeys, genreOptions } from "../lib/filters.js";
 import { festivalPath } from "../lib/festivals.js";
 import UpcomingFilter from "./UpcomingFilter.jsx";
 
 // editions : éditions à venir, telles que renvoyées par fetchUpcomingEditions()
-const { editions } = Astro.props;
+// genres : tous les genres, de fetchGenres()
+const { editions, genres } = Astro.props;
 
 const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
+
+// Filtre par genre (#53) : options, puis pour chaque ligne les slugs qui la
+// retiennent
+const genreChoices = genreOptions(genres, editions, locale);
 
 const rows = sortUpcomingEditions(editions).map((edition) => ({
 	id: edition.id,
@@ -23,13 +28,15 @@ const rows = sortUpcomingEditions(editions).map((edition) => ({
 	location: formatLocation(edition.city, edition.countryCode, locale),
 	genre: edition.genreLabels[locale],
 	countryCode: edition.countryCode,
+	genreSlug: edition.genreSlug,
+	genreKeys: genreKeys(edition, genreChoices),
 	// Pour le filtre de période (#52)
 	year: edition.year,
 	startDate: edition.startDate,
 	endDate: edition.endDate,
 }));
 
-// Filtres par pays (#51) et par période (#52), ADR 0026 : libellés avec
+// Filtres par pays (#51), par période (#52) et par genre (#53), ADR 0026 : libellés avec
 // {count}, {range} et {month} laissés tels quels, remplis dans le navigateur
 const countries = availableCountries(editions, locale);
 const months = availableMonths(editions, new Date(), locale);
@@ -42,6 +49,10 @@ const labels = {
 	resultsOther: t("filter.resultsOther", { count }),
 	noResults: t("filter.noResults"),
 	reset: t("filter.reset"),
+	genre: t("filter.genre"),
+	genreSelected: t("filter.genreSelected", { names: "{names}" }),
+	genreMore: t("filter.genreMore", { names: "{names}", count }),
+	genreAllStyles: t("filter.genreAllStyles"),
 	period: t("filter.period"),
 	periodRange: t("filter.periodRange", { range: "{range}" }),
 	periodFrom: t("filter.periodFrom", { month: "{month}" }),
@@ -57,6 +68,6 @@ const labels = {
 		<p class="mt-6">{t("upcoming.empty")}</p>
 	) : (
 		// Toute liste énonce sa règle de tri (ADR 0004, 0019)
-		<UpcomingFilter client:load rows={rows} countries={countries} months={months} labels={labels} sortRule={t("upcoming.sortRule")} />
+		<UpcomingFilter client:load rows={rows} countries={countries} genres={genreChoices} months={months} labels={labels} sortRule={t("upcoming.sortRule")} />
 	)
 }
