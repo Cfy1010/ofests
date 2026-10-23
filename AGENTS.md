@@ -42,7 +42,10 @@ alimenté par des contributions modérées.
   `src/components/UpcomingFilter.jsx`, fonctions pures de `src/lib/filters.js`.
   État dans l'URL (`?country=FR,BE`, codes ISO, `replaceState`), liste
   complète sans JavaScript, canonical et hreflang sans query, seul le lien de
-  langue (`data-language-link`) reprend la query. Sous la liste, la section
+  langue (`data-language-link`) reprend la query. Filtre par période (#52) :
+  deux `<select>` « De » et « À » (mois + année), `?from=2027-06&to=2027-08`,
+  combinable avec `country` ; `availableMonths()`, `parsePeriodParam()` et
+  `filterEditions()` dans `src/lib/filters.js`. Sous la liste, la section
   « Prochaine édition non annoncée »
   (`src/components/UnannouncedList.astro`, #40) donne les festivals publiés
   sans édition à venir : nom lié à la fiche et pays de leur dernière édition

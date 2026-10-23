@@ -2,7 +2,7 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { toLocale, useTranslations } from "../i18n";
 import { formatDateRange, formatLocation, sortUpcomingEditions } from "../lib/editions.js";
-import { availableCountries } from "../lib/filters.js";
+import { availableCountries, availableMonths } from "../lib/filters.js";
 import { festivalPath } from "../lib/festivals.js";
 import UpcomingFilter from "./UpcomingFilter.jsx";
 
@@ -23,11 +23,16 @@ const rows = sortUpcomingEditions(editions).map((edition) => ({
 	location: formatLocation(edition.city, edition.countryCode, locale),
 	genre: edition.genreLabels[locale],
 	countryCode: edition.countryCode,
+	// Pour le filtre de période (#52)
+	year: edition.year,
+	startDate: edition.startDate,
+	endDate: edition.endDate,
 }));
 
-// Filtre par pays (#51, ADR 0026) : libellés avec {count} laissé tel quel,
-// rempli dans le navigateur
+// Filtres par pays (#51) et par période (#52), ADR 0026 : libellés avec
+// {count}, {range} et {month} laissés tels quels, remplis dans le navigateur
 const countries = availableCountries(editions, locale);
+const months = availableMonths(editions, new Date(), locale);
 const count = "{count}";
 const labels = {
 	country: t("filter.country"),
@@ -37,6 +42,13 @@ const labels = {
 	resultsOther: t("filter.resultsOther", { count }),
 	noResults: t("filter.noResults"),
 	reset: t("filter.reset"),
+	period: t("filter.period"),
+	periodRange: t("filter.periodRange", { range: "{range}" }),
+	periodFrom: t("filter.periodFrom", { month: "{month}" }),
+	periodTo: t("filter.periodTo", { month: "{month}" }),
+	periodStart: t("filter.periodStart"),
+	periodEnd: t("filter.periodEnd"),
+	anyMonth: t("filter.anyMonth"),
 };
 ---
 
@@ -45,6 +57,6 @@ const labels = {
 		<p class="mt-6">{t("upcoming.empty")}</p>
 	) : (
 		// Toute liste énonce sa règle de tri (ADR 0004, 0019)
-		<UpcomingFilter client:load rows={rows} countries={countries} labels={labels} sortRule={t("upcoming.sortRule")} />
+		<UpcomingFilter client:load rows={rows} countries={countries} months={months} labels={labels} sortRule={t("upcoming.sortRule")} />
 	)
 }

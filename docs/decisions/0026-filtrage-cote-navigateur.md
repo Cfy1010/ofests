@@ -1,7 +1,7 @@
 # 0026 — Filtrage côté navigateur de la liste à venir
 
 Date : 2026-10-22
-Statut : acceptée
+Statut : acceptée, complétée le 2026-10-23 pour #52
 
 ## Contexte
 
@@ -43,6 +43,26 @@ Option A.
   mise à jour côté client.
 - Le nombre de résultats est annoncé aux lecteurs d'écran (`aria-live`)
   uniquement lors d'un changement de filtre, jamais au montage.
+
+### Filtre par période (#52)
+
+- URL : `?from=2027-06&to=2027-08` (AAAA-MM), combinable avec `country`
+  (`?country=FR,BE&from=2027-06`). Chaque borne est facultative.
+- Liste des mois : tous les mois, en continu, du mois du build (UTC, comme
+  les dates des éditions) jusqu'au dernier mois couvert par une édition à
+  venir. Pour une édition sans date, ce dernier mois est décembre de son
+  année. Un mois sans édition reste proposé : le filtre conduit alors à
+  l'état « aucun résultat » et à son bouton de réinitialisation.
+- Recoupement : une édition datée est retenue si mois(début) ≤ `to` et
+  mois(fin, à défaut début) ≥ `from` ; une édition du 30 juin au 2 juillet
+  sort donc pour juin seul comme pour juillet seul. Une édition sans date
+  est retenue si année(`from`) ≤ année ≤ année(`to`). Une borne absente ne
+  limite pas. ET avec le filtre pays.
+- Plage invalide : impossible dans l'interface (dans « À », les mois
+  antérieurs à « De » sont désactivés ; si « De » passe après « À », « À »
+  prend la valeur de « De »). Dans une URL saisie à la main avec début >
+  fin, les deux bornes sont inversées en silence. Une valeur au mauvais
+  format ou absente de la liste est ignorée en silence.
 
 ## Conséquences
 

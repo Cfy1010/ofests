@@ -5,7 +5,7 @@
 // en-GB : le jour avant le mois, comme partout en Europe.
 const INTL_LOCALES = { fr: "fr", en: "en-GB" };
 
-function intlLocale(locale) {
+export function intlLocale(locale) {
   if (!Object.hasOwn(INTL_LOCALES, locale)) {
     throw new Error(`Langue inconnue : ${locale}`);
   }
