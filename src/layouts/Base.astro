@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
 import Logo from "../components/Logo.astro";
 import ThemeSwitcher from "../components/ThemeSwitcher.astro";
+import { CONTACT_EMAIL } from "../lib/contact.js";
 import { locales, toLocale, useTranslations } from "../i18n";
 
 // path : chemin de la page sans préfixe de langue ("festivals").
@@ -76,5 +77,19 @@ const otherLocales = locales.filter((other) => other !== locale);
 			</div>
 		</header>
 		<slot />
+		<footer class="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 px-4 py-6 text-sm">
+			<a
+				class="inline-flex min-h-11 items-center text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+				href={getRelativeLocaleUrl(locale, "legal")}
+			>
+				{t("footer.legalNotice")}
+			</a>
+			<a
+				class="inline-flex min-h-11 items-center text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+				href={`mailto:${CONTACT_EMAIL}`}
+			>
+				{CONTACT_EMAIL}
+			</a>
+		</footer>
 	</body>
 </html>

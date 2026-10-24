@@ -51,5 +51,16 @@
   "source.kind.musicbrainz": "MusicBrainz",
   "source.kind.press": "Press",
   "source.kind.social": "Social media",
-  "source.kind.other": "Other"
+  "source.kind.other": "Other",
+  "footer.legalNotice": "Legal notice",
+  "legal.title": "Legal notice",
+  "legal.description": "Publisher, host and contact details for O-Fests.",
+  "legal.publisherHeading": "Publisher",
+  "legal.publisherBody": "This site is published on a non-professional basis by a private individual, who has chosen to remain anonymous under article 6, III, 2 of French law no. 2004-575 of 21 June 2004 on trust in the digital economy (LCEN). Their identity and contact details have been given to the host.",
+  "legal.hostHeading": "Host",
+  "legal.hostName": "Cloudflare, Inc.",
+  "legal.hostAddress": "101 Townsend Street, San Francisco, CA 94107, United States",
+  "legal.hostPhone": "Telephone: +1 888 993 5273",
+  "legal.contactHeading": "Contact",
+  "legal.contactBody": "For any question or request:"
 }
