@@ -63,5 +63,5 @@
   "legal.contactHeading": "Contact",
   "legal.contactBody": "Pour toute question ou demande :",
   "legal.storageHeading": "Stockage local",
-  "legal.storageBody": "Seul votre choix de thème est mémorisé, dans votre navigateur. Ce stockage ne nécessite pas de consentement (CNIL, traceurs de personnalisation de l'interface). O-Fests ne propose ni compte, ni formulaire, ni mesure d'audience."
+  "legal.storageBody": "Seul votre choix de thème est mémorisé, dans votre navigateur. Ce stockage ne nécessite pas de consentement (CNIL, traceurs de personnalisation de l'interface). O-Fests ne propose ni compte, ni formulaire, ni mesure d'audience. L'hébergeur traite les données techniques de connexion, dont l'adresse IP, nécessaires à la diffusion et à la sécurité du site."
 }

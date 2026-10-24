@@ -63,5 +63,5 @@
   "legal.contactHeading": "Contact",
   "legal.contactBody": "For any question or request:",
   "legal.storageHeading": "Local storage",
-  "legal.storageBody": "Only your theme choice is stored, in your browser. This storage does not require consent (CNIL, user interface customisation trackers). O-Fests has no accounts, no forms and no audience measurement."
+  "legal.storageBody": "Only your theme choice is stored, in your browser. This storage does not require consent (CNIL, user interface customisation trackers). O-Fests has no accounts, no forms and no audience measurement. The host processes technical connection data, including IP addresses, needed to serve and secure the site."
 }
