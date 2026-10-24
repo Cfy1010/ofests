@@ -75,6 +75,12 @@ alimenté par des contributions modérées.
   rédaction du site, l'anglais la langue servie à un visiteur dont on ne
   connaît pas la langue. Ce réglage n'a pas d'effet visible, les deux
   langues étant préfixées et Astro ne redirigeant rien
+- Pied de page sur toutes les pages (`src/layouts/Base.astro`) : lien vers
+  les mentions légales (`/{locale}/legal/`, ADR 0027) et `CONTACT_EMAIL`
+  (`src/lib/contact.js`) en `mailto:`. L'éditeur est un particulier non
+  professionnel, anonyme ; l'hébergeur est publié. Le premier lien affilié,
+  une publicité ou un sponsoring imposent de passer en éditeur identifié
+  dans la même PR
 - Chaque page porte un lien vers la même page dans l'autre langue, libellé
   dans la langue cible (layout `src/layouts/Base.astro`)
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :

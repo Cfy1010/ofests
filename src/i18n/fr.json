@@ -51,5 +51,17 @@
   "source.kind.musicbrainz": "MusicBrainz",
   "source.kind.press": "Presse",
   "source.kind.social": "Réseau social",
-  "source.kind.other": "Autre"
+  "source.kind.other": "Autre",
+  "footer.legalNotice": "Mentions légales",
+  "legal.title": "Mentions légales",
+  "legal.description": "Éditeur, hébergeur et contact d'O-Fests.",
+  "legal.publisherHeading": "Éditeur",
+  "legal.publisherBody": "Ce site est édité à titre non professionnel par un particulier, qui a choisi de garder l'anonymat conformément à l'article 1-1, II de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN). Son identité et ses coordonnées ont été communiquées à l'hébergeur.",
+  "legal.hostHeading": "Hébergeur",
+  "legal.hostName": "Cloudflare, Inc.",
+  "legal.hostAddress": "101 Townsend Street, San Francisco, CA 94107, États-Unis",
+  "legal.contactHeading": "Contact",
+  "legal.contactBody": "Pour toute question ou demande :",
+  "legal.storageHeading": "Stockage local",
+  "legal.storageBody": "Seul votre choix de thème est mémorisé, dans votre navigateur. Ce stockage ne nécessite pas de consentement (CNIL, traceurs de personnalisation de l'interface). O-Fests ne propose ni compte, ni formulaire, ni mesure d'audience. L'hébergeur traite les données techniques de connexion, dont l'adresse IP, nécessaires à la diffusion et à la sécurité du site."
 }

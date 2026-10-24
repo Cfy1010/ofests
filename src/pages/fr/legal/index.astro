@@ -1,0 +1,30 @@
+---
+import { useTranslations } from "../../../i18n";
+import Base from "../../../layouts/Base.astro";
+import { CONTACT_EMAIL } from "../../../lib/contact.js";
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<Base title={t("legal.title")} description={t("legal.description")} path="legal">
+	<main class="mx-auto max-w-4xl px-4 pb-12">
+		<h1 class="text-3xl font-bold text-heading sm:text-4xl">{t("legal.title")}</h1>
+		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.publisherHeading")}</h2>
+		<p class="mt-2">{t("legal.publisherBody")}</p>
+		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.hostHeading")}</h2>
+		<p class="mt-2">
+			{t("legal.hostName")}<br />
+			{t("legal.hostAddress")}
+		</p>
+		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.contactHeading")}</h2>
+		<p class="mt-2">
+			{t("legal.contactBody")}{" "}
+			<a
+				class="text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+				href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a
+			>
+		</p>
+		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.storageHeading")}</h2>
+		<p class="mt-2">{t("legal.storageBody")}</p>
+	</main>
+</Base>
