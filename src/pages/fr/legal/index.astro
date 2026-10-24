@@ -18,7 +18,7 @@ const t = useTranslations(Astro.currentLocale);
 		</p>
 		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.contactHeading")}</h2>
 		<p class="mt-2">
-			{t("legal.contactBody")}
+			{t("legal.contactBody")}{" "}
 			<a
 				class="text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
 				href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a
