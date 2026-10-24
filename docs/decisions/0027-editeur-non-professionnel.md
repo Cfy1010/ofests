@@ -28,7 +28,7 @@ traitement (art. 13.1 a).
 
 Option C.
 
-- Les mentions légales indiquent l'hébergeur (identité, adresse, téléphone)
+- Les mentions légales indiquent l'hébergeur (dénomination et adresse)
   et précisent que l'éditeur est un particulier non professionnel qui a
   communiqué son identité à l'hébergeur. Aucun nom ni adresse personnelle.
 - Le responsable du traitement est nommé dans la politique de confidentialité,

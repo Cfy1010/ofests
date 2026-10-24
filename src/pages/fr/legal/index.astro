@@ -14,8 +14,7 @@ const t = useTranslations(Astro.currentLocale);
 		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.hostHeading")}</h2>
 		<p class="mt-2">
 			{t("legal.hostName")}<br />
-			{t("legal.hostAddress")}<br />
-			{t("legal.hostPhone")}
+			{t("legal.hostAddress")}
 		</p>
 		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.contactHeading")}</h2>
 		<p class="mt-2">
@@ -25,5 +24,7 @@ const t = useTranslations(Astro.currentLocale);
 				href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a
 			>
 		</p>
+		<h2 class="mt-8 text-xl font-bold text-heading">{t("legal.storageHeading")}</h2>
+		<p class="mt-2">{t("legal.storageBody")}</p>
 	</main>
 </Base>
