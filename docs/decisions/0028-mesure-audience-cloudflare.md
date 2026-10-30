@@ -48,8 +48,8 @@ et ce qu'elles n'établissent pas) :
 | Finalité limitée à la mesure | O-Fests n'utilise l'outil qu'à cette fin. |
 | Statistiques anonymes | Ni cookie ni stockage, pas de fingerprinting (ci-dessous). |
 | Pas de suivi intersite | Découle de l'absence de cookie et de stockage côté navigateur. Aucune page Cloudflare consultée ne l'énonce expressément. |
-| Conservation ≤ 25 mois | Données brutes 7 jours, puis agrégées. La durée de conservation des données agrégées n'est pas indiquée dans les pages consultées : à vérifier. |
-| Non-réutilisation par le fournisseur | Non établie par les pages consultées (le DPA traite des transferts, pas de ce point) : à vérifier dans le contrat. |
+| Conservation ≤ 25 mois | Non établie. Cloudflare ne publie pas de durée pour Web Analytics. Données brutes 7 jours, puis agrégées. Le DPA (annexe 1, B) prévoit une conservation jusqu'à l'expiration ou la fin du contrat, ou jusqu'à ce que le traitement ne soit plus nécessaire. Risque résiduel accepté (Conséquences). |
+| Non-réutilisation par le fournisseur | Vérifiée dans le DPA Cloudflare (<https://www.cloudflare.com/dpa/>) : clause 3.1(a), traitement limité à « the limited and specified business purpose of providing the Services », sur instructions écrites du client ; clause 3.1(b), pas d'usage « for the purposes of marketing or advertising » ; annexe 1, B, le DPA couvre les personnes qui accèdent aux sites du client. |
 | Transferts hors UE | Data Privacy Framework, clauses contractuelles types sinon (ci-dessous). |
 | Information | Mentions légales, en fr et en. |
 
@@ -101,12 +101,13 @@ JavaScript, il n'y a pas de mesure.
   query string comprise
   (`https://static.cloudflareinsights.com/beacon.min.js?token=…`, FAQ
   Cloudflare), et `connect-src` `https://cloudflareinsights.com`.
-- Deux conditions de l'exemption restent à confirmer auprès de Cloudflare :
-  la durée de conservation des données agrégées (25 mois au plus) et
-  l'engagement de ne pas les réutiliser pour son propre compte. Tant qu'elles
-  ne le sont pas, le texte de la page légale (« dans les conditions
-  d'exemption de consentement définies par la CNIL ») repose sur ce qui est
-  établi et sur la confiance dans le contrat, pas sur une preuve complète.
+- **Risque résiduel accepté : la durée de conservation.** Cloudflare ne
+  publie aucune durée pour Web Analytics, alors que la CNIL limite la
+  conservation à 25 mois. Le DPA prévoit une conservation jusqu'à la fin du
+  contrat ou jusqu'à ce que le traitement ne soit plus nécessaire : ce n'est
+  pas un plafond chiffré. Le risque est accepté, avec un réexamen annuel :
+  relire la documentation et le DPA de Cloudflare, et revoir cet ADR si une
+  durée est publiée ou si les conditions changent.
 - Un fournisseur ou un usage différent (publicité, recoupement) fait perdre
   l'exemption : un nouvel ADR et un recueil du consentement s'imposent.
 - Les mentions légales (#60) ne disent plus « ni mesure d'audience » ; elles
