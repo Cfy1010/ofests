@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, test } from "node:test";
 
+import { interpolate } from "../i18n/interpolate.js";
+
 import {
+  buildFestivalDescription,
   buildFestivalSheets,
   buildMusicEventJsonLd,
   displayUrl,
@@ -380,6 +384,97 @@ describe("festivalSheetView", () => {
     assert.equal(view.editionKind, "none");
     assert.equal(view.edition, null);
     assert.equal(view.jsonLd, null);
+  });
+});
+
+// Les vrais libellés, lus dans les JSON : index.js les importe sans attribut
+// d'import, que `node --test` ne sait pas charger.
+function translator(locale) {
+  const dictionary = JSON.parse(readFileSync(new URL(`../i18n/${locale}.json`, import.meta.url), "utf8"));
+  return (key, values) => {
+    assert.ok(Object.hasOwn(dictionary, key), `libellé manquant : ${key}`);
+    return interpolate(dictionary[key], values);
+  };
+}
+
+describe("buildFestivalDescription", () => {
+  const sheetOf = (kind, overrides) => ({
+    festival: festival(),
+    presented: { kind, edition: kind === "none" ? null : edition(overrides) },
+  });
+  const fr = translator("fr");
+  const en = translator("en");
+
+  test("édition à venir datée : dates et lieu, puis la phrase fixe", () => {
+    assert.equal(
+      buildFestivalDescription(sheetOf("upcoming"), "fr", fr),
+      "17–20 juin 2027 · Brno, Tchéquie. Festival metal en Europe : dates, lieu, genre et sources.",
+    );
+    assert.equal(
+      buildFestivalDescription(sheetOf("upcoming"), "en", en),
+      "17 – 20 June 2027 · Brno, Czechia. Metal festival in Europe: dates, venue, genre and sources.",
+    );
+  });
+
+  test("édition à venir sans dates : « Dates non annoncées » à la place des dates", () => {
+    const sheet = sheetOf("upcoming", { startDate: null, endDate: null });
+    assert.equal(
+      buildFestivalDescription(sheet, "fr", fr),
+      "Dates non annoncées · Brno, Tchéquie. Festival metal en Europe : dates, lieu, genre et sources.",
+    );
+    assert.match(buildFestivalDescription(sheet, "en", en), /^Dates not announced · Brno, Czechia\./);
+  });
+
+  test("édition passée : prochaine édition non annoncée, puis la dernière", () => {
+    const sheet = sheetOf("past", { year: 2026, startDate: "2026-06-18", endDate: "2026-06-21" });
+    assert.equal(
+      buildFestivalDescription(sheet, "fr", fr),
+      "Prochaine édition non annoncée. Dernière édition : 18–21 juin 2026, Brno, Tchéquie. Festival metal en Europe : dates, lieu, genre et sources.",
+    );
+    assert.equal(
+      buildFestivalDescription(sheet, "en", en),
+      "Next edition not announced. Last edition: 18 – 21 June 2026, Brno, Czechia. Metal festival in Europe: dates, venue, genre and sources.",
+    );
+  });
+
+  test("édition passée sans dates : l'année tient lieu de dates", () => {
+    const sheet = sheetOf("past", { year: 2026, startDate: null, endDate: null });
+    assert.match(buildFestivalDescription(sheet, "fr", fr), /Dernière édition : 2026, Brno, Tchéquie\./);
+  });
+
+  test("aucune édition : la phrase d'absence, puis la phrase fixe", () => {
+    assert.equal(
+      buildFestivalDescription(sheetOf("none"), "fr", fr),
+      "Prochaine édition non annoncée. Festival metal en Europe : dates, lieu, genre et sources.",
+    );
+    assert.equal(
+      buildFestivalDescription(sheetOf("none"), "en", en),
+      "Next edition not announced. Metal festival in Europe: dates, venue, genre and sources.",
+    );
+  });
+
+  test("au-delà de 160 caractères, la phrase fixe est supprimée", () => {
+    const city = "Sankt Peter-Ording an der Nordseeküste im Kreis Nordfriesland bei Husum";
+    const sheet = sheetOf("past", { year: 2026, city, startDate: "2026-06-18", endDate: "2026-06-21" });
+    const description = buildFestivalDescription(sheet, "fr", fr);
+    assert.equal(
+      description,
+      `Prochaine édition non annoncée. Dernière édition : 18–21 juin 2026, ${city}, Tchéquie.`,
+    );
+    assert.ok(description.length <= 160);
+  });
+
+  test("exactement 160 caractères : la phrase fixe est gardée", () => {
+    const base = buildFestivalDescription(sheetOf("upcoming", { city: "" }), "fr", fr);
+    // Le lieu sans ville ne garde que le pays : on règle la longueur par la ville
+    const pad = 160 - base.length;
+    const description = buildFestivalDescription(sheetOf("upcoming", { city: "x".repeat(pad - 2) }), "fr", fr);
+    assert.equal(description.length, 160);
+    assert.match(description, /Festival metal en Europe/);
+  });
+
+  test("les espaces insécables d'Intl deviennent des espaces simples", () => {
+    assert.doesNotMatch(buildFestivalDescription(sheetOf("upcoming"), "fr", fr), /[\u00a0\u202f\u2009]/u);
   });
 });
 

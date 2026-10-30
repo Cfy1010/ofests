@@ -81,6 +81,15 @@ alimenté par des contributions modérées.
   professionnel, anonyme ; l'hébergeur est publié. Le premier lien affilié,
   une publicité ou un sponsoring imposent de passer en éditeur identifié
   dans la même PR
+- Aperçu au partage (#48) : `src/components/SocialMeta.astro`, inclus par
+  `src/layouts/Base.astro`. `og:description` reprend le texte de
+  `<meta name="description">`, `og:url` le canonical (sans query), `og:type`
+  est `website` partout, `og:locale` `fr_FR` / `en_GB`. Une seule image,
+  `public/og-default.png` (1200×630, logo sur encre, sans slogan), en URL
+  absolue. X : `twitter:card` seule, le reste vient des balises `og:`. La
+  description d'une fiche vient de `buildFestivalDescription()`
+  (`src/lib/festivals.js`) : 160 caractères au plus, la phrase fixe de fin
+  est supprimée au-delà
 - Chaque page porte un lien vers la même page dans l'autre langue, libellé
   dans la langue cible (layout `src/layouts/Base.astro`)
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :
