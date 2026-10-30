@@ -1,9 +1,11 @@
 ---
-import { locales, useTranslations } from "../i18n";
+import { locales, toLocale, useTranslations } from "../i18n";
 
 // Aperçu au partage (#48). title, description et url viennent de Base.astro :
 // description est celle de <meta name="description">, url celle du canonical.
-const { locale, title, description, url } = Astro.props;
+const { title, description, url } = Astro.props;
+// Astro.props est typé any : toLocale() restitue le type de la langue
+const locale = toLocale(Astro.props.locale);
 
 const t = useTranslations(locale);
 
