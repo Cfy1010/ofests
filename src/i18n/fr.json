@@ -65,5 +65,12 @@
   "legal.contactHeading": "Contact",
   "legal.contactBody": "Pour toute question ou demande :",
   "legal.storageHeading": "Stockage local",
-  "legal.storageBody": "Seul votre choix de thème est mémorisé, dans votre navigateur. Ce stockage ne nécessite pas de consentement (CNIL, traceurs de personnalisation de l'interface). O-Fests ne propose ni compte, ni formulaire, ni mesure d'audience. L'hébergeur traite les données techniques de connexion, dont l'adresse IP, nécessaires à la diffusion et à la sécurité du site."
+  "legal.storageBody": "Seuls votre choix de thème et, le cas échéant, votre opposition à la mesure d'audience sont mémorisés dans votre navigateur. Ce stockage ne nécessite pas de consentement (CNIL : traceurs de personnalisation de l'interface, et traceurs conservant le choix exprimé par les utilisateurs sur le dépôt de traceurs). O-Fests ne propose ni compte, ni formulaire. L'hébergeur traite les données techniques de connexion, dont l'adresse IP, nécessaires à la diffusion et à la sécurité du site.",
+  "legal.audienceHeading": "Mesure d'audience",
+  "legal.audienceBody": "O-Fests utilise Cloudflare Web Analytics pour établir des statistiques de fréquentation anonymes : pages vues, provenance des visites, type d'appareil, pays. Cet outil ne dépose aucun cookie et n'utilise pas le stockage de votre navigateur. Les données servent uniquement à mesurer l'audience du site, dans les conditions d'exemption de consentement définies par la CNIL. Vous pouvez vous opposer à cette mesure à tout moment avec le bouton ci-dessous ; votre choix est mémorisé dans votre navigateur et s'applique dès la page suivante.",
+  "audience.on": "Mesure d'audience : active sur ce navigateur.",
+  "audience.off": "Mesure d'audience : désactivée sur ce navigateur.",
+  "audience.optOut": "Ne pas mesurer mes visites",
+  "audience.optIn": "Réactiver la mesure",
+  "audience.storageBlocked": "Votre navigateur bloque le stockage local : votre choix ne sera pas conservé."
 }

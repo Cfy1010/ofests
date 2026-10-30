@@ -90,6 +90,16 @@ alimenté par des contributions modérées.
   description d'une fiche vient de `buildFestivalDescription()`
   (`src/lib/festivals.js`) : 160 caractères au plus, la phrase fixe de fin
   est supprimée au-delà
+- Mesure d'audience (#62, ADR 0028) : Cloudflare Web Analytics, sans cookie.
+  Un script de tête de `src/layouts/Base.astro` ajoute le beacon
+  (`beacon.min.js?token=…`, `type="module"`) seulement si
+  `PUBLIC_CF_BEACON_TOKEN` est défini (variable de build du Worker, vide en
+  local) et si le visiteur ne s'est pas opposé. L'opposition se fait par un
+  bouton de la page légale (`src/components/AudienceOptOut.astro`), mémorisée
+  en `localStorage` (`ofests-audience`, `off`) par `src/lib/audience.js`, dont
+  `readAudienceOptOut()` est recopiée à la main dans le script de tête. Elle
+  prend effet à la page suivante. Pas de CSP aujourd'hui ; s'il y en a une,
+  voir l'ADR 0028
 - Chaque page porte un lien vers la même page dans l'autre langue, libellé
   dans la langue cible (layout `src/layouts/Base.astro`)
 - Libellés d'interface dans des fichiers JSON, jamais en dur dans le JSX :

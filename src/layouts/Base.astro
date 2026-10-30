@@ -16,6 +16,9 @@ const t = useTranslations(locale);
 
 // x-default : l'anglais, pour les visiteurs ni francophones ni anglophones
 const xDefaultLocale = "en";
+// Jeton Cloudflare Web Analytics, variable de build du Worker (publique par
+// nature). Absent en local : aucun script de mesure.
+const beaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 const canonicalUrl = getAbsoluteLocaleUrl(locale, path);
 const otherLocales = locales.filter((other) => other !== locale);
 ---
@@ -38,6 +41,27 @@ const otherLocales = locales.filter((other) => other !== locale);
 				document.documentElement.dataset.theme = theme;
 			})();
 		</script>
+		{/* Mesure d'audience (#62, ADR 0028), seulement avec un jeton et sans
+		    opposition du visiteur. Forme documentée par Cloudflare pour une
+		    insertion par script : jeton dans l'URL, type="module" (différé),
+		    sans data-cf-beacon. Copie à la main de readAudienceOptOut(),
+		    testée dans src/lib/audience.js : toute modification doit être
+		    reportée ici. */}
+		{
+			beaconToken && (
+				<script is:inline define:vars={{ beaconToken }}>
+					(() => {
+						try {
+							if (window.localStorage.getItem("ofests-audience") === "off") return;
+						} catch {}
+						const beacon = document.createElement("script");
+						beacon.type = "module";
+						beacon.src = "https://static.cloudflareinsights.com/beacon.min.js?token=" + encodeURIComponent(beaconToken);
+						document.head.appendChild(beacon);
+					})();
+				</script>
+			)
+		}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" sizes="32x32" />
 		{/* Tuile pleine, fond encre jusqu'aux bords : iOS applique son arrondi */}

@@ -65,5 +65,12 @@
   "legal.contactHeading": "Contact",
   "legal.contactBody": "For any question or request:",
   "legal.storageHeading": "Local storage",
-  "legal.storageBody": "Only your theme choice is stored, in your browser. This storage does not require consent (CNIL, user interface customisation trackers). O-Fests has no accounts, no forms and no audience measurement. The host processes technical connection data, including IP addresses, needed to serve and secure the site."
+  "legal.storageBody": "Only your theme choice and, where applicable, your objection to audience measurement are stored in your browser. This storage does not require consent (CNIL: user interface customisation trackers, and trackers that keep the choices users have made about trackers). O-Fests has no accounts and no forms. The host processes technical connection data, including IP addresses, needed to serve and secure the site.",
+  "legal.audienceHeading": "Audience measurement",
+  "legal.audienceBody": "O-Fests uses Cloudflare Web Analytics to produce anonymous traffic statistics: page views, where visits come from, device type, country. This tool sets no cookies and does not use your browser's storage. The data is used only to measure the site's audience, under the consent exemption conditions defined by the CNIL. You can object to this measurement at any time with the button below; your choice is stored in your browser and applies from the next page.",
+  "audience.on": "Audience measurement: on in this browser.",
+  "audience.off": "Audience measurement: off in this browser.",
+  "audience.optOut": "Do not measure my visits",
+  "audience.optIn": "Re-enable measurement",
+  "audience.storageBlocked": "Your browser blocks local storage: your choice will not be kept."
 }
