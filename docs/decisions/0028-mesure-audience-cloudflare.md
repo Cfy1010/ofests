@@ -1,4 +1,4 @@
-# 0028 — Mesure d'audience : Cloudflare Web Analytics, exemptée de consentement
+# 0028 — Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL
 
 Date : 2026-10-30
 Statut : acceptée
@@ -105,9 +105,13 @@ JavaScript, il n'y a pas de mesure.
   publie aucune durée pour Web Analytics, alors que la CNIL limite la
   conservation à 25 mois. Le DPA prévoit une conservation jusqu'à la fin du
   contrat ou jusqu'à ce que le traitement ne soit plus nécessaire : ce n'est
-  pas un plafond chiffré. Le risque est accepté, avec un réexamen annuel :
-  relire la documentation et le DPA de Cloudflare, et revoir cet ADR si une
-  durée est publiée ou si les conditions changent.
+  pas un plafond chiffré. Le risque est accepté. La CNIL demande que les
+  durées de vie et de conservation « fassent l'objet d'un réexamen
+  périodique », pour qu'elles soient limitées au strict nécessaire
+  (<https://www.cnil.fr/fr/mesurer-la-frequentation-de-vos-sites-web-et-de-vos-applications>) :
+  le rythme annuel est une règle d'O-Fests. Chaque année, relire la
+  documentation et le DPA de Cloudflare, et revoir cet ADR si une durée est
+  publiée ou si les conditions changent.
 - Un fournisseur ou un usage différent (publicité, recoupement) fait perdre
   l'exemption : un nouvel ADR et un recueil du consentement s'imposent.
 - Les mentions légales (#60) ne disent plus « ni mesure d'audience » ; elles

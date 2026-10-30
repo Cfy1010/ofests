@@ -33,4 +33,4 @@ l'exhaustivité.
 | [0025](0025-submitted-by-prive.md) | `submitted_by` privé : privilèges de lecture par colonne |
 | [0026](0026-filtrage-cote-navigateur.md) | Filtrage côté navigateur de la liste à venir : îlot React, état dans l'URL |
 | [0027](0027-editeur-non-professionnel.md) | Éditeur non professionnel : mentions légales avec hébergeur publié, responsable du traitement nommé à part |
-| [0028](0028-mesure-audience-cloudflare.md) | Mesure d'audience : Cloudflare Web Analytics, exemptée de consentement, avec opposition sur la page légale |
+| [0028](0028-mesure-audience-cloudflare.md) | Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL |
