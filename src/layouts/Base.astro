@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { getAbsoluteLocaleUrl, getRelativeLocaleUrl } from "astro:i18n";
 import Logo from "../components/Logo.astro";
+import SocialMeta from "../components/SocialMeta.astro";
 import ThemeSwitcher from "../components/ThemeSwitcher.astro";
 import { CONTACT_EMAIL } from "../lib/contact.js";
 import { locales, toLocale, useTranslations } from "../i18n";
@@ -15,6 +16,7 @@ const t = useTranslations(locale);
 
 // x-default : l'anglais, pour les visiteurs ni francophones ni anglophones
 const xDefaultLocale = "en";
+const canonicalUrl = getAbsoluteLocaleUrl(locale, path);
 const otherLocales = locales.filter((other) => other !== locale);
 ---
 
@@ -43,7 +45,8 @@ const otherLocales = locales.filter((other) => other !== locale);
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} — {t("site.name")}</title>
 		<meta name="description" content={description} />
-		<link rel="canonical" href={getAbsoluteLocaleUrl(locale, path)} />
+		<link rel="canonical" href={canonicalUrl} />
+			<SocialMeta locale={locale} title={title} description={description} url={canonicalUrl} />
 		{
 			locales.map((alternate) => (
 				<link rel="alternate" hreflang={alternate} href={getAbsoluteLocaleUrl(alternate, path)} />

@@ -1,0 +1,32 @@
+---
+import { locales, useTranslations } from "../i18n";
+
+// Aperçu au partage (#48). title, description et url viennent de Base.astro :
+// description est celle de <meta name="description">, url celle du canonical.
+const { locale, title, description, url } = Astro.props;
+
+const t = useTranslations(locale);
+
+// Une seule image pour les deux langues, en URL absolue
+const IMAGE_PATH = "/og-default.png";
+const IMAGE_WIDTH = 1200;
+const IMAGE_HEIGHT = 630;
+const image = new URL(IMAGE_PATH, Astro.site).href;
+
+const OG_LOCALES = { fr: "fr_FR", en: "en_GB" };
+const alternateLocales = locales.filter((other) => other !== locale);
+---
+
+<meta property="og:site_name" content={t("site.name")} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:locale" content={OG_LOCALES[locale]} />
+{alternateLocales.map((other) => <meta property="og:locale:alternate" content={OG_LOCALES[other]} />)}
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content={String(IMAGE_WIDTH)} />
+<meta property="og:image:height" content={String(IMAGE_HEIGHT)} />
+<meta property="og:image:alt" content={t("og.imageAlt")} />
+{/* X se rabat sur les balises og: pour le reste */}
+<meta name="twitter:card" content="summary_large_image" />

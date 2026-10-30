@@ -228,6 +228,39 @@ export function buildMusicEventJsonLd(sheet, pageUrl) {
   };
 }
 
+// Au-delà, les moteurs et les aperçus tronquent la description
+const DESCRIPTION_MAX_LENGTH = 160;
+
+/**
+ * Description de la fiche, pour `<meta name="description">` et `og:description`
+ * (#48) : d'abord l'information sur l'édition présentée, puis une phrase
+ * fixe qui porte les mots-clés. Si le tout dépasse 160 caractères, la phrase
+ * fixe est supprimée.
+ * @param {any} sheet fiche de buildFestivalSheets()
+ * @param {"fr" | "en"} locale
+ * @param {(key: string, values?: Record<string, string | number>) => string} t
+ *   fonction de traduction de la langue (useTranslations)
+ * @returns {string}
+ */
+export function buildFestivalDescription(sheet, locale, t) {
+  const { presented } = sheet;
+  const edition = presented.edition;
+
+  let lead = t("festival.nextEditionNotAnnounced");
+  if (edition) {
+    const dates = formatDateRange(edition.startDate, edition.endDate, locale);
+    const location = formatLocation(edition.city, edition.countryCode, locale);
+    lead =
+      presented.kind === "upcoming"
+        ? `${dates ?? t("upcoming.datesNotAnnounced")} · ${location}.`
+        : `${lead} ${t("festival.descriptionLastEdition", { dates: dates ?? edition.year, location })}`;
+  }
+
+  const full = `${lead} ${t("festival.description")}`;
+  // Intl met des espaces insécables dans les dates : espaces simples ici
+  return (full.length > DESCRIPTION_MAX_LENGTH ? lead : full).replace(/\s/gu, " ");
+}
+
 /**
  * @typedef {object} SheetView
  * @property {string} name
