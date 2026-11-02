@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readdirSync } from "node:fs";
+import { existsSync, readdirSync } from "node:fs";
 import { describe, test } from "node:test";
 
 import { findPosterProblems, parsePosterFileName, posterFileName } from "./posters.js";
@@ -66,8 +66,10 @@ describe("fichiers de src/assets/posters/", () => {
   // La base n'est pas lisible ici : le lien avec les éditions est contrôlé
   // au build (checkPosters). Ce test garde la convention de nommage.
   test("chaque fichier respecte {slug}-{année}.webp", () => {
-    const files = readdirSync(new URL("../assets/posters/", import.meta.url));
-    assert.ok(files.length > 0);
+    // Un dossier sans affiche est un état valide (retrait d'accord) ; git ne
+    // garde pas un dossier vide, il peut donc ne pas exister
+    const dir = new URL("../assets/posters/", import.meta.url);
+    const files = existsSync(dir) ? readdirSync(dir) : [];
     for (const file of files) {
       assert.ok(parsePosterFileName(file), `${file} : nom attendu {slug}-{année}.webp`);
     }
