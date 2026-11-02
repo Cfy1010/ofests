@@ -4,11 +4,13 @@ import FestivalSheet from "../../../components/FestivalSheet.astro";
 import { toLocale, useTranslations } from "../../../i18n";
 import Base from "../../../layouts/Base.astro";
 import { buildFestivalDescription, fetchFestivalSheets, festivalPath } from "../../../lib/festivals.js";
+import { checkPosters } from "../../../lib/poster-images.js";
 import { supabase } from "../../../lib/supabase.js";
 
 // Une page par festival publié, avec ou sans édition (ADR 0023)
 export async function getStaticPaths() {
 	const sheets = await fetchFestivalSheets(supabase);
+	checkPosters(sheets);
 	return sheets.map((sheet) => ({ params: { slug: sheet.festival.slug }, props: { sheet } }));
 }
 

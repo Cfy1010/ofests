@@ -67,6 +67,16 @@ alimenté par des contributions modérées.
   l'édition présentée, une ligne par URL ; date de dernière révision ;
   JSON-LD `MusicEvent` seulement pour une édition à venir datée. Chemin
   d'une fiche : `festivalPath(slug)`, source unique
+- Affiche d'édition (#74, ADR 0030) : fichier WebP
+  `src/assets/posters/{slug}-{année}.webp`, affiché sur la fiche qui présente
+  cette édition (`findPoster()` de `src/lib/poster-images.js`, composant
+  `<Image>` d'Astro). Seul le modérateur en ajoute, et seulement avec une
+  autorisation écrite du festival (accord ou conditions d'utilisation
+  publiées), dont la trace reste hors du dépôt. Remplacement : même nom de
+  fichier, par PR. `npm test` contrôle le format des noms
+  (`src/lib/posters.js`) ; le build échoue si une affiche n'a pas de festival
+  publié ni d'édition visible (`checkPosters()`), donc un build local contre
+  le seed échoue tant que les festivals réels n'y sont pas
 - `/` redirige vers `/en/festivals/` en 302 (`public/_redirects`, lu par
   Cloudflare Workers seulement : en local, `/` renvoie une 404). Il n'y a pas
   de page d'accueil

@@ -95,15 +95,15 @@ export function buildFestivalSheets(festivals, editions, upcomingIds, sources) {
   return [...festivals]
     .sort((a, b) => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0))
     .map((festival) => {
-      const presented = selectPresentedEdition(
-        editions.filter((edition) => edition.festivalId === festival.id),
-        upcoming,
-      );
+      const festivalEditions = editions.filter((edition) => edition.festivalId === festival.id);
+      const presented = selectPresentedEdition(festivalEditions, upcoming);
       const edition = presented.edition;
 
       return {
         festival,
         presented,
+        // Années de toutes les éditions visibles : contrôle des affiches (#74)
+        editionYears: festivalEditions.map((edition) => edition.year),
         // Sources du festival d'abord, puis de l'édition présentée
         sources: mergeSources([
           ...sources.filter((source) => source.festivalId === festival.id),

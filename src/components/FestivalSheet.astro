@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import { toLocale, useTranslations } from "../i18n";
 import { festivalSheetView } from "../lib/festivals.js";
+import { findPoster } from "../lib/poster-images.js";
 
 // sheet : fiche de fetchFestivalSheets() ; pageUrl : URL absolue de la page,
 // reprise dans le JSON-LD
@@ -9,6 +11,8 @@ const { sheet, pageUrl } = Astro.props;
 const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 const view = festivalSheetView(sheet, locale, pageUrl);
+// Affiche de l'édition présentée seulement (#74, ADR 0030), jamais celle d'une autre
+const poster = view.edition ? findPoster(sheet.festival.slug, view.edition.year) : undefined;
 ---
 
 <article>
@@ -63,6 +67,21 @@ const view = festivalSheetView(sheet, locale, pageUrl);
 							<span class="block">{view.edition.location}</span>
 						</dd>
 					</dl>
+					{poster && (
+						<figure class="mt-4 max-w-xs">
+							<Image
+								src={poster}
+								alt={t("festival.posterAlt", { name: view.name, year: view.edition.year })}
+								widths={[320, 480, 640]}
+								sizes="(min-width: 352px) 320px, calc(100vw - 2rem)"
+								format="webp"
+								class="h-auto w-full rounded"
+							/>
+							<figcaption class="mt-2 text-sm text-muted">
+								{t("festival.posterCredit", { name: view.name })}
+							</figcaption>
+						</figure>
+					)}
 				</>
 			)
 		}
