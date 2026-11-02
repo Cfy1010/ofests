@@ -228,6 +228,9 @@ describe("buildFestivalSheets", () => {
       "https://tickets.example/granit",
     ]);
     assert.equal(granit.revisedOn, "2026-10-12");
+    // Toutes les éditions visibles, présentée ou non (contrôle des affiches)
+    assert.deepEqual(granit.editionYears, [2025, 2027]);
+    assert.deepEqual(cendres.editionYears, []);
   });
 
   test("place les sources du festival avant celles de l'édition, quel que soit l'ordre lu", () => {
