@@ -1,0 +1,55 @@
+---
+import { toLocale, useTranslations } from "../i18n";
+
+// Opposition à la mesure d'audience (#62, ADR 0028), sur la page légale.
+// Sans JavaScript, le beacon n'est jamais injecté (Base.astro) : il n'y a
+// rien à refuser, le bloc reste masqué.
+const t = useTranslations(toLocale(Astro.currentLocale));
+const labels = {
+	on: t("audience.on"),
+	off: t("audience.off"),
+	optOut: t("audience.optOut"),
+	optIn: t("audience.optIn"),
+};
+---
+
+<div class="mt-4 hidden flex-col items-start gap-3" data-audience data-labels={JSON.stringify(labels)}>
+	<p role="status" data-audience-state></p>
+	<button
+		type="button"
+		class="min-h-11 rounded border border-line px-4 py-2 text-link focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+		data-audience-button
+	>
+	</button>
+	<p class="hidden text-muted" data-audience-blocked>{t("audience.storageBlocked")}</p>
+</div>
+
+<script>
+	import { readAudienceOptOut, writeAudienceOptOut } from "../lib/audience.js";
+
+	const root = document.querySelector("[data-audience]");
+	const state = root?.querySelector("[data-audience-state]");
+	const button = root?.querySelector("[data-audience-button]");
+	const blocked = root?.querySelector("[data-audience-blocked]");
+
+	if (root instanceof HTMLElement && state && button && blocked) {
+		const labels = JSON.parse(root.dataset.labels ?? "{}");
+		const getStorage = () => window.localStorage;
+		let optedOut = readAudienceOptOut(getStorage);
+
+		const render = () => {
+			state.textContent = optedOut ? labels.off : labels.on;
+			button.textContent = optedOut ? labels.optIn : labels.optOut;
+		};
+
+		button.addEventListener("click", () => {
+			optedOut = !optedOut;
+			// Le choix n'est pas conservé si le stockage est bloqué : on le dit
+			blocked.classList.toggle("hidden", writeAudienceOptOut(getStorage, optedOut));
+			render();
+		});
+
+		render();
+		root.classList.replace("hidden", "flex");
+	}
+</script>
