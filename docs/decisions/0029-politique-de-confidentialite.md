@@ -49,6 +49,8 @@ Option B, avec le nom du responsable hors du dépôt.
   données, durée de conservation, destinataires, transferts hors UE. Les
   droits (accès, rectification, effacement, limitation, opposition) et la
   réclamation auprès de la CNIL y figurent.
+- Messagerie contact@ofests.com : Proton AG (Suisse, décision d'adéquation),
+  sous-traitant pour les échanges avec les organisateurs.
 - Base légale des trois traitements : l'intérêt légitime (art. 6.1 f). Le
   bouton d'opposition à la mesure d'audience reste sur les mentions légales
   (ADR 0028) ; la politique y renvoie.
