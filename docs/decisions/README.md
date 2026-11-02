@@ -34,3 +34,4 @@ l'exhaustivité.
 | [0026](0026-filtrage-cote-navigateur.md) | Filtrage côté navigateur de la liste à venir : îlot React, état dans l'URL |
 | [0027](0027-editeur-non-professionnel.md) | Éditeur non professionnel : mentions légales avec hébergeur publié, responsable du traitement nommé à part |
 | [0028](0028-mesure-audience-cloudflare.md) | Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL |
+| [0029](0029-politique-de-confidentialite.md) | Politique de confidentialité minimale : responsable nommé par variable de build, révision de la conséquence de l'ADR 0027 |

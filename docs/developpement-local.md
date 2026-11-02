@@ -4,7 +4,7 @@
 
 - Node 24.20.0, fixé par `.nvmrc`
 - Docker Desktop, pour la base Supabase locale (voir [0014](decisions/0014-docker-developpement-local.md))
-- Un fichier `.env` copié depuis `.env.example`. `PUBLIC_CF_BEACON_TOKEN` y reste vide : en local, aucun script de mesure d'audience n'est ajouté aux pages
+- Un fichier `.env` copié depuis `.env.example`. `PUBLIC_CF_BEACON_TOKEN` y reste vide : en local, aucun script de mesure d'audience n'est ajouté aux pages. `PUBLIC_DATA_CONTROLLER_NAME` y reste vide aussi : la politique de confidentialité affiche un texte de remplacement à la place du nom
 
 ## Démarrer
 

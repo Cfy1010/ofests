@@ -1,0 +1,11 @@
+---
+import PrivacyPolicy from "../../../components/PrivacyPolicy.astro";
+import { useTranslations } from "../../../i18n";
+import Base from "../../../layouts/Base.astro";
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<Base title={t("privacy.title")} description={t("privacy.description")} path="privacy" noindex>
+	<PrivacyPolicy />
+</Base>

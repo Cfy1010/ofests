@@ -1,0 +1,57 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { toLocale, useTranslations } from "../i18n";
+import { CONTACT_EMAIL } from "../lib/contact.js";
+
+// Politique de confidentialité (#72, ADR 0029). Le nom du responsable du
+// traitement ne figure jamais dans le dépôt : il vient de la variable de
+// build PUBLIC_DATA_CONTROLLER_NAME, avec un texte de remplacement quand elle
+// est vide (en local).
+const locale = toLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+
+const controllerName = import.meta.env.PUBLIC_DATA_CONTROLLER_NAME || t("privacy.controllerPlaceholder");
+const fields = ["purpose", "basis", "data", "retention", "recipients", "transfers"];
+const treatments = ["hosting", "audience", "organizers"];
+const linkClass =
+	"text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link";
+---
+
+<main class="mx-auto max-w-4xl px-4 pb-12">
+	<h1 class="text-3xl font-bold text-heading sm:text-4xl">{t("privacy.title")}</h1>
+	<h2 class="mt-8 text-xl font-bold text-heading">{t("privacy.controllerHeading")}</h2>
+	<p class="mt-2">
+		{t("privacy.controllerBody", { name: controllerName })}{" "}
+		<a class={linkClass} href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+	</p>
+	<h2 class="mt-8 text-xl font-bold text-heading">{t("privacy.treatmentsHeading")}</h2>
+	{
+		treatments.map((treatment) => (
+			<section class="mt-6">
+				<h3 class="text-lg font-bold text-heading">{t(`privacy.${treatment}.title`)}</h3>
+				<dl class="mt-2 space-y-3">
+					{fields.map((field) => (
+						<div>
+							<dt class="font-bold">{t(`privacy.label.${field}`)}</dt>
+							<dd>{t(`privacy.${treatment}.${field}`)}</dd>
+						</div>
+					))}
+				</dl>
+				{treatment === "audience" && (
+					<p class="mt-3">
+						{t("privacy.audience.objection")}{" "}
+						<a class={linkClass} href={getRelativeLocaleUrl(locale, "legal")}>
+							{t("privacy.audience.objectionLink")}
+						</a>
+						.
+					</p>
+				)}
+			</section>
+		))
+	}
+	<h2 class="mt-8 text-xl font-bold text-heading">{t("privacy.rightsHeading")}</h2>
+	<p class="mt-2">
+		{t("privacy.rightsBody")}{" "}
+		<a class={linkClass} href="https://www.cnil.fr/fr/plaintes">{t("privacy.rightsComplaintLink")}</a>
+	</p>
+</main>

@@ -90,6 +90,14 @@ alimenté par des contributions modérées.
   description d'une fiche vient de `buildFestivalDescription()`
   (`src/lib/festivals.js`) : 160 caractères au plus, la phrase fixe de fin
   est supprimée au-delà
+- Politique de confidentialité (#72, ADR 0029) : `/{locale}/privacy/`
+  (`src/pages/{fr,en}/privacy/index.astro`, composant
+  `src/components/PrivacyPolicy.astro`), lien dans le pied de page et dans
+  les mentions légales, `noindex` (prop de `Base.astro`) et hors sitemap. Le
+  nom du responsable du traitement n'est jamais écrit dans le dépôt : il vient
+  de `PUBLIC_DATA_CONTROLLER_NAME` (variable de build du Worker, vide en local,
+  texte de remplacement). Tout nouveau traitement de données personnelles
+  s'ajoute à cette page dans la même PR
 - Mesure d'audience (#62, ADR 0028) : Cloudflare Web Analytics, sans cookie.
   Un script de tête de `src/layouts/Base.astro` ajoute le beacon
   (`beacon.min.js?token=…`, `type="module"`) seulement si
