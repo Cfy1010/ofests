@@ -11,7 +11,7 @@ ne doit déposer aucun cookie ni utiliser de stockage local, et rester dans
 les conditions d'exemption de consentement de la CNIL.
 
 ofests.com est inscrit à Cloudflare Web Analytics en configuration
-automatique, mais le HTML servi ne contient aucun script `cloudflareinsights` :
+automatique, mais le HTML servi ne contenait aucun script `cloudflareinsights` :
 la mesure automatique était réglée sur « Enable, excluding visitor data in the
 EU », qui n'injecte pas le script pour les visiteurs de l'UE. Elle est
 désormais réglée sur « Enable with JS Snippet installation » (2026-11-02), le
@@ -96,8 +96,9 @@ JavaScript, il n'y a pas de mesure.
 
 ## Conséquences
 
-- Les chiffres sont sous-estimés : les bloqueurs de publicité bloquent le
-  script, et les visiteurs opposés ne sont pas comptés. Ce sont des ordres de
+- Les chiffres sont sous-estimés : les bloqueurs de publicité et les
+  protections anti-pistage des navigateurs bloquent le script, et les
+  visiteurs opposés ne sont pas comptés. Ce sont des ordres de
   grandeur et des tendances, pas un décompte exact. Blocage constaté le
   2026-11-02, par Brave et par Firefox en protection renforcée.
 - Il n'y a aujourd'hui aucune CSP (ni `_headers`, ni en-tête, ni balise meta).
