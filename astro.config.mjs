@@ -13,6 +13,8 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      // Politique de confidentialité en noindex (#72) : hors du plan du site
+      filter: (page) => !page.includes("/privacy/"),
       i18n: {
         defaultLocale: "fr",
         locales: Object.fromEntries(locales.map((locale) => [locale, locale])),

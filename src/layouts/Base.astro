@@ -9,7 +9,8 @@ import { locales, toLocale, useTranslations } from "../i18n";
 
 // path : chemin de la page sans préfixe de langue ("festivals").
 // Il est le même dans les deux langues et sert aux liens hreflang.
-const { title, description, path = "" } = Astro.props;
+// noindex : page à ne pas indexer (politique de confidentialité, #72)
+const { title, description, path = "", noindex = false } = Astro.props;
 
 const locale = toLocale(Astro.currentLocale);
 const t = useTranslations(locale);
@@ -69,6 +70,7 @@ const otherLocales = locales.filter((other) => other !== locale);
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} — {t("site.name")}</title>
 		<meta name="description" content={description} />
+		{noindex && <meta name="robots" content="noindex" />}
 		<link rel="canonical" href={canonicalUrl} />
 			<SocialMeta locale={locale} title={title} description={description} url={canonicalUrl} />
 		{
@@ -110,6 +112,12 @@ const otherLocales = locales.filter((other) => other !== locale);
 				href={getRelativeLocaleUrl(locale, "legal")}
 			>
 				{t("footer.legalNotice")}
+			</a>
+			<a
+				class="inline-flex min-h-11 items-center text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+				href={getRelativeLocaleUrl(locale, "privacy")}
+			>
+				{t("footer.privacy")}
 			</a>
 			<a
 				class="inline-flex min-h-11 items-center text-link underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
