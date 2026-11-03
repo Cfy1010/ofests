@@ -90,9 +90,16 @@ visites », qui devient « Réactiver la mesure », avec l'état affiché.
 **Insertion.** Un petit script de tête (`src/layouts/Base.astro`) ajoute le
 beacon, seulement si le jeton `PUBLIC_CF_BEACON_TOKEN` est défini (variable de
 build du Worker, absente en local) et que le visiteur ne s'est pas opposé.
-Forme documentée par Cloudflare pour une insertion par script (FAQ Web
-Analytics) : jeton dans l'URL, `type="module"`, sans `data-cf-beacon`. Sans
+Script classique (`defer`), jeton dans l'attribut `data-cf-beacon`. Sans
 JavaScript, il n'y a pas de mesure.
+
+Révision du 2026-11-03 : la première forme (jeton dans l'URL et
+`type="module"`, deux indications de la FAQ Web Analytics prises ensemble)
+chargeait le beacon sans qu'il envoie quoi que ce soit : aucune requête
+`/cdn-cgi/rum`, tableau de bord à zéro. Le même beacon inséré à la main en
+script classique avec `data-cf-beacon` a envoyé ses mesures. Cause probable,
+non vérifiée dans le code de Cloudflare : un script module n'a pas de
+`document.currentScript`, dont le beacon aurait besoin pour lire son jeton.
 
 ## Conséquences
 
@@ -100,12 +107,16 @@ JavaScript, il n'y a pas de mesure.
   protections anti-pistage des navigateurs bloquent le script, et les
   visiteurs opposés ne sont pas comptés. Ce sont des ordres de
   grandeur et des tendances, pas un décompte exact. Blocage constaté le
-  2026-11-02, par Brave et par Firefox en protection renforcée.
+  2026-11-02, par Brave et par Firefox en protection renforcée, puis le
+  2026-11-03 par Proton VPN (résolution DNS refusée,
+  `ERR_NAME_NOT_RESOLVED`).
+- Pour vérifier la mesure, tester sans bloqueur ni VPN (réseau mobile, autre
+  navigateur que Brave) : dans l'onglet Network, « Keep log » coché, des
+  requêtes `rum` vers `cloudflareinsights.com` doivent partir.
 - Il n'y a aujourd'hui aucune CSP (ni `_headers`, ni en-tête, ni balise meta).
-  Si on en adopte une, `script-src` devra contenir l'URL complète du beacon,
-  query string comprise
-  (`https://static.cloudflareinsights.com/beacon.min.js?token=…`, FAQ
-  Cloudflare), et `connect-src` `https://cloudflareinsights.com`.
+  Si on en adopte une, `script-src` devra contenir
+  `https://static.cloudflareinsights.com/beacon.min.js` (FAQ Cloudflare), et
+  `connect-src` `https://cloudflareinsights.com`.
 - **Risque résiduel accepté : la durée de conservation.** Cloudflare ne
   publie aucune durée pour Web Analytics, alors que la CNIL limite la
   conservation à 25 mois. Le DPA prévoit une conservation jusqu'à la fin du
