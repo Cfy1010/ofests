@@ -3,7 +3,7 @@
 Annuaire des festivals de metal en Europe. Bilingue, gratuit, alimenté par des
 contributions modérées.
 
-**Statut : en construction.** Le site n'est pas encore en ligne. Ce dépôt contient le
+**Statut : en construction.** Le site est déjà en ligne. Ce dépôt contient le
 squelette technique et les décisions produit.
 
 ---
