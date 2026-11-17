@@ -54,9 +54,9 @@ Colonne **Proposition** (à arbitrer par le PO) :
 |---|---|---|---|---|---|---|
 | Liste des festivals à venir | ✓ | ✓ | ✓ | ✓ | ✓ livré (#4) | Socle — fait |
 | Festivals sans édition annoncée visibles | ? | ✓ toutes éditions listées | ~ statut « Terminé » | ? | ✓ livré (#40) | Socle — fait |
-| Filtre par pays | ✓ pages par pays | ~ pages par pays | ~ un pays par site, pages par région | ✓ pages par pays | ✗ backlog (#6) | Socle — #6 |
-| Filtre par période | ✓ pages par mois et saison | ? | ✓ « Ce weekend » | ✓ | ✗ backlog (#6) | Socle — #6 |
-| Filtre par genre | ~ sans seuil, faux positifs (`festt.md`) | ~ tags déduits | ? généraliste | ✓ | ✗ backlog (#6), données prêtes | **Différenciant** — #6, genre curé |
+| Filtre par pays | ✓ pages par pays | ~ pages par pays | ~ un pays par site, pages par région | ✓ pages par pays | ✓ livré (#6, #51) | Socle — fait |
+| Filtre par période | ✓ pages par mois et saison | ? | ✓ « Ce weekend » | ✓ | ✓ livré (#6, #52) | Socle — fait |
+| Filtre par genre | ~ sans seuil, faux positifs (`festt.md`) | ~ tags déduits | ? généraliste | ✓ | ✓ livré (#6, #53) | **Différenciant** — fait, genre curé |
 | Recherche par nom | ✗ sur les pages lues | ✓ (`fest.md`) | ✗ sur les pages lues | ✓ | ✗ | Plus tard — quand le catalogue dépasse une page |
 | Carte des festivals | ✓ lien « Map » (non ouvert) | ✗ | ✗ | ? (cartes de site seulement) | ✗ issue dédiée | Plus tard — après #6 |
 | Pages de parcours (pays, genre, mois) | ✓ massives (SEO programmatique) | ✓ | ✓ | ✓ | ✗ | Plus tard — quelques pages pays et tendance après #6, pas de volume (`festt.md`) |
@@ -73,14 +73,14 @@ Colonne **Proposition** (à arbitrer par le PO) :
 | Prix des billets | ✓ « from €120 » | ✗ | ✓ grille détaillée | ? | ✗ **aucun champ en base** | **Différenciant** — promesse du README, sans issue |
 | Camping, accès, accessibilité | ✗ / ~ générique / ✗ | ✗ | ✗ / ✗ / ✗ (fiche lue) | ? | ✗ **aucun champ en base** | **Différenciant** — promesse du README, sans issue |
 | Line-up | ✓ par jour, répartition par genre | ~ têtes d'affiche ; vide sur la fiche du petit festival | ✓ par jour | ~ (fiche App Store) | ✗ « projet à part » (ADR 0009) | Plus tard — à cadrer après les infos pratiques |
-| Affiche de l'édition | ✓ affiche entière, fond flouté ; affiches proposées par les contributeurs (« Suggest a better poster », 40 XP) ; relevé du 2026-10-23 : affiche de l'édition Philadelphie (mai 2026) sur la fiche de l'édition Denver (décembre 2026) | ✗ | ✗ | ? | ✗ | **Différenciant** si sourcée — plus tard : US « affiche sur la fiche, ajoutée par le modérateur », créée au premier accord reçu d'un organisateur. Accord et conditions (crédit, version) demandés pendant le sourcing (#45). Droits : reproduction soumise au consentement de l'auteur (CPI, art. L122-4), accord écrit conservé. Ajout du 2026-10-23, constat du PO hors relevé initial. |
+| Affiche de l'édition | ✓ affiche entière, fond flouté ; affiches proposées par les contributeurs (« Suggest a better poster », 40 XP) ; relevé du 2026-10-23 : affiche de l'édition Philadelphie (mai 2026) sur la fiche de l'édition Denver (décembre 2026) | ✗ | ✗ | ? | ✓ livré (#74) | **Différenciant** — fait (#74). Accord et conditions (crédit, version) demandés pendant le sourcing (#45). Droits : reproduction soumise au consentement de l'auteur (CPI, art. L122-4), accord écrit conservé. Ajout du 2026-10-23, constat du PO hors relevé initial. |
 | Horaires de passage | ✗ | ✓ (`fest.md`) | ✗ | ✓ alertes de set | ✗ | **Écarté** — domaine de l'appli de festival |
 | Historique des éditions | ✓ liens par année | ✓ toutes éditions | ✓ édition N et N+1 | ? | ~ une édition présentée (ADR 0023) | Plus tard — faible valeur avant d'avoir des données |
 | Sources citées | ✓ | ✗ | ~ auteur et relecteur nommés | ? | ✓ livré, par URL et date de consultation | **Différenciant** fragile — FestT le fait aussi |
 | Date de révision | ✓ (deux dates incohérentes relevées) | ✗ | ✓ « Mis à jour le » | ? | ✓ livré | Socle — fait |
 | Signaler une erreur, proposer une correction | ✓ formulaire à motifs | ✗ | ✓ relue avant publication | ? | ✗ | **Socle** — sans issue, voir ci-dessous |
 | Données structurées `MusicEvent` | ? non lisible par la méthode | ? | ? | ? | ✓ livré (ADR 0012, 0023) | Socle — fait |
-| Aperçu au partage (Open Graph) | ✓ | ✓ | ✓ | ? | ✗ aucune balise `og:` | **Socle** — sans issue |
+| Aperçu au partage (Open Graph) | ✓ | ✓ | ✓ | ? | ✓ livré (#48) | **Socle** — fait |
 | Ajouter à mon agenda (.ics) | ✗ | ✗ | ✗ | ? | ✗ | **Différenciant** — absent des trois sites lus, sans compte |
 | Météo, hébergement, activités | ✓ avec affiliation | ✗ | ✗ | ~ cartes hors ligne | ✗ | **Écarté** — dérivable et générique (`festt.md`) ; affiliation encadrée par le README |
 | Playlist | ✓ | ✗ | ✗ | ✗ | ✗ | **Écarté** — hors du besoin « choisir un festival » |
@@ -279,7 +279,7 @@ Viberate (pages festival), Festiveo (application iOS), article « best festival 
 ## Suites proposées
 
 - [x] Arbitrer les propositions de la matrice (voir « Décisions du 2026-10-18 »)
-- [ ] Créer les issues A, B, C, D et « Sourcing lot 2 », avec un renvoi à cette REA
+- [x] Créer les issues A, B, C, D et « Sourcing lot 2 », avec un renvoi à cette REA
 - [x] Trancher le point M1 : compte maintenu (décision E)
 - [ ] Rédiger l'ADR des infos pratiques à partir de M3 (dans la PR de A)
 - [ ] Mettre à jour `festt.md` (contribution, organisateurs, API) et

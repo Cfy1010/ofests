@@ -3,8 +3,17 @@
 Annuaire des festivals de metal en Europe. Bilingue, gratuit, alimenté par des
 contributions modérées.
 
-**Statut : en construction.** Le site est déjà en ligne. Ce dépôt contient le
-squelette technique et les décisions produit.
+**Statut : en ligne, en construction.** Le site publie une liste des festivals à venir
+et une fiche par festival, filtrées par pays, période et genre. Ce dépôt contient le site,
+la base et les décisions produit. Vision : [`docs/vision.md`](docs/vision.md) ;
+trajectoire : [`docs/roadmap.md`](docs/roadmap.md).
+
+## Vision
+
+Un festivalier metal choisit son prochain festival européen sur O-Fests, petits open airs
+compris, parce que les fiches y sont vérifiées et donnent ce qui décide d'un déplacement.
+La contribution des visiteurs est un moyen d'alimenter le catalogue, pas un pilier du
+produit. Détail dans [`docs/vision.md`](docs/vision.md).
 
 ---
 
@@ -48,12 +57,17 @@ recommandation algorithmique.
 
 Permettre à un festivalier metal de trouver un festival européen qui l'intéresse, y compris ceux qu'aucun annuaire automatique ne référence.
 
-Critère d'atteinte. Le site est en ligne et un visiteur peut parcourir et filtrer le catalogue par pays et par période, en y trouvant des festivals absents des catalogues internationaux (FestT, FEST).
+Critère d'atteinte (ADR [0032](docs/decisions/0032-critere-product-goal-elargi.md), qui révise
+[0010](docs/decisions/0010-critere-product-goal.md)). Le site est en ligne ; un visiteur filtre le
+catalogue par pays et par période et y trouve des festivals absents de FestT et FEST (test de
+couverture élargi) ; chaque édition à venir affiche prix, camping et accessibilité, renseignés
+ou marqués « non précisé », avec source et date.
 
 ## Pour qui
 
 - Le festivalier metal qui prépare sa saison et compare des options concrètes
-- Le contributeur qui connaît un festival absent des annuaires et veut l'y voir figurer
+- Le contributeur qui connaît un festival absent des annuaires et veut l'y voir figurer :
+  un moyen d'alimenter le catalogue, pas une cible à part égale
 
 ## Trois décisions qui définissent le produit
 
@@ -99,18 +113,23 @@ jamais au déploiement (voir [0014](docs/decisions/0014-docker-developpement-loc
 
 ## Modèle de données
 
-Deux tables principales :
+Les tables principales sont :
 
 - `festivals` — identité stable d'un festival, indépendante de l'année
-- `editions` — données annuelles : dates, lieu, line-up, tarifs, contributeur
+- `editions` — données annuelles : dates, lieu, contributeur
+
+D'autres tables les complètent : `sources` (sources d'une fiche) et `genres` (liste contrôlée).
 
 ## Structure du dépôt
 
 ```
 docs/
-  decisions/     journal de décisions produit, daté
-  benchmark/     veille concurrentielle
-  superpowers/   spécifications issues des sessions de cadrage
+  vision.md             vision, cibles, principes, non-objectifs
+  roadmap.md            Product Goal en cours et horizons, sans dates
+  definition-of-done.md critères qu'un item doit remplir pour être terminé
+  decisions/            journal de décisions produit, daté
+  benchmark/            veille concurrentielle
+  superpowers/          spécifications issues des sessions de cadrage
 ```
 
 Le backlog est tenu en issues GitHub. Les critères d'acceptation sont rédigés

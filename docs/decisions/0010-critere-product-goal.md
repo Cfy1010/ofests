@@ -1,6 +1,6 @@
 # 0010 — Critère d'atteinte du Product Goal
 
-- **Statut** : acceptée
+- **Statut** : acceptée — révisée par l'ADR 0032
 - **Date** : 2026-10-01
 
 ## Contexte

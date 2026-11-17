@@ -135,3 +135,6 @@ non vérifiée dans le code de Cloudflare : un script module n'a pas de
 - Vérification en production seulement : des visites et des pages vues
   apparaissent dans le tableau de bord Cloudflare, une fois
   `PUBLIC_CF_BEACON_TOKEN` définie dans le Worker.
+
+2026-11-17 : mesure vérifiée en production par un test mobile (données
+mobiles, sans VPN), visite remontée dans Web Analytics.
