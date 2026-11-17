@@ -36,3 +36,5 @@ l'exhaustivité.
 | [0028](0028-mesure-audience-cloudflare.md) | Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL |
 | [0029](0029-politique-de-confidentialite.md) | Politique de confidentialité minimale : responsable nommé par variable de build, révision de la conséquence de l'ADR 0027 |
 | [0030](0030-stockage-des-affiches.md) | Stockage des affiches : fichiers du dépôt optimisés par Astro, lien par nom de fichier |
+| [0031](0031-search-console.md) | Google Search Console, troisième source de mesure |
+| [0032](0032-critere-product-goal-elargi.md) | Critère du Product Goal élargi aux infos pratiques, révise l'ADR 0010 |
