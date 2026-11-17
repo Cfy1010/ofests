@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ofests.com/sitemap-index.xml
