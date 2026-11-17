@@ -53,6 +53,10 @@ historique des éditions, line-up.
 
 Import MusicBrainz/Wikidata (#7) : son sort est lié au réexamen de l'ADR 0009.
 
+Signaux de contenu IA (search, ai-input, ai-train) dans robots.txt : à
+décider avec la licence des données. Sans issue tant que la licence n'est
+pas tranchée.
+
 ## Écarté
 
 Avis, photos, récompenses des contributeurs, favoris et alertes,
