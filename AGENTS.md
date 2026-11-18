@@ -152,6 +152,15 @@ alimenté par des contributions modérées.
   à venir). Le lieu est porté par l'édition (ADR 0013)
 - Table `sources` : sources d'une fiche, festival ou édition (URL, type,
   date de consultation). Pas de publication sans source (ADR 0007, 0013)
+- Choix d'une source (lots de production) : une page durable, qui affiche
+  le festival le jour de la consultation, URL ouverte et vérifiée.
+  Festival : site officiel, à défaut page officielle de l'organisateur
+  (réseau social, billetterie), à défaut fiche permanente d'un annuaire.
+  Édition : page officielle qui donne les dates. Éviter les pages liées à
+  un événement daté (agenda d'office de tourisme, page d'événement) : elles
+  disparaissent après l'événement. Si aucune source durable n'existe,
+  archiver la page (web.archive.org/save), vérifier que la copie affiche
+  le festival, et sourcer la copie archivée
 - `festivals` et `editions` portent un `status` (pending / published /
   rejected), un `submitted_by` (uuid, FK vers auth.users, privé) sur
   lequel s'appuie la RLS, et un `revised_at`
