@@ -1,8 +1,5 @@
 # Roadmap
 
-> Brouillon du 2026-11-17, à valider par le PO. La vision est dans
-> [`vision.md`](vision.md).
-
 ## Conventions
 
 - Un seul Product Goal actif à la fois : il est atteint ou abandonné avant
