@@ -18,7 +18,7 @@
 -- seuls noms, codes ISO 3166-2 et coordonnées du centre de la commune sont
 -- stockés. © les contributeurs d'OpenStreetMap. Codes postaux laissés vides :
 -- Nominatim n'en renvoie pas pour ces communes. Nom du site (venue_name)
--- renseigné pour les deux éditions.
+-- renseigné pour Mystic seulement.
 -- Hell over Valhalla, Pyrenean Warriors et Blasphemic Rites : aucune
 -- édition, prochaine édition non annoncée. Le lieu étant porté par l'édition
 -- (ADR 0013), leur commune n'est pas stockée.
@@ -41,7 +41,7 @@ insert into public.editions
 select f.id, v.year, v.start_date, v.end_date, v.venue_name, v.city, v.county, v.region, v.postcode, v.country_code,
        v.subdivision_codes, v.latitude, v.longitude, 'published'
 from (values
-  ('resurrection-fest', 2027, date '2027-06-30', date '2027-07-03', 'Celeiro',                   'Viveiro', 'A Mariña Occidental', 'Galicia',                null, 'ES',
+  ('resurrection-fest', 2027, date '2027-06-30', date '2027-07-03', null,                        'Viveiro', 'A Mariña Occidental', 'Galicia',                null, 'ES',
      array['ES-GA', 'ES-LU'], 43.6433582::double precision, -7.5957612::double precision),
   ('mystic-festival',   2027, date '2027-06-10', date '2027-06-12', 'Polsat Plus Arena (Letnica)', 'Gdańsk',  null,                  'Pomeranian Voivodeship', null, 'PL',
      array['PL-22'],          54.3706858::double precision, 18.6129831::double precision)
@@ -61,13 +61,14 @@ from (values
 ) as v (slug, url, kind)
 join public.festivals f on f.slug = v.slug;
 
--- Sources des éditions : la même page source le festival et l'édition, d'où
--- deux lignes (une source n'a qu'un parent).
+-- Sources des éditions. Resurrection : la même page source le festival et
+-- l'édition, d'où deux lignes (une source n'a qu'un parent). Mystic : billet
+-- officiel donnant dates et lieu.
 insert into public.sources (edition_id, url, kind, consulted_on)
 select e.id, v.url, v.kind, date '2026-11-18'
 from (values
   ('resurrection-fest', 2027, 'https://www.resurrectionfest.es', 'official'),
-  ('mystic-festival',   2027, 'https://www.mysticfestival.pl',   'official')
+  ('mystic-festival',   2027, 'https://www.mysticfestival.pl/?p=197571', 'official')
 ) as v (slug, year, url, kind)
 join public.festivals f on f.slug = v.slug
 join public.editions e on e.festival_id = f.id and e.year = v.year;
