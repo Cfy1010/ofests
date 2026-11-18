@@ -1,7 +1,6 @@
 # O-Fests
 
-Annuaire des festivals de metal en Europe. Bilingue, gratuit, alimenté par des
-contributions modérées.
+Annuaire des festivals de metal en Europe. Bilingue, gratuit, alimenté par des fiches vérifiées et sourcées.
 
 **Statut : en ligne, en construction.** Le site publie une liste des festivals à venir
 et une fiche par festival, filtrées par pays, période et genre. Ce dépôt contient le site,

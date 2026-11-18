@@ -1,7 +1,5 @@
 # Vision
 
-> Brouillon du 2026-11-17, à valider par le PO. Le README en donne le résumé.
-
 ## Vision
 
 Un festivalier metal choisit son prochain festival européen sur O-Fests,
@@ -80,4 +78,4 @@ Trois sources, aucun chiffre tant que la base de départ n'est pas relevée
 - **Visites** : fourchette entre Web Analytics (borne basse) et l'analytique
   du domaine sans robots nommés (borne haute) ;
 - **Couverture** : des festivals absents des catalogues internationaux
-  (test de l'ADR 0010).
+  (test de couverture élargi, ADR 0032, #81).

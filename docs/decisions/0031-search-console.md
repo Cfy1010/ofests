@@ -1,7 +1,7 @@
 # 0031 — Google Search Console, troisième source de mesure
 
 Date : 2026-11-17
-Statut : proposée
+Statut : acceptée
 
 ## Contexte
 

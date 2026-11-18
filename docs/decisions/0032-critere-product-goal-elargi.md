@@ -1,7 +1,7 @@
 # 0032 — Critère du Product Goal élargi aux infos pratiques
 
 Date : 2026-11-17
-Statut : proposée — révise l'ADR 0010
+Statut : acceptée — révise l'ADR 0010
 
 ## Contexte
 
