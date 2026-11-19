@@ -69,14 +69,21 @@ const poster = view.edition ? findPoster(sheet.festival.slug, view.edition.year)
 					</dl>
 					{poster && (
 						<figure class="mt-4 max-w-xs">
-							<Image
-								src={poster}
-								alt={t("festival.posterAlt", { name: view.name, year: view.edition.year })}
-								widths={[320, 480, 640]}
-								sizes="(min-width: 352px) 320px, calc(100vw - 2rem)"
-								format="webp"
-								class="h-auto w-full rounded"
-							/>
+							{/* Lien vers le fichier d'origine (WebP 1080 px, nom empreinté), pas une taille générée */}
+							<a
+								href={poster.src}
+								class="block text-link focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+							>
+								<Image
+									src={poster}
+									alt={t("festival.posterAlt", { name: view.name, year: view.edition.year })}
+									widths={[320, 480, 640]}
+									sizes="(min-width: 352px) 320px, calc(100vw - 2rem)"
+									format="webp"
+									class="h-auto w-full rounded"
+								/>
+								<span class="mt-2 block text-sm underline">{t("festival.posterFullSize")}</span>
+							</a>
 							<figcaption class="mt-2 text-sm text-muted">
 								{t("festival.posterCredit", { name: view.name })}
 							</figcaption>

@@ -115,5 +115,6 @@
   "privacy.rightsBody": "You can ask for access to your data, its rectification, its erasure, restriction of its processing, and object to its processing, by writing to the contact address above. You will receive a reply within one month. You can also lodge a complaint with the CNIL, the French data protection authority:",
   "privacy.rightsComplaintLink": "cnil.fr/fr/plaintes",
   "festival.posterAlt": "Official artwork of {name} {year}",
-  "festival.posterCredit": "Official artwork of {name}"
+  "festival.posterCredit": "Official artwork of {name}",
+  "festival.posterFullSize": "View full-size artwork"
 }
