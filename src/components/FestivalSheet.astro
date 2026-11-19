@@ -68,10 +68,12 @@ const poster = view.edition ? findPoster(sheet.festival.slug, view.edition.year)
 						</dd>
 					</dl>
 					{poster && (
+						<>
 						<figure class="mt-4 max-w-xs">
 							{/* Lien vers le fichier d'origine (WebP 1080 px, nom empreinté), pas une taille générée */}
 							<a
 								href={poster.src}
+								data-poster-link
 								class="block text-link focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
 							>
 								<Image
@@ -88,6 +90,31 @@ const poster = view.edition ? findPoster(sheet.festival.slug, view.edition.year)
 								{t("festival.posterCredit", { name: view.name })}
 							</figcaption>
 						</figure>
+						{/* Visionneuse (#101) : même fichier que le lien ci-dessus, ouverte par le script en bas ; sans JavaScript, le lien suffit */}
+						<dialog
+							data-poster-dialog
+							aria-label={t("festival.posterAlt", { name: view.name, year: view.edition.year })}
+							class="m-auto w-fit max-w-[calc(100vw-2rem)] border border-line bg-page p-0 text-body backdrop:bg-black/80"
+						>
+							<div class="flex flex-col items-end gap-3 p-4">
+								<button
+									type="button"
+									data-poster-close
+									class="min-h-11 min-w-11 rounded border border-line px-4 py-2 text-link focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-link"
+								>
+									{t("festival.posterClose")}
+								</button>
+								<img
+									src={poster.src}
+									width={poster.width}
+									height={poster.height}
+									alt={t("festival.posterAlt", { name: view.name, year: view.edition.year })}
+									loading="lazy"
+									class="h-auto max-h-[80vh] w-auto max-w-full object-contain"
+								/>
+							</div>
+						</dialog>
+						</>
 					)}
 				</>
 			)
@@ -116,3 +143,24 @@ const poster = view.edition ? findPoster(sheet.festival.slug, view.edition.year)
 	{/* Aucun bloc Event sans édition à venir datée (ADR 0012, 0023) */}
 	{view.jsonLd && <script type="application/ld+json" set:html={view.jsonLd} />}
 </article>
+
+<script>
+	// Visionneuse du visuel (#101). Sans JavaScript, le lien mène au fichier.
+	const link = document.querySelector("a[data-poster-link]");
+	const dialog = document.querySelector("dialog[data-poster-dialog]");
+	if (link instanceof HTMLAnchorElement && dialog instanceof HTMLDialogElement) {
+		link.addEventListener("click", (event) => {
+			// Ctrl, Maj, Alt, Cmd ou clic du milieu : le navigateur ouvre le fichier
+			if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+			event.preventDefault();
+			dialog.showModal();
+		});
+		dialog.querySelector("[data-poster-close]")?.addEventListener("click", () => dialog.close());
+		// Clic sur le fond : la cible est le dialogue lui-même (son contenu le remplit)
+		dialog.addEventListener("click", (event) => {
+			if (event.target === dialog) dialog.close();
+		});
+		// Échap, bouton ou fond : le focus revient au lien
+		dialog.addEventListener("close", () => link.focus());
+	}
+</script>

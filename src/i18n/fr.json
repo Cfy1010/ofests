@@ -116,5 +116,6 @@
   "privacy.rightsComplaintLink": "cnil.fr/fr/plaintes",
   "festival.posterAlt": "Visuel officiel de {name} {year}",
   "festival.posterCredit": "Visuel officiel de {name}",
-  "festival.posterFullSize": "Voir le visuel en grand"
+  "festival.posterFullSize": "Voir le visuel en grand",
+  "festival.posterClose": "Fermer"
 }
