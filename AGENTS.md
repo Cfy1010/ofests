@@ -166,12 +166,13 @@ jamais de livrer sous la Definition of Done.
 - Choix d'une source (lots de production) : une page durable, qui affiche
   le festival le jour de la consultation, URL ouverte et vérifiée.
   Festival : site officiel, à défaut page officielle de l'organisateur
-  (réseau social, billetterie), à défaut fiche permanente d'un annuaire.
-  Édition : page officielle qui donne les dates. Éviter les pages liées à
-  un événement daté (agenda d'office de tourisme, page d'événement) : elles
-  disparaissent après l'événement. Si aucune source durable n'existe,
-  archiver la page (web.archive.org/save), vérifier que la copie affiche
-  le festival, et sourcer la copie archivée
+  (réseau social, billetterie). Édition : page officielle qui donne les
+  dates, y compris par son visuel (affiche). Interdits : annuaires de
+  festivals, agendas d'offices de tourisme, pages d'événement de tiers
+  (elles disparaissent après l'événement). En dernier recours, copie
+  archivée d'une page officielle (web.archive.org/save), après avoir
+  vérifié que la copie affiche le festival, puis sourcer la copie. Sans
+  source acceptable, la fiche ou l'édition reste en attente
 - `festivals` et `editions` portent un `status` (pending / published /
   rejected), un `submitted_by` (uuid, FK vers auth.users, privé) sur
   lequel s'appuie la RLS, et un `revised_at`
