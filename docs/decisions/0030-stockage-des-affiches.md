@@ -41,8 +41,11 @@ Option A.
 - **Rendu** : composant `<Image>` d'Astro, WebP en 320, 480 et 640 px de
   large (`srcset`), `width` et `height` renseignés. Fichiers au nom
   empreinté, servis par O-Fests, sans lien vers le site du festival. Texte
-  alternatif « Affiche officielle de <festival> <année> », crédit « Affiche
-  officielle de <festival> » ; sans affiche, la fiche est inchangée.
+  alternatif « Visuel officiel de <festival> <année> », crédit « Visuel
+  officiel de <festival> » ; sans affiche, la fiche est inchangée.
+- **Visuel officiel** : un visuel publié par le festival (affiche, annonce de
+  programmation, bannière) est accepté au même titre qu'une affiche, avec la
+  même autorisation écrite (#96).
 - **Ajout et remplacement** par une PR : le fichier est déposé ou remplacé
   sous le même nom. Le nom empreinté évite tout cache périmé ; l'ancienne
   version n'est plus servie après le build.
