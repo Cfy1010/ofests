@@ -3,6 +3,17 @@
 Annuaire des festivals metal en Europe. Site public, bilingue,
 alimenté par des contributions modérées.
 
+## Principe de travail
+
+Pas d'usine à gaz. Retenir la solution la plus efficace (elle remplit les
+critères d'acceptation) et la plus efficiente (meilleur rapport entre
+l'effort, maintenance comprise, et la valeur apportée aux utilisateurs et
+au Product Goal). La plus simple ne l'est pas toujours : un contrôle ou un
+outil se justifie s'il évite une erreur coûteuse ou un travail répété.
+Toute dépendance, abstraction ou outil supplémentaire répond à un besoin
+présent et constaté, pas à un besoin supposé. L'efficience ne justifie
+jamais de livrer sous la Definition of Done.
+
 ## Stack
 - Astro (pages statiques, SEO prioritaire) + îlots React
 - Tailwind 4, JavaScript (pas de TypeScript)
