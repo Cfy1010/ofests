@@ -152,6 +152,10 @@ const poster = view.edition ? findPoster(sheet.festival.slug, view.edition.year)
 		link.addEventListener("click", (event) => {
 			// Ctrl, Maj, Alt, Cmd ou clic du milieu : le navigateur ouvre le fichier
 			if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+			// Écran tactile (pointeur grossier) : le pincement zoomerait toute la
+			// page, pas le visuel, dans la visionneuse. Le navigateur ouvre donc
+			// le fichier, où le pincement zoome l'image.
+			if (window.matchMedia("(pointer: coarse)").matches) return;
 			event.preventDefault();
 			dialog.showModal();
 		});
