@@ -128,6 +128,7 @@ docs/
   definition-of-done.md critères qu'un item doit remplir pour être terminé
   decisions/            journal de décisions produit, daté
   benchmark/            veille concurrentielle
+  audit-opquast-2026.md tri des règles Opquast v5 applicables aux gabarits
   superpowers/          spécifications issues des sessions de cadrage
 ```
 
