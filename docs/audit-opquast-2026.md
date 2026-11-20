@@ -22,28 +22,28 @@ Légende :
 
 ## Écarts constatés à l'audit
 
-Audit à l'écran du 2026-11-20 (passes 1 et 2), après les constats en ligne du 2026-11-19 (commentaire de #104). Colonne « Issue » à compléter à la création des issues.
+Audit à l'écran du 2026-11-20 (passes 1 et 2), après les constats en ligne du 2026-11-19 (commentaire de #104).
 
 | N° | Page | Constat | Issue |
 |---|---|---|---|
-| 25, 199, 206, 210, 211, 212 | toutes | Aucun en-tête de sécurité dans la réponse (constat du 2026-11-19) | à créer |
-| 228 | toutes | Content-Type sans charset (HTML et JS) ; visible en ouvrant un fichier JS brut : « » affichés Â« Â» | à créer (avec les en-têtes, proposé) |
-| 223 | toutes | Pas de page 404 personnalisée (constat du 2026-11-19) | à créer |
-| 225 | page d'erreur | Page d'erreur du navigateur (404 sans contenu) : aucune navigation du site, retour possible seulement par Précédent ; même correction que 223 | à créer avec 223 |
-| 135 | `/` | Redirige toujours vers `/en/festivals/` malgré Accept-Language fr (constat du 2026-11-19) | À ARBITRER |
-| 99 | liste fr et en (accueil) | Aucun texte visible ne dit la nature du site (annuaire des festivals metal en Europe) : le h1 est « Festivals à venir », la phrase n'existe que dans la meta description | à créer |
-| 2 | toutes (pied de page, mentions légales) | Aucune information sur les droits de copie et de réutilisation des contenus | à créer |
-| 107 | toutes | Un seul moyen de contact (contact@ofests.com) | à créer |
-| 108 | mentions légales, pied de page | Aucun délai de réponse indiqué pour les demandes d'information (seulement pour les droits RGPD, dans la confidentialité) | à créer (avec 107, proposé) |
-| 156 | fiches, mentions légales, confidentialité | Aucune indication d'emplacement (pas de fil d'Ariane, pas de menu avec élément actif) | à créer |
-| 171 | toutes | Aucune page de plan du site ni lien vers elle (le sitemap XML ne compte pas) | à créer |
-| 168 | toutes | Aucun moteur de recherche (le filtre n'est pas une recherche par mot-clé) | à créer |
-| 190 | toutes | Pile de polices Tailwind par défaut terminée par des polices d'emoji ; correction décidée : sans-serif déplacé en fin de liste | PR de petites corrections |
-| 195 | toutes | Aucun style dédié à l'impression (ni @media print, ni classe print:) | à créer |
-| 196 | toutes | À l'impression, pied de page et lien « Voir le visuel en grand » s'impriment ; la fiche déborde sur une 2ᵉ page pour la seule date de révision et le pied de page | à créer (avec 195) |
-| 218 | toutes | www.ofests.com sans enregistrement DNS : « Ce site est inaccessible » (DNS_PROBE_POSSIBLE) | à créer |
-| 1 | toutes | Aucun moyen de connaître les nouveaux festivals ajoutés (ni rubrique nouveautés, ni flux RSS, ni compte de réseau social) | à créer |
-| 183 | toutes ; fiches | Sans styles : sélecteur de thème affichant « Thème : Clair », « Thème : Sombre » et « Thème : Système » à la fois (contradictoire) ; pied de page « Mentions légalesPolitique de confidentialitécontact@ofests.com » collé ; sur les fiches, salle et ville collées (« EffenaarEindhoven, Pays-Bas ») | à créer |
+| 25, 199, 206, 210, 211, 212 | toutes | Aucun en-tête de sécurité dans la réponse (constat du 2026-11-19) | #110 |
+| 228 | toutes | Content-Type sans charset (HTML et JS) ; visible en ouvrant un fichier JS brut : « » affichés Â« Â» | #110 |
+| 223 | toutes | Pas de page 404 personnalisée (constat du 2026-11-19) | #106 |
+| 225 | page d'erreur | Page d'erreur du navigateur (404 sans contenu) : aucune navigation du site, retour possible seulement par Précédent ; même correction que 223 | #106 |
+| 135 | `/` | Redirige toujours vers `/en/festivals/` malgré Accept-Language fr (constat du 2026-11-19) | #107 |
+| 99 | liste fr et en (accueil) | Aucun texte visible ne dit la nature du site (annuaire des festivals metal en Europe) : le h1 est « Festivals à venir », la phrase n'existe que dans la meta description | #109 |
+| 2 | toutes (pied de page, mentions légales) | Aucune information sur les droits de copie et de réutilisation des contenus | #116 |
+| 107 | toutes | Un seul moyen de contact (contact@ofests.com) | #114 |
+| 108 | mentions légales, pied de page | Aucun délai de réponse indiqué pour les demandes d'information (seulement pour les droits RGPD, dans la confidentialité) | #114 |
+| 156 | fiches, mentions légales, confidentialité | Aucune indication d'emplacement (pas de fil d'Ariane, pas de menu avec élément actif) | #112 |
+| 171 | toutes | Aucune page de plan du site ni lien vers elle (le sitemap XML ne compte pas) | #113 |
+| 168 | toutes | Aucun moteur de recherche (le filtre n'est pas une recherche par mot-clé) | #117 |
+| 190 | toutes | Pile de polices Tailwind par défaut terminée par des polices d'emoji ; correction décidée : sans-serif déplacé en fin de liste | #111 |
+| 195 | toutes | Aucun style dédié à l'impression (ni @media print, ni classe print:) | #115 |
+| 196 | toutes | À l'impression, pied de page et lien « Voir le visuel en grand » s'impriment ; la fiche déborde sur une 2ᵉ page pour la seule date de révision et le pied de page | #115 |
+| 218 | toutes | www.ofests.com sans enregistrement DNS : « Ce site est inaccessible » (DNS_PROBE_POSSIBLE) | #108 |
+| 1 | toutes | Aucun moyen de connaître les nouveaux festivals ajoutés (ni rubrique nouveautés, ni flux RSS, ni compte de réseau social) | #114 |
+| 183 | toutes ; fiches | Sans styles : sélecteur de thème affichant « Thème : Clair », « Thème : Sombre » et « Thème : Système » à la fois (contradictoire) ; pied de page « Mentions légalesPolitique de confidentialitécontact@ofests.com » collé ; sur les fiches, salle et ville collées (« EffenaarEindhoven, Pays-Bas ») | #111 |
 
 ### Décisions en attente
 
