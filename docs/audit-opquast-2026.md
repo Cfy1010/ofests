@@ -22,11 +22,49 @@ Légende :
 
 ## Écarts constatés à l'audit
 
-À remplir pendant l'audit : n° de règle, page, constat, issue créée.
+Audit à l'écran du 2026-11-20 (passes 1 et 2), après les constats en ligne du 2026-11-19 (commentaire de #104). Colonne « Issue » à compléter à la création des issues.
 
 | N° | Page | Constat | Issue |
 |---|---|---|---|
+| 25, 199, 206, 210, 211, 212 | toutes | Aucun en-tête de sécurité dans la réponse (constat du 2026-11-19) | à créer |
+| 228 | toutes | Content-Type sans charset (HTML et JS) ; visible en ouvrant un fichier JS brut : « » affichés Â« Â» | à créer (avec les en-têtes, proposé) |
+| 223 | toutes | Pas de page 404 personnalisée (constat du 2026-11-19) | à créer |
+| 225 | page d'erreur | Page d'erreur du navigateur (404 sans contenu) : aucune navigation du site, retour possible seulement par Précédent ; même correction que 223 | à créer avec 223 |
+| 135 | `/` | Redirige toujours vers `/en/festivals/` malgré Accept-Language fr (constat du 2026-11-19) | À ARBITRER |
+| 99 | liste fr et en (accueil) | Aucun texte visible ne dit la nature du site (annuaire des festivals metal en Europe) : le h1 est « Festivals à venir », la phrase n'existe que dans la meta description | à créer |
+| 2 | toutes (pied de page, mentions légales) | Aucune information sur les droits de copie et de réutilisation des contenus | à créer |
+| 107 | toutes | Un seul moyen de contact (contact@ofests.com) | à créer |
+| 108 | mentions légales, pied de page | Aucun délai de réponse indiqué pour les demandes d'information (seulement pour les droits RGPD, dans la confidentialité) | à créer (avec 107, proposé) |
+| 156 | fiches, mentions légales, confidentialité | Aucune indication d'emplacement (pas de fil d'Ariane, pas de menu avec élément actif) | à créer |
+| 171 | toutes | Aucune page de plan du site ni lien vers elle (le sitemap XML ne compte pas) | à créer |
+| 168 | toutes | Aucun moteur de recherche (le filtre n'est pas une recherche par mot-clé) | à créer |
+| 190 | toutes | Pile de polices Tailwind par défaut terminée par des polices d'emoji ; correction décidée : sans-serif déplacé en fin de liste | PR de petites corrections |
+| 195 | toutes | Aucun style dédié à l'impression (ni @media print, ni classe print:) | à créer |
+| 196 | toutes | À l'impression, pied de page et lien « Voir le visuel en grand » s'impriment ; la fiche déborde sur une 2ᵉ page pour la seule date de révision et le pied de page | à créer (avec 195) |
+| 218 | toutes | www.ofests.com sans enregistrement DNS : « Ce site est inaccessible » (DNS_PROBE_POSSIBLE) | à créer |
+| 1 | toutes | Aucun moyen de connaître les nouveaux festivals ajoutés (ni rubrique nouveautés, ni flux RSS, ni compte de réseau social) | à créer |
+| 183 | toutes ; fiches | Sans styles : sélecteur de thème affichant « Thème : Clair », « Thème : Sombre » et « Thème : Système » à la fois (contradictoire) ; pied de page « Mentions légalesPolitique de confidentialitécontact@ofests.com » collé ; sur les fiches, salle et ville collées (« EffenaarEindhoven, Pays-Bas ») | à créer |
 
+### Décisions en attente
+
+- 135 (À ARBITRER) : A dérogation, B Worker sur `/`, C page de choix de langue, D règle de redirection Cloudflare.
+- 214 : dérogation recommandée (Cloudflare ne permet pas de figer la version de son script, voir sa FAQ Web Analytics).
+- 228 : traitement proposé avec les en-têtes de sécurité (`public/_headers`), dérogation si Cloudflare ne le prend pas en compte.
+- 230 : scripts inline du thème et de l'audience classés hors règle (la fiche ne vise que les fichiers JavaScript).
+- Tris discutables restants : 7, 46, 105-106, 147-150.
+
+### Conformes à l'audit
+
+197, 207, 213, 226, 227 (2026-11-19) ; 2026-11-20 : 98, 101, 102, 103, 114, 151, 160, 161, 162, 163, 164, 165, 166, 167, 185, 200, 216, 222, 229, 230, 234, 235, 236, 245, 14.
+
+À confirmer (conformes attendues d'après le code, résultat non relevé) : 3, 15, 104, 130, 153, 154, 155, 158, 180, 193, 194, 198, 209, 219, 220, 221, 232, 233, 237, 238, 239.
+
+### Non audité (spike arrêté le 2026-11-20 à la durée maximale)
+
+- Passe 3, liste et filtre : 4, 69, 70, 71, 72, 77, 78, 93, 94, 139, 181, 182, 184, 186.
+- Passe 4, fiche : 5, 6, 7, 116, 117, 118, 119, 129, 131, 132, 133, 134, 136, 137, 138, 140, 141, 142, 144, 146, 152, 159, 187, 188, 189, 191, 192, 231.
+- Passe 5, pages légales et e-mail : 16, 29, 110, 111, 217.
+- En-têtes de sécurité à revérifier sur la page liste (relevés sur une fiche seulement).
 
 ## Contenus (1–14)
 
