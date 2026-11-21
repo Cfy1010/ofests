@@ -91,8 +91,8 @@ fiche. Un modèle assis sur le billet vendu pousse vers les gros événements à
 élevé, et rend invisibles les festivals qui vendent au guichet ou via une billetterie
 associative. C'est précisément la population que ce projet veut couvrir.
 
-Les autres décisions — nommage, temporalité, parcours de contribution, traçabilité des
-fiches, reprise dans un dépôt neuf — sont dans le
+Les autres décisions (nommage, temporalité, parcours de contribution, traçabilité des
+fiches, reprise dans un dépôt neuf) sont dans le
 **[journal de décisions](docs/decisions/)**, une par fichier, avec les options écartées.
 
 ## Stack
@@ -114,8 +114,8 @@ jamais au déploiement (voir [0014](docs/decisions/0014-docker-developpement-loc
 
 Les tables principales sont :
 
-- `festivals` — identité stable d'un festival, indépendante de l'année
-- `editions` — données annuelles : dates, lieu, contributeur
+- `festivals` : identité stable d'un festival, indépendante de l'année
+- `editions` : données annuelles : dates, lieu, contributeur
 
 D'autres tables les complètent : `sources` (sources d'une fiche) et `genres` (liste contrôlée).
 
