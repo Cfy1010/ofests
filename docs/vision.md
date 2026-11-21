@@ -35,8 +35,9 @@ D'après la REA fonctionnelle du 2026-10-18, trois axes restent libres :
 1. **Un genre vérifié à la main qui gouverne les filtres.** Les concurrents
    filtrent par déduction.
 2. **Des infos pratiques structurées, datées et sourcées, à l'échelle
-   européenne.** Personne ne date ni ne source un prix ; personne ne
-   structure camping et accessibilité. *Pas encore construit* (#46).
+   européenne.** Aucun des concurrents étudiés (REA du 2026-10-18) ne date
+   ni ne source un prix, ni ne structure camping et accessibilité. *Pas
+   encore construit* (#46).
 3. **Une couverture homogène des petits festivals** : une fiche de petit
    open air tenue avec le même soin qu'une fiche de gros festival.
 
