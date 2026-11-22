@@ -121,7 +121,8 @@ jamais de livrer sous la Definition of Done.
   s'ajoute à cette page dans la même PR
 - Mesure d'audience (#62, ADR 0028) : Cloudflare Web Analytics, sans cookie.
   Un script de tête de `src/layouts/Base.astro` ajoute le beacon
-  (`beacon.min.js?token=…`, `type="module"`) seulement si
+  (`beacon.min.js`, script classique `defer`, jeton dans l'attribut
+  `data-cf-beacon` ; en `type="module"` il n'envoyait rien) seulement si
   `PUBLIC_CF_BEACON_TOKEN` est défini (variable de build du Worker, vide en
   local) et si le visiteur ne s'est pas opposé. L'opposition se fait par un
   bouton de la page légale (`src/components/AudienceOptOut.astro`), mémorisée
