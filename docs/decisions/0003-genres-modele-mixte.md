@@ -1,7 +1,7 @@
-# 0003 — Genres : modèle mixte
+# 0003. Genres : modèle mixte
 
 Date : 2026-08-31
-Statut : acceptée — révisée par l'ADR 0017
+Statut : acceptée, révisée par l'ADR 0017
 
 ## Contexte
 
@@ -13,11 +13,11 @@ contradiction avec le genre affiché sur leurs propres fiches.
 
 ## Options
 
-- **Booléen validé à la main** — un modérateur tranche. Précis, ne passe à
+- **Booléen validé à la main** : un modérateur tranche. Précis, ne passe à
   l'échelle que par la contribution.
-- **Genre dominant avec seuil** — automatisable, mais suppose des données de
+- **Genre dominant avec seuil** : automatisable, mais suppose des données de
   line-up complètes, que le projet n'a pas.
-- **Mixte** — un genre principal validé à la main fait foi, les sous-genres
+- **Mixte** : un genre principal validé à la main fait foi, les sous-genres
   restent des tags secondaires.
 
 ## Décision

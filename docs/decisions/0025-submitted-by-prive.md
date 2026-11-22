@@ -1,4 +1,4 @@
-# 0025 — `submitted_by` privé : privilèges de lecture par colonne
+# 0025. `submitted_by` privé : privilèges de lecture par colonne
 
 Date : 2026-10-16
 Statut : acceptée

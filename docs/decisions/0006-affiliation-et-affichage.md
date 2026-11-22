@@ -1,4 +1,4 @@
-# 0006 — L'affiliation ne modifie jamais l'affichage
+# 0006. L'affiliation ne modifie jamais l'affichage
 
 Date : 2026-08-31
 Statut : acceptée
@@ -13,10 +13,10 @@ sautant des dates à venir, et l'ordre d'affichage ne suit aucune règle
 
 ## Options
 
-- **Aucune monétisation** — simple, mais ferme la porte à toute pérennité.
-- **Affiliation influant sur le tri ou la couverture** — plus rentable, en
+- **Aucune monétisation** : simple, mais ferme la porte à toute pérennité.
+- **Affiliation influant sur le tri ou la couverture** : plus rentable, en
   contradiction directe avec le projet.
-- **Affiliation cloisonnée** — présente, sans effet sur l'affichage.
+- **Affiliation cloisonnée** : présente, sans effet sur l'affichage.
 
 ## Décision
 

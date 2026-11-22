@@ -1,7 +1,7 @@
-# 0004 — Temporalité : tri sur la date, jamais sur l'année
+# 0004. Temporalité : tri sur la date, jamais sur l'année
 
 Date : 2026-08-31
-Statut : acceptée
+Statut : acceptée, précisée par l'ADR 0019
 
 ## Contexte
 
@@ -13,7 +13,7 @@ arrivant en quatrième position.
 
 ## Options
 
-- **Regroupement par année** — simple à implémenter, mais une année n'est pas
+- **Regroupement par année** : simple à implémenter, mais une année n'est pas
   un état : « 2026 » ne dit pas si l'événement a eu lieu.
 - **Tri sur la date, séparation à-venir / passé.**
 

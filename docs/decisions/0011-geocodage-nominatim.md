@@ -1,4 +1,4 @@
-# 0011 — Géocodage : stockage des résultats Nominatim
+# 0011. Géocodage : stockage des résultats Nominatim
 
 - **Statut** : acceptée
 - **Date** : 2026-10-01

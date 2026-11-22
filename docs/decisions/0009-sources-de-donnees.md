@@ -1,6 +1,6 @@
-# 0009 — Sources de données du catalogue
+# 0009. Sources de données du catalogue
 
-- **Statut** : acceptée
+- **Statut** : acceptée, complétée par les ADR 0011 et 0012
 - **Date** : 2026-09-03
 - **Issue** : [#2](https://github.com/Cfy1010/ofests/issues/2)
 - **Relevé de spike** : `releve.md`
@@ -63,7 +63,7 @@ ne doit bloquer ni la création d'une fiche, ni l'affichage d'une édition.
 ### Identifiants
 
 **L'identifiant faisant foi est un identifiant interne O-Fests.** QID et MBID
-sont stockés comme identifiants externes optionnels et nullable, renseignés
+sont stockés comme identifiants externes optionnels (nullables), renseignés
 manuellement à la création de la fiche.
 
 Ils sont stables et permanents, ce qui les rend précieux pour recroiser les
@@ -81,10 +81,10 @@ Deux festivals testés sur sept n'ont ni QID ni MBID.
 | Source | Licence | Attribution | Partage à l'identique | Commercial |
 |---|---|---|---|---|
 | Wikidata | CC0 1.0 | non | non | oui |
-| MusicBrainz — données de base | CC0 1.0 | non | non | oui |
-| MusicBrainz — données supplémentaires | CC BY-NC-SA 3.0 | oui | oui | non |
-| OpenStreetMap — données | ODbL 1.0 | oui | si base dérivée | oui |
-| OpenStreetMap — tuiles | CC BY-SA 2.0 | oui | oui | tuiles osm.org non prévues pour le commercial |
+| MusicBrainz, données de base | CC0 1.0 | non | non | oui |
+| MusicBrainz, données supplémentaires | CC BY-NC-SA 3.0 | oui | oui | non |
+| OpenStreetMap, données | ODbL 1.0 | oui | si base dérivée | oui |
+| OpenStreetMap, tuiles | CC BY-SA 2.0 | oui | oui | tuiles osm.org non prévues pour le commercial |
 
 **Le genre MusicBrainz est écarté.** Il dérive des tags utilisateurs, donc
 classé en données supplémentaires : non commercial et partage à l'identique.
@@ -130,10 +130,10 @@ Quatre modélisations coexistent dans MusicBrainz, sans règle, et un même
 festival peut changer de convention d'une année à l'autre (Graspop 2024
 contre 2025) :
 
-1. relation `guest performer` sur l'édition chapeau — Sylak
-2. relations `main performer` / `support act` sur l'édition — Wacken 2027, Graspop 2024
-3. sous-événement par journée et par scène — Graspop 2025-2026
-4. événement distinct par artiste, avec horaire — Hellfest 2022
+1. relation `guest performer` sur l'édition chapeau : Sylak
+2. relations `main performer` / `support act` sur l'édition : Wacken 2027, Graspop 2024
+3. sous-événement par journée et par scène : Graspop 2025-2026
+4. événement distinct par artiste, avec horaire : Hellfest 2022
 
 Extraire un line-up demande de parcourir récursivement l'arbre `parts` et de
 collecter les relations artiste à tous les niveaux. Ce n'est pas un mapping
@@ -172,6 +172,6 @@ proximité géographique est une piste, pas une décision.
 ## Note
 
 Un line-up prospectif complet est saisissable et exploitable via l'API
-MusicBrainz — Wacken 2027 y était un mois après l'annonce publique, avec une
+MusicBrainz : Wacken 2027 y était un mois après l'annonce publique, avec une
 cinquantaine de groupes. Les données de base étant en CC0, O-Fests pourra
 contribuer en retour.

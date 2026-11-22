@@ -1,4 +1,4 @@
-# 0031 — Google Search Console, troisième source de mesure
+# 0031. Google Search Console, troisième source de mesure
 
 Date : 2026-11-17
 Statut : acceptée
@@ -27,9 +27,9 @@ requêtes.
 
 ## Options
 
-- **A. Ajouter Google Search Console** — impressions, clics, position et
+- **A. Ajouter Google Search Console** : impressions, clics, position et
   requêtes, par page, pays et appareil ; aucun script sur le site.
-- **B. Web Analytics seul** — pas de fournisseur de plus, mais la découverte
+- **B. Web Analytics seul** : pas de fournisseur de plus, mais la découverte
   reste invisible.
 
 ## Décision

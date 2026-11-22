@@ -1,4 +1,4 @@
-# 0023 — Fiche par festival
+# 0023. Fiche par festival
 
 Date : 2026-10-14
 Statut : acceptée
@@ -12,10 +12,10 @@ montre quand il n'y en a pas d'à venir.
 
 ## Options
 
-- **Une page par édition** (`/festivals/{slug}/2027/`) — une page par
+- **Une page par édition** (`/festivals/{slug}/2027/`) : une page par
   événement, mais l'URL change chaque année et la page d'un festival entre
   deux éditions n'existe pas.
-- **Une page par festival, qui présente une édition** — URL stable, la fiche
+- **Une page par festival, qui présente une édition** : URL stable, la fiche
   survit à son édition.
 
 ## Décision

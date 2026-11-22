@@ -1,6 +1,6 @@
-# 0012 — JSON-LD des sites officiels : piste fermée
+# 0012. JSON-LD des sites officiels : piste fermée
 
-- **Statut** : acceptée
+- **Statut** : acceptée, précisée par l'ADR 0023
 - **Date** : 2026-10-02
 - **Issue** : [#11](https://github.com/Cfy1010/ofests/issues/11)
 

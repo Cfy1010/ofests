@@ -1,7 +1,7 @@
-# 0028 — Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL
+# 0028. Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL
 
 Date : 2026-10-30
-Statut : acceptée
+Statut : acceptée, complétée par l'ADR 0029
 
 ## Contexte
 
@@ -19,10 +19,10 @@ script étant ajouté par le layout.
 
 ## Options
 
-- **Cloudflare Web Analytics** — gratuit, déjà chez l'hébergeur, sans cookie.
-- **Un outil tiers (Plausible, Matomo…)** — mêmes garanties possibles, mais un
+- **Cloudflare Web Analytics** : gratuit, déjà chez l'hébergeur, sans cookie.
+- **Un outil tiers (Plausible, Matomo…)** : mêmes garanties possibles, mais un
   fournisseur de plus, un coût ou un hébergement à tenir.
-- **Aucune mesure** — écarte le besoin de l'issue : arbitrer le backlog sur des
+- **Aucune mesure** : écarte le besoin de l'issue, arbitrer le backlog sur des
   faits (Current Value, EBM).
 
 ## Décision

@@ -1,4 +1,4 @@
-# 0026 — Filtrage côté navigateur de la liste à venir
+# 0026. Filtrage côté navigateur de la liste à venir
 
 Date : 2026-10-22
 Statut : acceptée, complétée le 2026-10-23 pour #52, #53 et #57

@@ -1,4 +1,4 @@
-# 0027 — Éditeur non professionnel
+# 0027. Éditeur non professionnel
 
 Date : 2026-10-24
 Statut : acceptée. La conséquence « aucune donnée personnelle avant #39 » est

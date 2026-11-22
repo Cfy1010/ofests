@@ -1,4 +1,4 @@
-# 0007 — Traçabilité des fiches
+# 0007. Traçabilité des fiches
 
 Date : 2026-08-31
 Statut : acceptée
@@ -12,7 +12,7 @@ vérifiée d'une information reprise.
 
 ## Options
 
-- **Aucune mention de source** — plus rapide, invérifiable.
+- **Aucune mention de source** : plus rapide, invérifiable.
 - **Sources et date de révision affichées sur chaque fiche.**
 
 ## Décision

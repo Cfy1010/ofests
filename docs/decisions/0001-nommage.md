@@ -1,7 +1,7 @@
-# 0001 — Nommage : O-Fests
+# 0001. Nommage : O-Fests
 
 Date : 2026-08-31
-Statut : acceptée — précisée par l'ADR 0022
+Statut : acceptée, précisée par l'ADR 0022
 
 ## Contexte
 
@@ -10,11 +10,11 @@ README, `ofests` dans le dépôt et le domaine.
 
 ## Options
 
-- **O'Fests** — demande un échappement dans les URL, les slugs, le JSON et
+- **O'Fests** : demande un échappement dans les URL, les slugs, le JSON et
   les requêtes SQL ; ambiguë à l'oral et à la saisie (apostrophe droite ou
   typographique).
-- **O-Fests** — se normalise en `ofests` sans perte.
-- **OFests** — lisible mais efface la coupure entre le O et Fests.
+- **O-Fests** : se normalise en `ofests` sans perte.
+- **OFests** : lisible mais efface la coupure entre le O et Fests.
 
 ## Décision
 

@@ -1,7 +1,7 @@
-# 0020 — Hébergement : Cloudflare Workers au lieu de Cloudflare Pages
+# 0020. Hébergement : Cloudflare Workers au lieu de Cloudflare Pages
 
 Date : 2026-10-13
-Statut : acceptée — révise l'ADR 0018
+Statut : acceptée, révise l'ADR 0018
 
 ## Contexte
 

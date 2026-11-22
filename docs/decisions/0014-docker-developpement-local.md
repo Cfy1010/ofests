@@ -1,7 +1,7 @@
-# 0014 — Docker pour le développement local, jamais au déploiement
+# 0014. Docker pour le développement local, jamais au déploiement
 
 Date : 2026-10-02
-Statut : acceptée
+Statut : acceptée, hébergement révisé par l'ADR 0020
 
 ## Contexte
 
@@ -15,11 +15,11 @@ règles RLS vérifiées par des tests.
 
 ## Options
 
-- **Sans copie locale** — migrations créées en local, appliquées sur un
+- **Sans copie locale** : migrations créées en local, appliquées sur un
   projet Supabase en ligne réservé au développement. Respecte l'ancienne
   contrainte, mais chaque essai touche une vraie base, et il faut un projet
   distant de plus.
-- **Docker pour le seul développement local** — une copie complète de
+- **Docker pour le seul développement local** : une copie complète de
   Supabase sur la machine, réinitialisable à volonté, tests de RLS en local.
 
 ## Décision
