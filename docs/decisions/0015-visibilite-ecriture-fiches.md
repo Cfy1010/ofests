@@ -1,4 +1,4 @@
-# 0015 — Visibilité et écriture des fiches : ce qui n'est pas publié reste privé
+# 0015. Visibilité et écriture des fiches : ce qui n'est pas publié reste privé
 
 Date : 2026-10-03
 Statut : acceptée
@@ -14,11 +14,11 @@ de l'ADR 0005.
 
 ## Options
 
-- **Fiches en attente publiques (ADR 0005)** — un visiteur voit qu'un festival
+- **Fiches en attente publiques (ADR 0005)** : un visiteur voit qu'un festival
   a déjà été proposé, ce qui limite les doublons. Mais le catalogue public
   expose alors des informations non sourcées et non modérées, spam compris,
   potentiellement indexées par les moteurs de recherche.
-- **Fiches en attente visibles de leur seul auteur** — le catalogue public ne
+- **Fiches en attente visibles de leur seul auteur** : le catalogue public ne
   contient que du contenu curé et sourcé. Le risque de doublons se traite
   ailleurs.
 

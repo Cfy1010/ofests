@@ -1,4 +1,4 @@
-# 0008 — Reprise dans un dépôt neuf
+# 0008. Reprise dans un dépôt neuf
 
 Date : 2026-08-31
 Statut : acceptée
@@ -10,9 +10,9 @@ MariaDB contenant 12 fiches publiées.
 
 ## Options
 
-- **Migrer l'existant** — conserve l'historique du dépôt, impose un modèle de
+- **Migrer l'existant** : conserve l'historique du dépôt, impose un modèle de
   données obsolète et une stack abandonnée.
-- **Repartir d'un dépôt neuf** — perd l'historique, libère les choix.
+- **Repartir d'un dépôt neuf** : perd l'historique, libère les choix.
 
 ## Décision
 

@@ -1,4 +1,4 @@
-# 0030 — Stockage des affiches d'édition
+# 0030. Stockage des affiches d'édition
 
 Date : 2026-11-02
 Statut : acceptée

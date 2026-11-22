@@ -1,4 +1,4 @@
-# 0029 — Politique de confidentialité minimale, responsable nommé par variable de build
+# 0029. Politique de confidentialité minimale, responsable nommé par variable de build
 
 Date : 2026-11-02
 Statut : acceptée

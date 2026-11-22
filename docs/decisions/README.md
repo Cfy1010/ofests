@@ -4,37 +4,37 @@ Une décision par fichier, datée, avec son contexte et les options écartées.
 Le format est volontairement court : ce qui compte est le raisonnement, pas
 l'exhaustivité.
 
-| #                                                    | Décision                                                         |
-| ---------------------------------------------------- | ---------------------------------------------------------------- |
-| [0001](0001-nommage.md)                              | Nommage : O-Fests                                                |
-| [0002](0002-perimetre-europeen.md)                   | Périmètre européen, pas mondial                                  |
-| [0003](0003-genres-modele-mixte.md)                  | Genres : modèle mixte                                            |
-| [0004](0004-temporalite.md)                          | Temporalité : tri sur la date, jamais sur l'année                |
-| [0005](0005-contribution-compte-apres-formulaire.md) | Contribution : compte demandé après le formulaire                |
-| [0006](0006-affiliation-et-affichage.md)             | L'affiliation ne modifie jamais l'affichage                      |
-| [0007](0007-tracabilite-des-fiches.md)               | Traçabilité des fiches                                           |
-| [0008](0008-depot-neuf.md)                           | Reprise dans un dépôt neuf                                       |
-| [0009](0009-sources-de-donnees.md)                   | Sources de données : contribution d'abord, API en enrichissement |
-| [0010](0010-critere-product-goal.md)                 | Critère du Product Goal : absents des catalogues internationaux  |
-| [0011](0011-geocodage-nominatim.md) | Géocodage : résultats Nominatim stockés, attribution OSM, sans ODbL |
-| [0012](0012-json-ld-sites-officiels.md) | JSON-LD des sites officiels : piste fermée, O-Fests publie ses propres `Event` |
-| [0013](0013-modele-de-donnees.md) | Modèle de données : statut et lieu par édition, dates facultatives, sources par fiche |
-| [0014](0014-docker-developpement-local.md) | Docker pour le développement local, pas pour le déploiement |
-| [0015](0015-visibilite-ecriture-fiches.md) | Visibilité et écriture : ce qui n'est pas publié reste privé |
-| [0016](0016-editions-a-venir-sans-date.md) | Éditions à venir : jamais de publication sans dates pour l'année en cours |
-| [0017](0017-genres-hierarchie.md) | Genres : hiérarchie tendances / genres, règle de classement, liste gérée en base |
-| [0018](0018-fraicheur-liste-a-venir.md) | Liste à venir : statique + rebuild quotidien |
-| [0019](0019-tri-editions-sans-date.md) | Tri : une édition sans date se place à la fin de son année |
-| [0020](0020-hebergement-cloudflare-workers.md) | Hébergement : Cloudflare Workers au lieu de Cloudflare Pages |
-| [0021](0021-theme-clair-sombre.md) | Thème : sombre par défaut, clair ou système par choix explicite |
-| [0022](0022-logo-en-capitales.md) | Logo en capitales, marque écrite `O-Fests` dans tout texte lu |
-| [0023](0023-fiche-par-festival.md) | Fiche par festival : URL stable, édition présentée, JSON-LD `MusicEvent` |
-| [0024](0024-selecteur-theme-compact.md) | Sélecteur de thème compact : icône et menu `<details>` |
-| [0025](0025-submitted-by-prive.md) | `submitted_by` privé : privilèges de lecture par colonne |
-| [0026](0026-filtrage-cote-navigateur.md) | Filtrage côté navigateur de la liste à venir : îlot React, état dans l'URL |
-| [0027](0027-editeur-non-professionnel.md) | Éditeur non professionnel : mentions légales avec hébergeur publié, responsable du traitement nommé à part |
-| [0028](0028-mesure-audience-cloudflare.md) | Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL |
-| [0029](0029-politique-de-confidentialite.md) | Politique de confidentialité minimale : responsable nommé par variable de build, révision de la conséquence de l'ADR 0027 |
-| [0030](0030-stockage-des-affiches.md) | Stockage des affiches : fichiers du dépôt optimisés par Astro, lien par nom de fichier |
-| [0031](0031-search-console.md) | Google Search Console, troisième source de mesure |
-| [0032](0032-critere-product-goal-elargi.md) | Critère du Product Goal élargi aux infos pratiques, révise l'ADR 0010 |
+| #                                                    | Décision                                                                                                                  |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| [0001](0001-nommage.md)                              | Nommage : O-Fests                                                                                                         |
+| [0002](0002-perimetre-europeen.md)                   | Périmètre européen, pas mondial                                                                                           |
+| [0003](0003-genres-modele-mixte.md)                  | Genres : modèle mixte                                                                                                     |
+| [0004](0004-temporalite.md)                          | Temporalité : tri sur la date, jamais sur l'année                                                                         |
+| [0005](0005-contribution-compte-apres-formulaire.md) | Contribution : compte demandé après le formulaire                                                                         |
+| [0006](0006-affiliation-et-affichage.md)             | L'affiliation ne modifie jamais l'affichage                                                                               |
+| [0007](0007-tracabilite-des-fiches.md)               | Traçabilité des fiches                                                                                                    |
+| [0008](0008-depot-neuf.md)                           | Reprise dans un dépôt neuf                                                                                                |
+| [0009](0009-sources-de-donnees.md)                   | Sources de données : contribution d'abord, API en enrichissement                                                          |
+| [0010](0010-critere-product-goal.md)                 | Critère du Product Goal : absents des catalogues internationaux                                                           |
+| [0011](0011-geocodage-nominatim.md)                  | Géocodage : résultats Nominatim stockés, attribution OSM, sans ODbL                                                       |
+| [0012](0012-json-ld-sites-officiels.md)              | JSON-LD des sites officiels : piste fermée, O-Fests publie ses propres `Event`                                            |
+| [0013](0013-modele-de-donnees.md)                    | Modèle de données : statut et lieu par édition, dates facultatives, sources par fiche                                     |
+| [0014](0014-docker-developpement-local.md)           | Docker pour le développement local, pas pour le déploiement                                                               |
+| [0015](0015-visibilite-ecriture-fiches.md)           | Visibilité et écriture : ce qui n'est pas publié reste privé                                                              |
+| [0016](0016-editions-a-venir-sans-date.md)           | Éditions à venir : jamais de publication sans dates pour l'année en cours                                                 |
+| [0017](0017-genres-hierarchie.md)                    | Genres : hiérarchie tendances / genres, règle de classement, liste gérée en base                                          |
+| [0018](0018-fraicheur-liste-a-venir.md)              | Liste à venir : statique + rebuild quotidien                                                                              |
+| [0019](0019-tri-editions-sans-date.md)               | Tri : une édition sans date se place à la fin de son année                                                                |
+| [0020](0020-hebergement-cloudflare-workers.md)       | Hébergement : Cloudflare Workers au lieu de Cloudflare Pages                                                              |
+| [0021](0021-theme-clair-sombre.md)                   | Thème : sombre par défaut, clair ou système par choix explicite                                                           |
+| [0022](0022-logo-en-capitales.md)                    | Logo en capitales, marque écrite `O-Fests` dans tout texte lu                                                             |
+| [0023](0023-fiche-par-festival.md)                   | Fiche par festival : URL stable, édition présentée, JSON-LD `MusicEvent`                                                  |
+| [0024](0024-selecteur-theme-compact.md)              | Sélecteur de thème compact : icône et menu `<details>`                                                                    |
+| [0025](0025-submitted-by-prive.md)                   | `submitted_by` privé : privilèges de lecture par colonne                                                                  |
+| [0026](0026-filtrage-cote-navigateur.md)             | Filtrage côté navigateur de la liste à venir : îlot React, état dans l'URL                                                |
+| [0027](0027-editeur-non-professionnel.md)            | Éditeur non professionnel : mentions légales avec hébergeur publié, responsable du traitement nommé à part                |
+| [0028](0028-mesure-audience-cloudflare.md)           | Mesure d'audience avec Cloudflare Web Analytics, contrôle des conditions d'exemption CNIL                                 |
+| [0029](0029-politique-de-confidentialite.md)         | Politique de confidentialité minimale : responsable nommé par variable de build, révision de la conséquence de l'ADR 0027 |
+| [0030](0030-stockage-des-affiches.md)                | Stockage des affiches : fichiers du dépôt optimisés par Astro, lien par nom de fichier                                    |
+| [0031](0031-search-console.md)                       | Google Search Console, troisième source de mesure                                                                         |
+| [0032](0032-critere-product-goal-elargi.md)          | Critère du Product Goal élargi aux infos pratiques, révise l'ADR 0010                                                     |

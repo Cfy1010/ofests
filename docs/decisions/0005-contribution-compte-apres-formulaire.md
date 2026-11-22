@@ -1,7 +1,7 @@
-# 0005 — Contribution : compte demandé après le formulaire
+# 0005. Contribution : compte demandé après le formulaire
 
 Date : 2026-08-31
-Statut : acceptée
+Statut : acceptée, en partie remplacée par l'ADR 0015
 
 ## Contexte
 
@@ -10,11 +10,11 @@ un compte détermine le taux d'abandon.
 
 ## Options
 
-- **Compte avant le formulaire** — filtre le spam en amont, mais fait
+- **Compte avant le formulaire** : filtre le spam en amont, mais fait
   abandonner ceux qui viennent rendre service.
-- **Compte après le formulaire** — l'effort est déjà consenti au moment de la
+- **Compte après le formulaire** : l'effort est déjà consenti au moment de la
   demande.
-- **Aucun compte** — modération ingérable.
+- **Aucun compte** : modération ingérable.
 
 ## Décision
 
@@ -25,6 +25,6 @@ pendant l'inscription.
 
 - Statuts `pending` / `published` / `rejected`.
 - Les fiches en attente sont visibles publiquement avec leur statut affiché :
-  le contributeur voit que sa proposition existe.*Remplacé par l'ADR 0015.*
+  le contributeur voit que sa proposition existe. *Remplacé par l'ADR 0015.*
 - La persistance du brouillon est une exigence, pas une option.
 - Modération via Supabase Studio au lancement, interface dédiée plus tard.

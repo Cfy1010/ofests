@@ -1,7 +1,7 @@
-# 0022 — Logo en capitales
+# 0022. Logo en capitales
 
 Date : 2026-10-14
-Statut : acceptée — précise l'ADR 0001
+Statut : acceptée, précise l'ADR 0001
 
 ## Contexte
 
@@ -11,9 +11,9 @@ logo dessiné pour l'issue #24 est un mot-symbole en capitales Anton,
 
 ## Options
 
-- **Logo en `O-Fests`** — conforme à la lettre de l'ADR 0001, mais Anton,
+- **Logo en `O-Fests`** : conforme à la lettre de l'ADR 0001, mais Anton,
   condensée et haute, prend toute sa force en capitales.
-- **Logo en capitales, texte en `O-Fests`** — le logo est un dessin, pas du
+- **Logo en capitales, texte en `O-Fests`** : le logo est un dessin, pas du
   texte : la graphie lue ne change pas.
 
 ## Décision

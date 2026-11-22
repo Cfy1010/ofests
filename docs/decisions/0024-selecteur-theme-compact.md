@@ -1,7 +1,7 @@
-# 0024 — Sélecteur de thème compact
+# 0024. Sélecteur de thème compact
 
 Date : 2026-10-16
-Statut : acceptée — révise l'ADR 0021 (forme du sélecteur seulement)
+Statut : acceptée, révise l'ADR 0021 (forme du sélecteur seulement)
 
 ## Contexte
 
@@ -49,5 +49,4 @@ Compact partout, par décision du PO.
 - L'en-tête tient sur une ligne jusqu'à 320 px ; `flex-wrap` reste en
   sécurité pour les très petites largeurs ou le zoom.
 - Le script de `ThemeSwitcher.astro` ne gère que la fermeture (Échap, clic
-  extérieur, sortie du focus) ; l'ouverture est native. Sans JavaScript, le
-  sélecteur reste masqué.
+  extérieur, sortie du focus) ; l'ouverture est native.

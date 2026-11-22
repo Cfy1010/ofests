@@ -1,7 +1,7 @@
-# 0019 — Tri : une édition sans date se place à la fin de son année
+# 0019. Tri : une édition sans date se place à la fin de son année
 
 Date : 2026-10-07
-Statut : acceptée — révise les ADR 0013 et 0016
+Statut : acceptée, révise les ADR 0013 et 0016
 
 ## Contexte
 
@@ -12,9 +12,9 @@ pas là où il la cherche. Le refinement de #4 a retenu un autre ordre.
 
 ## Options
 
-- **Sans date en fin de liste** (ADR 0016) — une seule règle, mais l'édition
+- **Sans date en fin de liste** (ADR 0016) : une seule règle, mais l'édition
   s'éloigne de l'année à laquelle elle appartient.
-- **Sans date à la fin de son année** — l'édition reste à côté des éditions
+- **Sans date à la fin de son année** : l'édition reste à côté des éditions
   de la même année, au prix d'une règle un peu plus longue à énoncer.
 
 ## Décision

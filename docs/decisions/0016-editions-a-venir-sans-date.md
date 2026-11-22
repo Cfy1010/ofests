@@ -1,7 +1,7 @@
-# 0016 — Éditions à venir et éditions sans date
+# 0016. Éditions à venir et éditions sans date
 
 Date : 2026-10-03
-Statut : acceptée — révisée par l'ADR 0019
+Statut : acceptée, révisée par l'ADR 0019
 
 ## Contexte
 
@@ -12,12 +12,12 @@ lieu. Aucune règle de calcul ne peut le savoir sans dates.
 
 ## Options
 
-- **Mois prévu facultatif** — réduit l'ambiguïté sans la supprimer, au prix
+- **Mois prévu facultatif** : réduit l'ambiguïté sans la supprimer, au prix
   d'une colonne de plus.
-- **Sans date = à venir seulement si l'année est strictement future** — crée
+- **Sans date = à venir seulement si l'année est strictement future** : crée
   des faux négatifs : une annonce de l'année en cours bascule dans le passé, et
   chaque 1er janvier, toutes les éditions sans date de la nouvelle année aussi.
-- **Pas de publication sans dates pour l'année en cours ou une année passée** —
+- **Pas de publication sans dates pour l'année en cours ou une année passée** :
   la base ne contient aucune ambiguïté au moment de publier.
 
 ## Décision

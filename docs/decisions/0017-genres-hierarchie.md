@@ -1,7 +1,7 @@
-# 0017 — Genres : hiérarchie tendances / genres
+# 0017. Genres : hiérarchie tendances / genres
 
 Date : 2026-10-04
-Statut : acceptée — révise l'ADR 0003
+Statut : acceptée, révise l'ADR 0003
 
 ## Contexte
 
@@ -18,14 +18,14 @@ pas de les classer honnêtement.
 
 ## Options
 
-- **Liste plate de tendances** — simple, mais un festival 100 % black metal
+- **Liste plate de tendances** : simple, mais un festival 100 % black metal
   ne peut pas être filtré comme tel, et deux styles distincts au public commun
   (thrash et death) ne peuvent pas cohabiter sans multiplier les combinaisons.
-- **Genre principal facultatif** — les festivals multi-genres deviennent
+- **Genre principal facultatif** : les festivals multi-genres deviennent
   introuvables par genre, et la contrainte `main_genre not null` tombe.
-- **Plusieurs genres principaux** — revient sur l'ADR 0003, et ne couvre pas
+- **Plusieurs genres principaux** : revient sur l'ADR 0003, et ne couvre pas
   les festivals qui programment bien plus de deux genres.
-- **Hiérarchie à deux niveaux** — tendances et genres, le genre principal
+- **Hiérarchie à deux niveaux** : tendances et genres, le genre principal
   pouvant désigner l'un ou l'autre.
 
 ## Décision

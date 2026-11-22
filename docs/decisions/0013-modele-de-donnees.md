@@ -1,7 +1,7 @@
-# 0013 — Modèle de données : statut, lieu, dates et sources
+# 0013. Modèle de données : statut, lieu, dates et sources
 
 Date : 2026-10-02
-Statut : acceptée — révisée par l'ADR 0019
+Statut : acceptée, révisée par l'ADR 0019
 
 ## Contexte
 
@@ -15,9 +15,9 @@ règle de sourçage (0007).
 
 ### Statut de modération
 
-- **Sur le festival seulement** — une nouvelle édition d'un festival publié
+- **Sur le festival seulement** : une nouvelle édition d'un festival publié
   ne peut pas être modérée seule.
-- **Sur l'édition seulement** — un festival proposé n'a pas d'état propre.
+- **Sur l'édition seulement** : un festival proposé n'a pas d'état propre.
 - **Sur les deux.**
 
 Décision : sur les deux tables. Une proposition de festival (#8) crée un
@@ -26,7 +26,7 @@ festival publié est modérée seule.
 
 ### Lieu
 
-- **Sur le festival** — une seule adresse, fausse dès qu'il déménage.
+- **Sur le festival** : une seule adresse, fausse dès qu'il déménage.
 - **Sur l'édition.**
 
 Décision : sur l'édition. Le filtre par pays (#6) lit le pays de l'édition
@@ -34,7 +34,7 @@ Décision : sur l'édition. Le filtre par pays (#6) lit le pays de l'édition
 
 ### Édition sans dates
 
-- **Dates obligatoires** — perd les éditions annoncées avant leurs dates.
+- **Dates obligatoires** : perd les éditions annoncées avant leurs dates.
 - **Dates facultatives.**
 
 Décision : dates facultatives. Règle de tri, conforme à 0004 : « par date
@@ -42,9 +42,9 @@ de début croissante, les éditions sans date en dernier ».
 
 ### Granularité des sources
 
-- **Par champ** — chaque information pointe vers sa source. Fidèle à la
+- **Par champ** : chaque information pointe vers sa source. Fidèle à la
   lettre de 0007, mais lourd en base, en saisie et en modération.
-- **Par fiche** — une liste de sources attachée au festival ou à l'édition.
+- **Par fiche** : une liste de sources attachée au festival ou à l'édition.
 
 Décision : par fiche. Une fiche sans source ne peut pas passer en
 `published`. La vérification que chaque information est couverte par l'une
