@@ -3,7 +3,7 @@
 Référentiel : Opquast, Qualité numérique, version 5.0 (2025), 245 règles. Les intitulés des règles sont repris d'Opquast sous licence Creative Commons BY-SA ; ce document est diffusé sous la même licence.
 Tri fait le 2026-11-19 sur l'état du dépôt (`main`) : site statique, pages liste, fiche, mentions légales et confidentialité, en fr et en en ; filtre de la liste (cases et listes déroulantes) ; sélecteur de thème ; visionneuse du visuel. Pas de compte, de recherche, de vente, de newsletter, de média ni de PDF.
 
-**Statut : brouillon, à verser par PR.** Ce document trie l'applicabilité ; il ne dit pas si une règle est respectée. L'audit se fait ensuite à l'écran, règle par règle, sur les règles applicables.
+**Statut : versé (PR #105) ; écarts corrigés au fil des issues.** Ce document trie l'applicabilité ; il ne dit pas si une règle est respectée. L'audit se fait ensuite à l'écran, règle par règle, sur les règles applicables.
 
 Légende :
 - **A** : applicable, à auditer.
@@ -31,7 +31,7 @@ Audit à l'écran du 2026-11-20 (passes 1 et 2), après les constats en ligne du
 | 223 | toutes | Pas de page 404 personnalisée (constat du 2026-11-19) | #106 |
 | 225 | page d'erreur | Page d'erreur du navigateur (404 sans contenu) : aucune navigation du site, retour possible seulement par Précédent ; même correction que 223 | #106 |
 | 135 | `/` | Redirige toujours vers `/en/festivals/` malgré Accept-Language fr (constat du 2026-11-19) | #107 |
-| 99 | liste fr et en (accueil) | Aucun texte visible ne dit la nature du site (annuaire des festivals metal en Europe) : le h1 est « Festivals à venir », la phrase n'existe que dans la meta description | #109 |
+| 99 | liste fr et en (accueil) | Aucun texte visible ne dit la nature du site (annuaire des festivals metal en Europe) : le h1 est « Festivals à venir », la phrase n'existe que dans la meta description | #109, corrigé le 2026-11-23 (PR #126) |
 | 2 | toutes (pied de page, mentions légales) | Aucune information sur les droits de copie et de réutilisation des contenus | #116 |
 | 107 | toutes | Un seul moyen de contact (contact@ofests.com) | #114 |
 | 108 | mentions légales, pied de page | Aucun délai de réponse indiqué pour les demandes d'information (seulement pour les droits RGPD, dans la confidentialité) | #114 |
