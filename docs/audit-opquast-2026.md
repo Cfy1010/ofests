@@ -48,8 +48,8 @@ Audit à l'écran du 2026-11-20 (passes 1 et 2), après les constats en ligne du
 ### Décisions en attente
 
 - 135 (À ARBITRER) : A dérogation, B Worker sur `/`, C page de choix de langue, D règle de redirection Cloudflare.
-- 214 : dérogation recommandée (Cloudflare ne permet pas de figer la version de son script, voir sa FAQ Web Analytics).
-- 228 : traitement proposé avec les en-têtes de sécurité (`public/_headers`), dérogation si Cloudflare ne le prend pas en compte.
+- 214 : dérogation validée le 2026-11-24 (#110) (Cloudflare ne permet pas de figer la version de son script, voir sa FAQ Web Analytics).
+- 228 : traité dans #110, résultat à vérifier en ligne.
 - 230 : scripts inline du thème et de l'audience classés hors règle (la fiche ne vise que les fichiers JavaScript).
 - Tris discutables restants : 7, 46, 105-106, 147-150.
 
