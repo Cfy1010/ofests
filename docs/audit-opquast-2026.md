@@ -26,8 +26,8 @@ Audit à l'écran du 2026-11-20 (passes 1 et 2), après les constats en ligne du
 
 | N° | Page | Constat | Issue |
 |---|---|---|---|
-| 25, 199, 206, 210, 211, 212 | toutes | Aucun en-tête de sécurité dans la réponse (constat du 2026-11-19) | #110 |
-| 228 | toutes | Content-Type sans charset (HTML et JS) ; visible en ouvrant un fichier JS brut : « » affichés Â« Â» | #110 |
+| 25, 199, 206, 210, 211, 212 | toutes | Aucun en-tête de sécurité dans la réponse (constat du 2026-11-19) | #110, corrigé le 2026-11-24 (PR #129) |
+| 228 | toutes | Content-Type sans charset (HTML et JS) ; visible en ouvrant un fichier JS brut : « » affichés Â« Â» | #110, corrigé le 2026-11-24 (PR #129) |
 | 223 | toutes | Pas de page 404 personnalisée (constat du 2026-11-19) | #106 |
 | 225 | page d'erreur | Page d'erreur du navigateur (404 sans contenu) : aucune navigation du site, retour possible seulement par Précédent ; même correction que 223 | #106 |
 | 135 | `/` | Redirige toujours vers `/en/festivals/` malgré Accept-Language fr (constat du 2026-11-19) | #107 |
@@ -49,7 +49,7 @@ Audit à l'écran du 2026-11-20 (passes 1 et 2), après les constats en ligne du
 
 - 135 (À ARBITRER) : A dérogation, B Worker sur `/`, C page de choix de langue, D règle de redirection Cloudflare.
 - 214 : dérogation validée le 2026-11-24 (#110) (Cloudflare ne permet pas de figer la version de son script, voir sa FAQ Web Analytics).
-- 228 : traité dans #110, résultat à vérifier en ligne.
+- 228 : charset appliqué par `public/_headers` (HTML et JS), vérifié en ligne le 2026-11-24 (#110).
 - 230 : scripts inline du thème et de l'audience classés hors règle (la fiche ne vise que les fichiers JavaScript).
 - Tris discutables restants : 7, 46, 105-106, 147-150.
 
