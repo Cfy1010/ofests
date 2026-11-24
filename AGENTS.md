@@ -240,6 +240,12 @@ jamais de livrer sous la Definition of Done.
 ## Domaine et marque
 - Domaine : ofests.com, enregistré chez Cloudflare Registrar (renouvellement
   automatique actif)
+- www.ofests.com : enregistrement DNS A www → 192.0.2.1 (fictif,
+  proxifié) et Redirect Rule Cloudflare « www vers ofests.com » :
+  host eq "www.ofests.com" → concat("https://ofests.com",
+  http.request.uri.path), 301, query string conservée. Réglage fait
+  dans le tableau de bord, pas dans le dépôt. Vérifié en http et https
+  le 2026-11-24 (une seule 301 vers l'apex).
 - Cloudflare ne vend pas les .eu ; le .eu reste libre si besoin un jour
 - Recherche d'antériorité faite le 28/08/2026 : INPI (data.inpi.fr) et
   TMview. Aucune marque européenne. Une seule marque française proche,
