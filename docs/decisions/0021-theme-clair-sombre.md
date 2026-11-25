@@ -1,7 +1,7 @@
 # 0021. Thème : sombre par défaut, clair ou système par choix explicite
 
 Date : 2026-10-13
-Statut : acceptée, révisée par l'ADR 0024 (forme du sélecteur seulement)
+Statut : acceptée, révisée par l'ADR 0024 (forme du sélecteur seulement) et le 2026-11-25 (fond du thème clair)
 
 ## Contexte
 
@@ -49,18 +49,25 @@ automatique : toute nouvelle couleur sémantique recalcule ses ratios ici.
 
 | Variable  | Rôle                        | Sombre                   | Clair                    |
 | --------- | --------------------------- | ------------------------ | ------------------------ |
-| `page`    | fond                        | encre                    | crème                    |
-| `body`    | texte courant               | crème, 15,6:1            | encre, 15,6:1            |
-| `muted`   | texte atténué               | crème 80 % (#C0B9AB), 10,1:1 | encre 80 % (#383635), 9,5:1 |
+| `page`    | fond                        | encre                    | blanc                    |
+| `body`    | texte courant               | crème, 15,6:1            | encre, 19,7:1            |
+| `muted`   | texte atténué               | crème 80 % (#C0B9AB), 10,1:1 | encre 80 % (#3C3C3D), 11,0:1 |
 | `line`    | séparateurs (décoratifs)    | crème 20 %, 1,6:1        | encre 20 %, 1,6:1        |
-| `link`    | liens, contrôles, focus     | rouge braise, 4,7:1      | rouge sang, 4,9:1        |
-| `heading` | grands titres (≥ 24px)      | rouge sang, 3,2:1        | rouge sang, 4,9:1        |
+| `link`    | liens, contrôles, focus     | rouge braise, 4,7:1      | rouge sang, 6,2:1        |
+| `heading` | grands titres (≥ 24px)      | rouge sang, 3,2:1        | rouge sang, 6,2:1        |
 
 - En sombre, le rouge sang reste réservé au grand texte (3:1 exigé) ; en
   clair, il passe le seuil du texte courant (4,5:1) et sert aussi aux liens.
-- Le rouge braise n'a que 3,3:1 sur crème : jamais en clair.
+- Le rouge braise n'a que 4,2:1 sur blanc : jamais en clair.
 - Les séparateurs restent à 20 % : décoratifs, ils ne portent aucune
   information et WCAG n'exige pas de ratio.
+
+## Révision du 2026-11-25
+
+Le fond crème du thème clair suivait un stéréotype des sites générés par IA.
+On le remplace par le blanc (#FFFFFF, le papier photocopié du flyer). Une
+couleur s'ajoute donc à la palette : `--paper`. Le crème reste la couleur du
+texte en sombre. Ratios recalculés dans le tableau ci-dessus. Issue #133.
 
 ## Conséquences
 
