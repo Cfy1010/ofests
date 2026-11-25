@@ -80,3 +80,9 @@ Trois sources (ADR 0028, 0031). La base de départ a été relevée le
   du domaine sans robots nommés (borne haute) ;
 - **Couverture** : des festivals absents des catalogues internationaux
   (test de couverture élargi, ADR 0032, #81).
+
+**Cadence** : un relevé, selon la même méthode, avant et après chaque
+livraison qui vise à changer le comportement des visiteurs, à la clôture de
+chaque Product Goal, et au moins tous les trois mois. Indicateur suivi en
+plus : les visites dont la page d'arrivée est une fiche festival (Web
+Analytics).
