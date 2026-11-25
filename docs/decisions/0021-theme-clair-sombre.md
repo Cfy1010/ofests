@@ -58,7 +58,7 @@ automatique : toute nouvelle couleur sémantique recalcule ses ratios ici.
 
 - En sombre, le rouge sang reste réservé au grand texte (3:1 exigé) ; en
   clair, il passe le seuil du texte courant (4,5:1) et sert aussi aux liens.
-- Le rouge braise n'a que 4,2:1 sur blanc : toujours jamais en clair.
+- Le rouge braise n'a que 4,2:1 sur blanc : jamais en clair.
 - Les séparateurs restent à 20 % : décoratifs, ils ne portent aucune
   information et WCAG n'exige pas de ratio.
 

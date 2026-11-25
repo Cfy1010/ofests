@@ -204,7 +204,8 @@ jamais de livrer sous la Definition of Done.
 
 ## Identité
 - Titrage Anton, texte Inter, auto-hébergées (pas de CDN Google)
-- Encre #0B0B0D, crème #EDE4D3, papier #FFFFFF (fond du thème clair), rouge sang #C1121F, rouge braise #E63946
+- Encre #0B0B0D, crème #EDE4D3, papier #FFFFFF (fond du thème clair),
+  rouge sang #C1121F, rouge braise #E63946
 - Deux thèmes (ADR 0021). Sombre par défaut, sans JavaScript ou sans choix
   mémorisé : fond encre, texte crème. Clair par choix explicite : fond
   blanc, texte encre. Un sélecteur Clair / Sombre / Système dans l'en-tête,
