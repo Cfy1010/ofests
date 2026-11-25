@@ -10,6 +10,12 @@
 - Des horizons, pas de dates. « Maintenant » est un engagement ; au-delà, ce
   sont des pistes candidates, revues à la clôture du goal en cours.
 - L'ordre détaillé des issues vit dans le tableau du projet, pas ici.
+- Une issue qui vise à changer le comportement des visiteurs porte, dès son
+  refinement, une section « Hypothèse » (pratique EBM de Scrum.org,
+  complémentaire au Scrum Guide) : indicateur, seuil, délai ; et le critère
+  d'acceptation « base relevée avant la mise en ligne ». Le résultat se lit
+  au relevé suivant. Les anomalies, les retouches et les corrections de
+  conformité (audit Opquast) en sont dispensées.
 
 ## Maintenant — Product Goal en cours
 

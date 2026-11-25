@@ -16,6 +16,7 @@ le 2026-11-25 (exports conservés hors du dépôt).
 | Visites, borne basse | Cloudflare Web Analytics | 16 visites, 31 pages vues |
 | Visites, borne haute | Analytique du domaine | 403 visites |
 | Découverte | Search Console | 112 impressions, 1 clic, CTR 0,9 %, position moyenne ≈ 21,9 |
+| Arrivées sur une fiche festival | Cloudflare Web Analytics | 7 visites sur 16 |
 
 Requêtes Search Console : presque toutes portent sur le nom d'un festival
 (Resurrection Fest, Rock The Lakes, Motocultor, Graspop, Mystic Festival),
@@ -29,6 +30,17 @@ requête visible ; le reste correspond à des requêtes masquées par Google.
 
 - Vues « Visits » et « Page views ».
 - Filtres : site `ofests.com`, « Exclude bots » = Yes.
+
+**Arrivées sur une fiche festival — Cloudflare Web Analytics** (ajouté le
+2026-11-25, même fenêtre)
+
+- Vue « Visits », filtres de la borne basse plus « Path contains
+  `/festivals/` ».
+- Total des visites de l'onglet « All » (pas celui de l'onglet « Path », qui
+  ne somme que les 5 premières pages), moins les visites arrivées sur les
+  listes `/fr/festivals/` et `/en/festivals/`.
+- Une visite compte la page d'arrivée : c'est une page vue dont le référent
+  n'est pas `ofests.com`.
 
 **Borne haute — analytique du domaine** (logs Cloudflare, côté serveur)
 
