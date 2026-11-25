@@ -257,6 +257,43 @@ describe("buildFestivalSheets", () => {
     assert.equal(sheet.presented.kind, "past");
     assert.equal(sheet.sources.length, 2);
   });
+
+  describe("infos pratiques (#46)", () => {
+    const practicalEdition = edition({ camping: "yes", priceKind: "unspecified", accessibility: "unspecified", practicalSourceId: "s-infos" });
+    const practicalSource = source({ id: "s-infos", festivalId: null, editionId: "e1", url: "https://granit-open-air.example/infos", consultedOn: "2026-11-20" });
+
+    test("édition à venir : section avec sa source, retirée de la liste Sources", () => {
+      const [sheet] = buildFestivalSheets([festival()], [practicalEdition], ["e1"], [source(), practicalSource]);
+      assert.equal(sheet.practical.camping, "yes");
+      assert.equal(sheet.practical.source.url, "https://granit-open-air.example/infos");
+      assert.deepEqual(sheet.sources.map((s) => s.url), ["https://granit-open-air.example/"]);
+    });
+
+    test("même URL sur une autre ligne : celle-ci reste dans la liste, avec sa propre date", () => {
+      const [sheet] = buildFestivalSheets(
+        [festival()],
+        [practicalEdition],
+        ["e1"],
+        [source(), practicalSource, source({ id: "s-dates", festivalId: null, editionId: "e1", url: "https://granit-open-air.example/infos", consultedOn: "2026-10-03" })],
+      );
+      assert.deepEqual(sheet.sources.map((s) => [s.url, s.consultedOn]), [
+        ["https://granit-open-air.example/", "2026-10-01"],
+        ["https://granit-open-air.example/infos", "2026-10-03"],
+      ]);
+    });
+
+    test("édition passée présentée : pas de section, sa source reste dans la liste", () => {
+      const past = { ...practicalEdition, year: 2025, startDate: "2025-06-19", endDate: null };
+      const [sheet] = buildFestivalSheets([festival()], [past], [], [source(), practicalSource]);
+      assert.equal(sheet.practical, null);
+      assert.equal(sheet.sources.length, 2);
+    });
+
+    test("sans édition : pas de section", () => {
+      const [sheet] = buildFestivalSheets([festival()], [], [], [source()]);
+      assert.equal(sheet.practical, null);
+    });
+  });
 });
 
 describe("buildMusicEventJsonLd", () => {
@@ -387,6 +424,32 @@ describe("festivalSheetView", () => {
     assert.equal(view.editionKind, "none");
     assert.equal(view.edition, null);
     assert.equal(view.jsonLd, null);
+  });
+
+  test("infos pratiques : null sans section, formatées sinon (#46)", () => {
+    assert.equal(festivalSheetView({ ...sheet, practical: null }, "fr", PAGE_URL).practical, null);
+    const view = festivalSheetView(
+      {
+        ...sheet,
+        practical: {
+          priceKind: "free",
+          priceAmount: null,
+          priceCurrency: null,
+          camping: "no",
+          accessibility: "yes",
+          source: { url: "https://granit-open-air.example/infos", kind: "official", consultedOn: "2026-11-20" },
+        },
+      },
+      "en",
+      PAGE_URL,
+    );
+    assert.deepEqual(view.practical, {
+      priceKind: "free",
+      price: null,
+      camping: "no",
+      accessibility: "yes",
+      source: { url: "https://granit-open-air.example/infos", consultedOn: "20 November 2026" },
+    });
   });
 });
 
@@ -543,13 +606,22 @@ describe("fetchFestivalSheets", () => {
           region: null,
           country_code: "CZ",
           revised_at: "2026-10-02T08:00:00+00:00",
+          price_kind: "from",
+          price_amount: "89.50",
+          price_currency: "EUR",
+          camping: "yes",
+          accessibility: "unspecified",
+          practical_source_id: "s2",
         },
       ],
       error: null,
     },
     upcoming_editions: { data: [{ id: "e1" }], error: null },
     sources: {
-      data: [{ id: "s1", festival_id: "f1", edition_id: null, url: "https://g.example/", kind: "official", consulted_on: "2026-10-01" }],
+      data: [
+        { id: "s1", festival_id: "f1", edition_id: null, url: "https://g.example/", kind: "official", consulted_on: "2026-10-01" },
+        { id: "s2", festival_id: null, edition_id: "e1", url: "https://g.example/infos", kind: "official", consulted_on: "2026-11-20" },
+      ],
       error: null,
     },
   };
@@ -572,6 +644,15 @@ describe("fetchFestivalSheets", () => {
     assert.equal(sheet.presented.edition.city, "Brno");
     assert.deepEqual(sheet.sources, [{ url: "https://g.example/", kind: "official", consultedOn: "2026-10-01" }]);
     assert.equal(sheet.revisedOn, "2026-10-02");
+    // Infos pratiques : montant converti en nombre, source hors de la liste
+    assert.deepEqual(sheet.practical, {
+      priceKind: "from",
+      priceAmount: 89.5,
+      priceCurrency: "EUR",
+      camping: "yes",
+      accessibility: "unspecified",
+      source: { url: "https://g.example/infos", kind: "official", consultedOn: "2026-11-20" },
+    });
   });
 
   test("échoue si une des lectures échoue", async () => {

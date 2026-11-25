@@ -136,4 +136,41 @@ select f.id, 'https://annuaire.example/nordwind-rites', 'directory', current_dat
 from public.festivals f
 where f.slug = 'nordwind-rites';
 
+-- Infos pratiques (#46, ADR 0033) : une source dédiée par édition, avec sa
+-- propre date de consultation, puis les valeurs.
+-- Granit Open Air : à partir de 89 €, camping oui, accessibilité oui
+-- Kaltfront Festival : gratuit, camping non, accessibilité non précisée
+-- Iron Meadow : montant avec centimes, camping non précisé, accessibilité non
+-- Écho des Tourbières : source consultée, rien n'y est précisé
+-- Nordwind Rites (édition passée présentée) : renseignée, mais pas de section
+-- Les autres éditions à venir : non vérifiées, sans source
+insert into public.sources (edition_id, url, kind, consulted_on)
+select e.id, 'https://' || f.slug || '.example/infos', 'official', current_date - 5
+from public.editions e
+join public.festivals f on f.id = e.festival_id
+where e.status = 'published'
+  and f.slug in ('granit-open-air', 'kaltfront-festival', 'iron-meadow', 'echo-des-tourbieres', 'nordwind-rites');
+
+update public.editions e
+set practical_source_id = s.id,
+    price_kind = v.price_kind,
+    price_amount = v.price_amount,
+    price_currency = v.price_currency,
+    camping = v.camping,
+    accessibility = v.accessibility
+from public.festivals f,
+     public.sources s,
+     (values
+       ('granit-open-air',     'from',        89::numeric, 'EUR',      'yes',         'yes'),
+       ('kaltfront-festival',  'free',        null,        null,       'no',          'unspecified'),
+       ('iron-meadow',         'from',        149.50,      'EUR',      'unspecified', 'no'),
+       ('echo-des-tourbieres', 'unspecified', null,        null,       'unspecified', 'unspecified'),
+       ('nordwind-rites',      'from',        45,          'PLN',      'yes',         'yes')
+     ) as v(slug, price_kind, price_amount, price_currency, camping, accessibility)
+where f.id = e.festival_id
+  and f.slug = v.slug
+  and e.status = 'published'
+  and s.edition_id = e.id
+  and s.url = 'https://' || f.slug || '.example/infos';
+
 commit;

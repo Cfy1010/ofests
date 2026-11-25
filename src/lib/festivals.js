@@ -4,6 +4,7 @@
 // par `npm test`.
 
 import { compareNames, countryName, formatDateRange, formatLocation, sortUpcomingEditions } from "./editions.js";
+import { buildPractical, practicalView } from "./practical.js";
 import { selectAll } from "./select-all.js";
 
 // Colonnes explicites : `*` et submitted_by sont refusés aux rôles publics,
@@ -11,7 +12,8 @@ import { selectAll } from "./select-all.js";
 // publishable, la RLS ne laisse passer que les fiches publiées.
 const FESTIVAL_COLUMNS = "id, name, slug, website, subgenres, revised_at, genre:genres ( label_fr, label_en )";
 const EDITION_COLUMNS =
-  "id, festival_id, year, start_date, end_date, venue_name, city, postcode, region, country_code, revised_at";
+  "id, festival_id, year, start_date, end_date, venue_name, city, postcode, region, country_code, revised_at, " +
+  "price_kind, price_amount, price_currency, camping, accessibility, practical_source_id";
 const SOURCE_COLUMNS = "id, festival_id, edition_id, url, kind, consulted_on";
 
 /**
@@ -69,11 +71,19 @@ function toEdition(row) {
     region: row.region,
     countryCode: row.country_code,
     revisedAt: row.revised_at,
+    // Infos pratiques (#46) ; numeric peut arriver en chaîne : converti
+    priceKind: row.price_kind,
+    priceAmount: row.price_amount === null ? null : Number(row.price_amount),
+    priceCurrency: row.price_currency,
+    camping: row.camping,
+    accessibility: row.accessibility,
+    practicalSourceId: row.practical_source_id,
   };
 }
 
 function toSource(row) {
   return {
+    id: row.id,
     festivalId: row.festival_id,
     editionId: row.edition_id,
     url: row.url,
@@ -98,16 +108,27 @@ export function buildFestivalSheets(festivals, editions, upcomingIds, sources) {
       const festivalEditions = editions.filter((edition) => edition.festivalId === festival.id);
       const presented = selectPresentedEdition(festivalEditions, upcoming);
       const edition = presented.edition;
+      // Infos pratiques : édition à venir seulement (#46, ADR 0033). Leur
+      // ligne de source n'est pas répétée dans la liste ; une autre ligne
+      // de même URL y reste.
+      const practical = presented.kind === "upcoming" ? buildPractical(edition, sources) : null;
+      const practicalSourceId = practical ? edition.practicalSourceId : null;
 
       return {
         festival,
         presented,
+        practical,
         // Années de toutes les éditions visibles : contrôle des affiches (#74)
         editionYears: festivalEditions.map((edition) => edition.year),
         // Sources du festival d'abord, puis de l'édition présentée
         sources: mergeSources([
           ...sources.filter((source) => source.festivalId === festival.id),
-          ...(edition ? sources.filter((source) => source.editionId === edition.id) : []),
+          ...(edition
+            ? sources.filter(
+                (source) =>
+                  source.editionId === edition.id && !(practicalSourceId && source.id === practicalSourceId),
+              )
+            : []),
         ]),
         revisedOn: latestRevision(festival.revisedAt, edition?.revisedAt),
       };
@@ -270,6 +291,8 @@ export function buildFestivalDescription(sheet, locale, t) {
  * @property {"upcoming" | "past" | "none"} editionKind
  * @property {{ year: number, dates: string | null, venue: string | null, location: string } | null} edition
  *   dates null : « Dates non annoncées »
+ * @property {import("./practical.js").PracticalView | null} practical
+ *   infos pratiques, pour une édition à venir seulement
  * @property {{ kind: string, url: string, label: string, consultedOn: string }[]} sources
  * @property {string} revisedOn date formatée
  * @property {string | null} jsonLd bloc sérialisé, ou null : aucun Event
@@ -284,7 +307,7 @@ export function buildFestivalDescription(sheet, locale, t) {
  * @returns {SheetView}
  */
 export function festivalSheetView(sheet, locale, pageUrl) {
-  const { festival, presented, sources, revisedOn } = sheet;
+  const { festival, presented, practical, sources, revisedOn } = sheet;
   const edition = presented.edition;
   const jsonLd = buildMusicEventJsonLd(sheet, pageUrl);
 
@@ -300,6 +323,7 @@ export function festivalSheetView(sheet, locale, pageUrl) {
       venue: edition.venueName,
       location: formatLocation(edition.city, edition.countryCode, locale),
     },
+    practical: practical ? practicalView(practical, locale) : null,
     sources: sources.map((source) => ({
       kind: source.kind,
       url: source.url,

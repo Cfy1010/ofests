@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { toLocale, useTranslations } from "../i18n";
-import { festivalSheetView } from "../lib/festivals.js";
+import { displayUrl, festivalSheetView } from "../lib/festivals.js";
 import { findPoster } from "../lib/poster-images.js";
 
 // sheet : fiche de fetchFestivalSheets() ; pageUrl : URL absolue de la page,
@@ -120,6 +120,38 @@ const poster = view.edition ? findPoster(sheet.festival.slug, view.edition.year)
 			)
 		}
 	</section>
+
+	{/* Infos pratiques (#46, ADR 0033) : édition à venir seulement, valeur ou « Non précisé » */}
+	{
+		view.practical && (
+			<section class="mt-8 border-t border-line pt-6">
+				<h2 class="text-xl font-bold">{t("festival.practical")}</h2>
+				<dl class="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
+					<dt class="text-muted">{t("festival.price")}</dt>
+					<dd>
+						{view.practical.priceKind === "from" && view.practical.price
+							? t("festival.priceFrom", { price: view.practical.price })
+							: view.practical.priceKind === "free"
+								? t("festival.priceFree")
+								: t("festival.practical.unspecified")}
+					</dd>
+					<dt class="text-muted">{t("festival.camping")}</dt>
+					<dd>{t(`festival.practical.${view.practical.camping}`)}</dd>
+					<dt class="text-muted">{t("festival.accessibility")}</dt>
+					<dd>{t(`festival.practical.${view.practical.accessibility}`)}</dd>
+				</dl>
+				{view.practical.source && (
+					<p class="mt-3 wrap-anywhere">
+						<span class="text-muted">{t("festival.practicalSource")} </span>
+						<a class="text-link underline" href={view.practical.source.url}>
+							{displayUrl(view.practical.source.url)}
+						</a>
+						<span class="text-muted">, {t("festival.consultedOn", { date: view.practical.source.consultedOn })}</span>
+					</p>
+				)}
+			</section>
+		)
+	}
 
 	{/* Traçabilité (ADR 0007) : sources et date de dernière révision */}
 	<section class="mt-8 border-t border-line pt-6">
