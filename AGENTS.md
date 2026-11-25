@@ -76,7 +76,11 @@ jamais de livrer sous la Definition of Done.
   la prochaine à venir (vue `upcoming_editions`), à défaut la dernière
   passée (« Dernière édition »), à défaut aucune. Sources du festival et de
   l'édition présentée, une ligne par URL ; date de dernière révision ;
-  JSON-LD `MusicEvent` seulement pour une édition à venir datée. Chemin
+  JSON-LD `MusicEvent` seulement pour une édition à venir datée. Section
+  « Infos pratiques » pour une édition à venir seulement (#46, ADR 0033,
+  `src/lib/practical.js`) : prix, camping, accessibilité, valeur ou « Non
+  précisé », puis leur source et sa date ; cette ligne de source n'est pas
+  répétée dans la liste « Sources ». Chemin
   d'une fiche : `festivalPath(slug)`, source unique
 - Affiche d'édition (#74, ADR 0030) : fichier WebP
   `src/assets/posters/{slug}-{année}.webp`, affiché sur la fiche qui présente
@@ -162,6 +166,12 @@ jamais de livrer sous la Definition of Done.
 - Table `editions` : une ligne par année d'un festival (year obligatoire,
   dates facultatives, lieu et champs géographiques ; affiche et billetterie
   à venir). Le lieu est porté par l'édition (ADR 0013)
+- Infos pratiques d'une édition (#46, ADR 0033) : `price_kind`
+  (`unspecified`, `free`, `from` avec `price_amount` et `price_currency`
+  ISO 4217), `camping` et `accessibility` (`unspecified`, `yes`, `no`),
+  `practical_source_id`, une source de la même édition (clé étrangère
+  composée), obligatoire dès qu'une valeur est renseignée. La saisie crée une
+  ligne de source dédiée, avec sa propre date de consultation
 - Table `sources` : sources d'une fiche, festival ou édition (URL, type,
   date de consultation). Pas de publication sans source (ADR 0007, 0013)
 - Choix d'une source (lots de production) : une page durable, qui affiche

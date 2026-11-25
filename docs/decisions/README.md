@@ -38,3 +38,4 @@ l'exhaustivité.
 | [0030](0030-stockage-des-affiches.md)                | Stockage des affiches : fichiers du dépôt optimisés par Astro, lien par nom de fichier                                    |
 | [0031](0031-search-console.md)                       | Google Search Console, troisième source de mesure                                                                         |
 | [0032](0032-critere-product-goal-elargi.md)          | Critère du Product Goal élargi aux infos pratiques, révise l'ADR 0010                                                     |
+| [0033](0033-infos-pratiques.md)                      | Infos pratiques : prix, camping, accessibilité par édition, une source pour la section                                    |
