@@ -17,6 +17,7 @@ le 2026-11-25 (exports conservés hors du dépôt).
 | Visites, borne haute | Analytique du domaine | 403 visites |
 | Découverte | Search Console | 112 impressions, 1 clic, CTR 0,9 %, position moyenne ≈ 21,9 |
 | Arrivées sur une fiche festival | Cloudflare Web Analytics | 7 visites sur 16 |
+| Requêtes d'infos pratiques | Search Console | 0 impression (aucune requête visible) |
 
 Requêtes Search Console : presque toutes portent sur le nom d'un festival
 (Resurrection Fest, Rock The Lakes, Motocultor, Graspop, Mystic Festival),
@@ -64,6 +65,14 @@ requête visible ; le reste correspond à des requêtes masquées par Google.
   2026-11-24, export Excel.
 - Position moyenne : non fournie en total par l'export ; calculée comme la
   moyenne des positions quotidiennes pondérée par les impressions.
+
+**Requêtes d'infos pratiques — Google Search Console** (ajouté le 2026-11-25 pour
+l'hypothèse de #46, même export, même fenêtre)
+
+- Onglet « Requêtes » de l'export : somme des impressions des requêtes contenant
+  (sans tenir compte de la casse) camping, prix, price, ticket ou billet ; une requête
+  comptée une seule fois. Liste fixe, reprise telle quelle aux relevés suivants.
+- Ne couvre que les requêtes visibles (83 impressions sur 112 dans cette fenêtre).
 
 **Opposition du PO** : bouton « Ne pas mesurer mes visites » activé dès le
 début sur chaque appareil et navigateur du PO ; il empêche le chargement du
