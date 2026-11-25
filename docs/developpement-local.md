@@ -28,6 +28,19 @@ liste vide.
 - Ctrl+C dans le terminal d'Astro
 - `npx supabase stop`
 
+## Appliquer une migration en production
+
+Les migrations (`supabase/migrations/`) passent par le CLI, jamais par l'éditeur SQL.
+Les scripts de `supabase/production/` sont des données : eux se lancent à la main dans
+l'éditeur SQL de Supabase.
+
+1. Depuis la branche de la PR, à jour : `npx supabase db push`.
+2. Contrôle : `npx supabase migration list` ; la nouvelle migration apparaît en Local et en Remote.
+3. Fusionner la PR : le build qui suit lit déjà les nouvelles colonnes.
+
+Si la migration n'est appliquée qu'après la fusion, le build échoue (Cloudflare garde la version
+en ligne) : appliquer la migration, puis relancer le build avec `gh workflow run daily-rebuild.yml`.
+
 ## Windows : ports refusés au démarrage de Supabase
 
 **Symptôme** : `npx supabase start` échoue avec `ports are not available`
