@@ -33,7 +33,6 @@ marqués « non précisé », avec source et date.
 ## En parallèle — hors Product Goal
 
 - Signaler une erreur sur une fiche (#47)
-- Relever la base d'audience (#80 ; ADR 0028, 0031)
 - Anomalies et retouches : #76, #64, #16
 
 ## Ensuite — pistes candidates
