@@ -204,10 +204,10 @@ jamais de livrer sous la Definition of Done.
 
 ## Identité
 - Titrage Anton, texte Inter, auto-hébergées (pas de CDN Google)
-- Encre #0B0B0D, crème #EDE4D3, rouge sang #C1121F, rouge braise #E63946
+- Encre #0B0B0D, crème #EDE4D3, papier #FFFFFF (fond du thème clair), rouge sang #C1121F, rouge braise #E63946
 - Deux thèmes (ADR 0021). Sombre par défaut, sans JavaScript ou sans choix
   mémorisé : fond encre, texte crème. Clair par choix explicite : fond
-  crème, texte encre. Un sélecteur Clair / Sombre / Système dans l'en-tête,
+  blanc, texte encre. Un sélecteur Clair / Sombre / Système dans l'en-tête,
   compact : icône du thème actif, menu `<details>` (ADR 0024,
   `src/components/ThemeSwitcher.astro`) ; Système suit l'appareil
   (`prefers-color-scheme`). Choix mémorisé en `localStorage`
@@ -217,8 +217,8 @@ jamais de livrer sous la Definition of Done.
   - sombre : rouge sang uniquement en grand texte (≥ 24px, ou ≥ 19px en gras
     700+), 3,2:1 sur encre ; rouge braise pour les liens et contrôles en
     petit corps, 4,7:1 sur encre
-  - clair : rouge sang pour les titres ET les liens, 4,9:1 sur crème ; jamais
-    de rouge braise, 3,3:1 sur crème
+  - clair : rouge sang pour les titres ET les liens, 6,2:1 sur blanc ; jamais
+    de rouge braise, 4,2:1 sur blanc
 - Couleurs uniquement par les variables sémantiques de
   `src/styles/global.css` : `page`, `body`, `muted`, `line`, `link`,
   `heading` (`bg-page`, `text-muted`…). La palette n'y génère aucune classe :

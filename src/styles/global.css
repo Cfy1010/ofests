@@ -6,6 +6,7 @@
 :root {
   --ink: #0b0b0d;
   --cream: #ede4d3;
+  --paper: #ffffff;
   --blood: #c1121f;
   --ember: #e63946;
 }
@@ -23,14 +24,14 @@
   --theme-heading: var(--blood);
 }
 
-/* Thème clair : choix explicite. Le rouge braise n'a que 3,3:1 sur crème :
-   liens et titres passent au rouge sang. */
+/* Thème clair : choix explicite. Le rouge braise n'a que 4,2:1 sur blanc :
+   liens et titres passent au rouge sang, et il reste interdit en clair. */
 :root[data-theme="light"] {
   color-scheme: light;
-  --theme-page: var(--cream);
+  --theme-page: var(--paper);
   --theme-body: var(--ink);
-  --theme-muted: color-mix(in srgb, var(--ink) 80%, var(--cream));
-  --theme-line: color-mix(in srgb, var(--ink) 20%, var(--cream));
+  --theme-muted: color-mix(in srgb, var(--ink) 80%, var(--paper));
+  --theme-line: color-mix(in srgb, var(--ink) 20%, var(--paper));
   --theme-link: var(--blood);
   --theme-heading: var(--blood);
 }
@@ -43,10 +44,10 @@
 
 @media (prefers-color-scheme: light) {
   :root[data-theme="system"] {
-    --theme-page: var(--cream);
+    --theme-page: var(--paper);
     --theme-body: var(--ink);
-    --theme-muted: color-mix(in srgb, var(--ink) 80%, var(--cream));
-    --theme-line: color-mix(in srgb, var(--ink) 20%, var(--cream));
+    --theme-muted: color-mix(in srgb, var(--ink) 80%, var(--paper));
+    --theme-line: color-mix(in srgb, var(--ink) 20%, var(--paper));
     --theme-link: var(--blood);
     --theme-heading: var(--blood);
   }
