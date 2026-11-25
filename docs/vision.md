@@ -71,8 +71,8 @@ viendra s'y ajouter.
 
 ## Comment on saura que ça marche
 
-Trois sources, aucun chiffre tant que la base de départ n'est pas relevée
-(ADR 0028, 0031) :
+Trois sources (ADR 0028, 0031). La base de départ a été relevée le
+2026-11-25 : [relevé](mesure/2026-11-25-base-audience.md).
 
 - **Découverte** : O-Fests apparaît-il dans Google, et sur quelles requêtes
   (Search Console) ;
