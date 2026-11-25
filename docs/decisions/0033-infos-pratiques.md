@@ -46,7 +46,9 @@ Champs sur l'édition, un seul champ de prix, une source pour la section
 - **Prix** (`price_kind`) : `unspecified` (par défaut), `free`, ou `from`
   avec `price_amount` (strictement positif) et `price_currency` (code
   ISO 4217). « À partir de » est le plus bas plein tarif : hors réductions
-  (étudiant, groupe, prévente limitée) et hors frais de service.
+  (étudiant, groupe, prévente limitée) et hors frais de service. Quand la
+  page officielle n'affiche qu'un prix frais inclus, sans détail des frais, on
+  retient le prix affiché (décision du PO, 2026-11-25).
 - **Camping** (`camping`) et **accessibilité** (`accessibility`) :
   `unspecified` (par défaut), `yes`, `no`. « Non » seulement si la source le
   dit ; une source muette laisse « non précisé ».
