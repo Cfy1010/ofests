@@ -33,8 +33,8 @@ marqués « non précisé », avec source et date.
 | Site en ligne | Livré |
 | Liste et fiches | Livré (#4, #5) |
 | Filtres pays, période, genre | Livré (#6, #51, #52, #53, #57) |
-| Festivals absents des catalogues internationaux | Lots livrés (#45) ; test de couverture élargi (#81) |
-| Infos pratiques de l'édition | À faire (#46, avec son ADR) |
+| Festivals absents des catalogues internationaux | Lots livrés (#45) ; [test de couverture élargi](benchmark/couverture-2026-11-26.md) (#81) |
+| Infos pratiques de l'édition | Livré (#46, ADR 0033) |
 
 ## En parallèle — hors Product Goal
 
