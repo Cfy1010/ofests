@@ -114,8 +114,8 @@ critère du test de couverture est **rempli**. Les 4 absents qui ont une éditio
   montrent que la barre de FEST retrouve des festivals qui n'y ont que des
   éditions passées.
 - FestT, festivals sans édition à venir : un festival enregistré avec des
-  dates décalées de plus de 2 jours, sous un autre nom et dans une autre ville,
-  échapperait à la vérification.
+  dates décalées de plus de 2 jours, ou sous un autre nom et dans une autre
+  ville, échapperait à la vérification.
 - Le plan de site de FEST n'est pas retenu comme méthode, à cause de la clause
   e de ses [conditions d'utilisation](https://festapp.io/files/legal/terms-of-use_en.pdf) :
   « Do not access, search or create accounts for the Services by means other
