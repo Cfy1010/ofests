@@ -73,6 +73,8 @@ Test du 01/10/2026, recherche par nom dans la barre de recherche :
 
 Limites : échantillon de 7, choisi et non aléatoire ; quatre candidats déjà présents sur des annuaires généralistes ; un seul passage, sans recherche par variantes de graphie.
 
+Test de couverture élargi du 2026-11-26, sur les 19 festivals publiés : voir [`couverture-2026-11-26.md`](couverture-2026-11-26.md).
+
 ## Ce qu'ils font bien
 
 - Double modèle : l'outil organisateur fait entrer des données de première main, publiées par l'organisateur lui-même. Le plan gratuit abaisse la barrière d'entrée, et chaque festival inscrit alimente le catalogue public.

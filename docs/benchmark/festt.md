@@ -108,6 +108,12 @@ Deux problèmes distincts en découlent : les tarifs sont dans « À propos » e
 « Infos pratiques » (architecture d'information), et le soin éditorial suit
 vraisemblablement la notoriété du festival (couverture inégale à 6 000 fiches).
 
+## Couverture
+
+Test de couverture élargi du 2026-11-26, sur les 19 festivals publiés : voir [`couverture-2026-11-26.md`](couverture-2026-11-26.md).
+
+Constaté à cette date : la barre de recherche n'expose pas les festivals terminés ; la liste des festivals filtrée par dates passées, si. Le catalogue commence aux éditions 2026.
+
 ## Ce qu'ils font bien
 
 - **SEO programmatique massif** : pages par genre, sous-genre, mois, région, pays,
