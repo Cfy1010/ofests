@@ -16,8 +16,32 @@
   d'acceptation « base relevée avant la mise en ligne ». Le résultat se lit
   au relevé suivant. Les anomalies, les retouches et les corrections de
   conformité (audit Opquast) en sont dispensées.
+- Projet mené en solo, sur temps libre : Scrum adapté (Product Goal, backlog,
+  refinement, Definition of Done, hypothèse et mesure EBM), sans sprints
+  timeboxés. Un Product Goal se clôt par une revue de clôture : constat du PO
+  avec preuves, mise à jour de cette roadmap, jalon GitHub fermé.
 
 ## Maintenant — Product Goal en cours
+
+**Un festivalier metal trouve sur O-Fests des festivals européens à venir,
+quel que soit le mois.**
+
+Critère d'atteinte (ADR
+[0034](decisions/0034-product-goal-couverture-annuelle.md)) : chaque mois de
+janvier à juin 2027 compte au moins 2 éditions publiées (date de début dans
+le mois). Toute édition ajoutée affiche ses infos pratiques avec source et
+date (ADR 0033).
+
+| Mois | Éditions publiées au 2026-11-26 |
+| --- | --- |
+| Janvier 2027 | 0 |
+| Février 2027 | 0 |
+| Mars 2027 | 0 |
+| Avril 2027 | 0 |
+| Mai 2027 | 1 |
+| Juin 2027 | 4 |
+
+## Product Goal atteint le 2026-11-26
 
 **Permettre à un festivalier metal de trouver un festival européen qui
 l'intéresse, y compris ceux qu'aucun annuaire automatique ne référence.**
@@ -32,9 +56,9 @@ marqués « non précisé », avec source et date.
 | --- | --- |
 | Site en ligne | Livré |
 | Liste et fiches | Livré (#4, #5) |
-| Filtres pays, période, genre | Livré (#6, #51, #52, #53, #57) |
-| Festivals absents des catalogues internationaux | Lots livrés (#45) ; [test de couverture élargi](benchmark/couverture-2026-11-26.md) (#81) |
-| Infos pratiques de l'édition | Livré (#46, ADR 0033) |
+| Filtres pays, période, genre | Livré (#6, #51, #52, #53, #57) ; filtre vérifié en ligne le 2026-11-26 (France, avril à juin 2027 : Metal Hunting Open Air, absent de FestT et FEST) |
+| Festivals absents des catalogues internationaux | Livré (#45) ; [test de couverture élargi](benchmark/couverture-2026-11-26.md) (#81) |
+| Infos pratiques de l'édition | Livré (#46, ADR 0033) ; édition 2027 de Sylak Open Air (#143) |
 
 ## En parallèle — hors Product Goal
 

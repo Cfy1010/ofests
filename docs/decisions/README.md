@@ -39,3 +39,4 @@ l'exhaustivité.
 | [0031](0031-search-console.md)                       | Google Search Console, troisième source de mesure                                                                         |
 | [0032](0032-critere-product-goal-elargi.md)          | Critère du Product Goal élargi aux infos pratiques, révise l'ADR 0010                                                     |
 | [0033](0033-infos-pratiques.md)                      | Infos pratiques : prix, camping, accessibilité par édition, une source pour la section                                    |
+| [0034](0034-product-goal-couverture-annuelle.md)     | Product Goal : des festivals à venir quel que soit le mois                                                                |
