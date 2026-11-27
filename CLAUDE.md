@@ -10,6 +10,7 @@
 - Avant chaque commit : lancer `npm test`.
 - Jamais de commit sur `main` : toujours une branche dédiée.
 - PR : pas de mention Generated with Claude Code.
+- Description de PR courte : pourquoi, contenu, vérifications faites et restantes. Pas de journal de travail (mesures intermédiaires, essais, détail des données de test) : il va dans la réponse au PO, pas dans la PR.
 - Issues : une retouche sans impact fonctionnel (espacement, coquille,
   commentaire, documentation, dépendance mise à jour sans changement de
   comportement) peut passer par une PR seule, dont la description donne le
