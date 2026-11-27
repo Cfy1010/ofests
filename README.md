@@ -54,13 +54,17 @@ recommandation algorithmique.
 
 ### Product Goal
 
-Permettre à un festivalier metal de trouver un festival européen qui l'intéresse, y compris ceux qu'aucun annuaire automatique ne référence.
+Un festivalier metal trouve sur O-Fests des festivals européens à venir, quel que soit le mois.
 
-Critère d'atteinte (ADR [0032](docs/decisions/0032-critere-product-goal-elargi.md), qui révise
-[0010](docs/decisions/0010-critere-product-goal.md)). Le site est en ligne ; un visiteur filtre le
-catalogue par pays et par période et y trouve des festivals absents de FestT et FEST (test de
-couverture élargi) ; chaque édition à venir affiche prix, camping et accessibilité, renseignés
-ou marqués « non précisé », avec source et date.
+Critère d'atteinte (ADR [0034](docs/decisions/0034-product-goal-couverture-annuelle.md)). Chaque
+mois de janvier à juin 2027 compte au moins 2 éditions publiées (date de début dans le mois).
+Toute édition ajoutée affiche ses infos pratiques avec source et date
+(ADR [0033](docs/decisions/0033-infos-pratiques.md)).
+
+Goal précédent, atteint le 2026-11-26 (critère de l'ADR
+[0032](docs/decisions/0032-critere-product-goal-elargi.md)) : permettre à un festivalier metal de
+trouver un festival européen qui l'intéresse, y compris ceux qu'aucun annuaire automatique ne
+référence.
 
 ## Pour qui
 

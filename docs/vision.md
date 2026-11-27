@@ -78,8 +78,13 @@ Trois sources (ADR 0028, 0031). La base de départ a été relevée le
   (Search Console) ;
 - **Visites** : fourchette entre Web Analytics (borne basse) et l'analytique
   du domaine sans robots nommés (borne haute) ;
-- **Couverture** : des festivals absents des catalogues internationaux
-  (test de couverture élargi, ADR 0032, #81).
+- **Couverture** : des festivals européens à venir, quel que soit le mois.
+  Critère du Product Goal en cours (ADR
+  [0034](decisions/0034-product-goal-couverture-annuelle.md)) : chaque mois de
+  janvier à juin 2027 compte au moins 2 éditions publiées (date de début dans
+  le mois). Toute édition ajoutée affiche ses infos pratiques avec source et
+  date (ADR 0033). Goal précédent atteint le 2026-11-26 (ADR 0032), dont le
+  [test de couverture élargi](benchmark/couverture-2026-11-26.md) (#81).
 
 **Cadence** : un relevé, selon la même méthode, avant et après chaque
 livraison qui vise à changer le comportement des visiteurs, à la clôture de
