@@ -12,7 +12,8 @@ Preuves :
   [relevé](../benchmark/couverture-2026-11-26.md)) ;
 - infos pratiques de l'édition livrées (#46) ;
 - édition 2027 de Sylak Open Air (#143) ;
-- filtre vérifié en ligne.
+- filtre vérifié en ligne le 2026-11-26 (France, avril à juin 2027 : Metal
+  Hunting Open Air, absent de FestT et FEST).
 
 Base de départ au 2026-11-26 : 14 éditions à venir publiées, aucune de
 janvier à avril 2027.
@@ -33,8 +34,12 @@ festival entre janvier et avril ne trouve rien.
 
 - **A. Au moins 2 éditions publiées pour chaque mois de janvier à juin
   2027.**
-- **B. La même chose, avec au moins 1 pour janvier et février.**
-- **C. Un volume total de festivals.**
+- **B. La même chose, avec au moins 1 pour janvier et février** : écartée,
+  parce qu'elle affaiblirait d'avance le critère sur les mois les plus
+  difficiles.
+- **C. Un volume total de festivals** : écartée, parce qu'un volume total peut
+  être atteint avec des festivals d'été seulement, sans rien de janvier à
+  avril.
 - **D. Une fenêtre glissante de 6 mois après la date de vérification** :
   écartée, parce que le temps la remplirait sans travail.
 

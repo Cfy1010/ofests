@@ -56,7 +56,7 @@ marqués « non précisé », avec source et date.
 | --- | --- |
 | Site en ligne | Livré |
 | Liste et fiches | Livré (#4, #5) |
-| Filtres pays, période, genre | Livré (#6, #51, #52, #53, #57) ; filtre vérifié en ligne |
+| Filtres pays, période, genre | Livré (#6, #51, #52, #53, #57) ; filtre vérifié en ligne le 2026-11-26 (France, avril à juin 2027 : Metal Hunting Open Air, absent de FestT et FEST) |
 | Festivals absents des catalogues internationaux | Livré (#45) ; [test de couverture élargi](benchmark/couverture-2026-11-26.md) (#81) |
 | Infos pratiques de l'édition | Livré (#46, ADR 0033) ; édition 2027 de Sylak Open Air (#143) |
 
